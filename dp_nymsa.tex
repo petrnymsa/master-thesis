@@ -14,6 +14,7 @@
 \usepackage[utf8]{inputenc}
 
 \usepackage{graphicx} %graphics files inclusion
+\usepackage{wrapfig}
 \usepackage{amsmath} %advanced maths
 \usepackage{amssymb}
 \usepackage{dirtree} %directory tree visualisation
@@ -22,6 +23,8 @@
 \usepackage{afterpage}
 \usepackage{minted} % code highlighting
 \usepackage{notoccite} % prevent TOC cite 
+\usepackage{xcolor}
+\usepackage{blindtext} 
 
 \newcommand{\tg}{\mathop{\mathrm{tg}}} %cesky tangens
 \newcommand{\cotg}{\mathop{\mathrm{cotg}}} %cesky cotangens
@@ -31,14 +34,14 @@
 \iflanguage{czech}{\renewcommand*{\acronymname}{Seznam pou{\v z}it{\' y}ch zkratek}}{}
 \makeglossaries
 
-% following 3 commands (todo, tmp image) Used from http://www.herout.net/blog/2017/03/pomalu-uz-pojdme-psat/
-\usepackage{xcolor} 
+% Used from http://www.herout.net/blog/2017/03/pomalu-uz-pojdme-psat/
 \newcommand{\todo}[1]{\textcolor{red}{\textbf{[#1]}}}
-
-\usepackage{blindtext}
 \newcommand{\blind}[1][1]{\textcolor{gray}{\Blindtext[#1][1]}}
-
 \newcommand{\RNum}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+
+\setlength{\fboxsep}{0.005pt}
+\newcommand{\tmpframe}[1]{\fbox{#1}}
+%\renewcommand{\tmpframe}[1]{#1}
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
@@ -53,13 +56,21 @@
 \authorWithDegrees{Bc. Petr Nymsa} %jméno autora včetně akademických titulů
 \author{Petr Nymsa} %jméno autora bez akademických titulů
 \supervisor{Ing. David Šenkýř}
-\acknowledgements{Děkuji všem a za vše. Nevíte-li, co sem napsat, příkaz odstraňte.}
-\abstractCS{V~několika větách shrňte obsah a přínos této práce v~češtině. Po přečtení abstraktu by měl mít čtenář dost informací pro rozhodnutí, zda chce Vaši práci číst.}
-\abstractEN{Sem doplňte ekvivalent abstraktu Vaší práce v~angličtině.}
-\placeForDeclarationOfAuthenticity{V~Praze}
-\declarationOfAuthenticityOption{4} %volba Prohlášení
-\keywordsCS{Závěrečná práce, \LaTeX{}.}
-\keywordsEN{Thesis, \LaTeX{}.}
+\acknowledgements{ \todo{todo}Děkuji všem a za vše. Nevíte-li, co sem napsat, příkaz odstraňte.}
+
+\abstractCS{Práce se zabývá využitím multiplatformního frameworku Flutter, umožňující tvorbu aplikací pro mobilní systémy, web i desktop systémy. Hlavním tématem je jeho fungování a~použitelnost při tvorbě aplikací. Flutter je prakticky vyzkoušen na návrhu~a~implementaci aplikace Coffee Time pro operační systém Android a~iOS. Aplikace uživatelům pomáhá vyhledávat kavárny v blízkém okolí s~ možností filtrování dle různých kritérií. 
+
+Práce je zaměřena především na využití frameworku, následný návrh a~implementaci ukázkové aplikace. Kromě použitého frameworku Flutter, aplikace využívá i~serverless přístup pro vývoj serverové části. }
+
+\abstractEN{ \todo{todo}Sem doplňte ekvivalent abstraktu Vaší práce v~angličtině.}
+
+\placeForDeclarationOfAuthenticity{Prague}
+\declarationOfAuthenticityOption{4} %volba Prohlášení //TODO
+
+\keywordsCS{Flutter framework, reaktivní programování, Android aplikace, vyhledávač kaváren, serverless, Firebase.}
+
+\keywordsEN{Flutter framework, reactive programming, Android application, cafe search, serverless, Firebase.}
+
 \website{http://site.example/thesis} %volitelná URL práce, objeví se v tiráži
 
 
@@ -75,25 +86,17 @@
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
-\begin{introduction}
-	Doplňte úvod Vaší práce.  \gls{ctu}
-\end{introduction}
+\include{chapters/00_introduction}
 
-\chapter{Nějaká kapitola}
+\include{chapters/01_flutter}
 
-Doplňte kapitoly Vaší práce.
+\include{chapters/02_analysis}
 
-\section{Nějaká sekce}
+\include{chapters/03_implementation}
 
-Doplňte vhodný text.
+\include{chapters/04_testing}
 
-\chapter{Další kapitola}
-
-
-\begin{conclusion}
-	Doplňte závěr.
-	
-\end{conclusion}
+\include{chapters/_conclusion}
 
 \bibliographystyle{iso690.bst}
 \bibliography{ref.bib}
