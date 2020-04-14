@@ -1,10 +1,52 @@
 \chapter{Coffee Time Analysis}
+% TODO Review ---------
+In this chapter, the specification of the implemented application is outlined. The analysis of similar applications was made to obtain ideas.  After analysis, the low fidelity prototype was created to outline the first vision of the final application. Next, the high-fidelity prototype, along with Nielsen's heuristics analysis and user testing, were made. At the end of the chapter, considered tools and services are briefly described which are used to implement the application. 
 
-\todo{Basic app overview, specification}
+\section{Considered application}
 
-\section{Application specification}
+Coffee Time is an application focused on searching nearby cafes. Users should be able to search and find nearby cafes around them to decide which establishment to visit. Each cafe is displayed with information such as distance, user's reviews, photos, opening hours and more. 
 
-\todo{App domain}
+Added value to this standard information is a feature so-called ``the tags''. These tags are user-added additional info which describes more precisely what given cafe offer or for example if that cafe allows pets inside. 
+
+The set of tags is defined, and users can add these tags to the cafe.  Each tag can be reviewed by other users. These reviews are done through ``like'' and ``dislike'' functionality. The purpose of tag's reviews is to prevent outdated information or misleading information.  
+
+The example of such a review can be ``User visited cafe which has tag 'dog friendly', but unfortunately this information was incorrect. Consequently, the user decided to open the application and review the cafe's tag 'dog friendly' with dislike.''
+
+Together with likes and dislikes, each tag has a computed score.  Each like gives to score plus one and as an opposite, dislike minus one. 
+If any tags reach the score to -4, the tag is removed from the cafe, more precisely is not shown anymore to users. 
+If such removed tag is proposed by any user again, it obtains "like" review. Thus score is incremented to -3 and is shown again. 
+
+The application is location-based and offers a map view to support the convenience user experience. Google Places API as a data source is considered. Any cafe can be marked as user's favourite to give a faster way to find cafe whenever the user wants. 
+
+To conclusion, Coffee Time is application focused on one domain -- searching nearby cafes where to go to study, talk with friends or for example have a great coffee. The application should be simple to use with a clean user interface. 
+
+\subsection{Use cases}
+\todo{use cases, use case scenarios}
+From the specification above, the use cases and use case scenarios were formed. The use cases diagram is listed in \cref{fig:use_case} and shows every use cases from the user perspective. Technically there is the role of ``application administrator'' which can check control back-end or available application's tags, but it skipped due to not importance of application perspective. 
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=\linewidth]{img/analysis/use_case.pdf}
+    \caption{Application's use case diagram}
+    \label{fig:use_case}
+\end{figure}
+
+As shown on diagram, the application has several use cases
+
+\begin{itemize}
+    \item UC1: Displaying nearby cafes as a list or as map view
+    \item UC2: From each cafe, it is possible to start navigation
+    \item UC3: Each cafe can be marked as a favourite
+    \item UC4: Setting filter to filter the cafe results
+    \item UC5: User can display favourites cafes
+    \item UC6: User can review the cafe's tags
+    \item UC7: User can suggest a new tag to the cafe
+\end{itemize}
+
+\subsubsection{UC1: Displaying Nearby Cafes}
+User can display nearby cafes. The result is filtered by set filter, which can be altered by \textit{C4}
+
+% TODO ---- End Review ---------
 
 \section{Existing alternatives}
 The analysis of existing alternatives was made to research already created applications with similar features. Existing applications were searched through Android's official store. Applications with these functionalities were chosen for the review.
@@ -24,11 +66,12 @@ As soon as the application launches, it displays nearby restaurants. Each establ
 
 After the card is clicked, the user is presented with the restaurant's detail, where more information such as opening hours, map location and comprehensive review by~\textit{L.~Hejlík} can be found. From this detail navigation to the chosen restaurant can be launched. The target audience is anyone who seeks to visit unknown places and possess the opportunity to taste great food.
 
+
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.33\linewidth]{img/analysis/gastromapa_hejlik.jpg}
     \caption{Gastromapa \textit{L. Hejlíka} \todo{Include app's images?}}
-    \label{fig:Gastromapa L. Hejlika}
+    \label{fig:gastromapa-hejlik}
 \end{figure}
 
 \subsubsection{The advantages}
@@ -46,29 +89,41 @@ After the card is clicked, the user is presented with the restaurant's detail, w
 \end{itemize}
 
 \subsection{Pivní deník}
-\todo{LINK} Application \textit{Pivní deník} is used to search nearby restaurants in the Czech Republic focused on beers. The content is created by the community, including served beers and their prices.  Application offers searching nearby restaurants filtering them by served type of beer. Each user has a history of visited places, can mark restaurant as favourite and propagate their favourite brands.
+\todo{LINK} Application \textit{Pivní deník} is used to search nearby pubs in the Czech Republic and their beer offer. The content is created by the community, including served beer and their prices.  Application offers searching nearby restaurants filtered by beer brands. Each user can view a history of places they have visited, furthermore they can mark any pub as their favourite and share their experience.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.33\linewidth]{img/analysis/pivni_denik.png}
+    \caption{Pivní deník \todo{Include app's images?}}
+    \label{fig:pivni-denik}
+\end{figure}
 
 \subsubsection{The advantages}
 \begin{itemize}
-    \item Brasseries are displayed as a list or on the map view.
+    \item Pubs are displayed as a list or on the map.
     \item The served brands are displayed directly within the list, so it is not needed to visit details.
-    \item The registration is optional for searching. If users want to contribute, they must have an account.
+    \item The registration is optional for searching. If users want to contribute, they have to have an account.
 \end{itemize}
 
 \subsubsection{The drawbacks}
 \begin{itemize}
-    \item Registration can be done through Facebook or e-mail. With e-mail registration, the user is redirected to the web page where registration is finished.
+    \item Registration can be done through Facebook or e-mail. With e-mail registration, the user is forced to leave the application and is redirected to the web page where registration is finished.
     \item As was said, content is created by the community. During the research, it was clear that many information is outdated or misleading. 
-    \item Overall application design looks outdated and does not meet current, modern,  trends.
-    \item On the primary screen user's stats like the number of drunken beers and at most three nearest restaurants are displayed. On the larger screens, there is plenty of unused space. 
-    \item Each restaurant displays only one brand of drafted beer. Nowadays, many restaurants offer more than one brand. 
-    \item Side menu can be opened only with the hamburger icon but not with slide to right gesture.
+    \item Overall the application design looks outdated and does not meet current, modern,  trends.
+    \item On the primary screen user's stats and at most three nearest pubs are displayed. The drawback is that on the larger screens, there is plenty of unused space. 
+    \item Each restaurant displays only one brand of drafted beer. Nowadays, many pubs offer more than one brand. 
+    \item Side menu can be opened only with the hamburger icon but not with slide to the right gesture.
 \end{itemize}
 
 \subsection{Restu}
-\todo{LINK} Restu is another gastronomy guide focused on restaurants in the Czech Republic.  Through the application, reservations can also be made.
-Target audience is everyone who searches for new places where to eat and make a reservation. 
-Application has many original functionalities. For example ``discover'' section which shows attractive offers, the best cafe in the city and similar. Another is the ``check-in'' button which gave credits to users if they eat at the given restaurant.
+\todo{LINK} Restu is another gastronomy guide focused on restaurants in the Czech Republic. Through this application reservations can be made. Application has many unique functionalities. For example ``discover'' section which shows attractive offers or the best cafe in the city. Another functionality is the ``check-in'' button which gives credits to the users if they eat at the given restaurant. Target audience is everyone who searches for new places where to eat and make a reservation.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.33\linewidth]{img/analysis/restu.png}
+    \caption{Restu \todo{change image}}
+    \label{fig:restu}
+\end{figure}
 
 \subsubsection{The advantages}
 \begin{itemize}
@@ -78,20 +133,27 @@ Application has many original functionalities. For example ``discover'' section 
 
 \subsubsection{The drawbacks}
 \begin{itemize}
-    \item When business card selected small bottom info windows is displayed but cannot be hidden again.
-    \item To review restaurant user has to be signed in and the restaurant must be open. If closed, the review cannot be added.
+    \item When a restaurant card is selected, window of the restaurant pops up but at the bottom cannot be hidden again.
+    \item To review the restaurant, the user has to be signed in and the restaurant must be open. If the restaurant is closed, the review cannot be added.
 \end{itemize}
 
 \subsection{Zomato}
 \todo{LINK} Zomato is primarily web-based restaurant browser in the world. It has its own database of establishments. Content is edited by users.  
-On the primary screen are displayed ``week hits'', top restaurants or for example ``happy hours''. Restaurants are divided into categories such as ``Nightlife'' or ``Daily menu'' which helps for navigation within the application.
-Target audience is anyone who wants to try new restaurants or looking for action offers. 
+On the primary screen are displayed ``week hits'', top restaurants or ``happy hours''. Restaurants are divided into categories such as ``Nightlife'' or ``Daily menu'' which helps for navigation within the application.
+Target audience is anyone who wants to try new restaurants or someone who is looking for action offers. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.33\linewidth]{img/analysis/zomato.png}
+    \caption{Zomato}
+    \label{fig:zomato}
+\end{figure}
 
 \subsubsection{The advantages}
 \begin{itemize}
     \item Well solved filtering. Filter setting is intuitive, displays most used filters. 
     \item Advanced options for filtering with tags such as ``dog friendly'' or ``WiFi free''.
-    \item Friendships with other users. If another user added review notification is received.
+    \item Friendships with other users. If another user added review, notification is received.
 \end{itemize}
 
 \subsubsection{The drawbacks}
@@ -99,19 +161,101 @@ Target audience is anyone who wants to try new restaurants or looking for action
     \item The primary screen is cluttered with many information at one place.
     \item Nearby restaurants list is hidden below ``favourites restaurants'' and ``month collections''.
     \item Full-text search in some circumstances behaves unexpectedly. For example, to search for restaurants which offer ``asian food'' user has to type exactly ``asian'' but not ``asia''.
-    \item Readability of some text is worsened by light background and greyish text colour. In some scenarios, such as reading outside, is hard to read.
+    \item Readability of some text is worsened by light background and greyish text colour. In some scenarios, it is hard to read.
 \end{itemize}
 
 \subsection{Google maps}
-\todo{LINK}
+\todo{LINK} Popular worldwide map service by Google. One of the world's biggest database of places, restaurants. 
+Google maps for each business, establishment displays additional info such as user reviews, photos, prices. 
+Within Android system is already installed. Nearby places can be searched directly from the map. 
 
-\section{Lofi / Hifi prototype}
-\todo{Use results from MI-NUR. User prototype testing and results}
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.33\linewidth]{img/analysis/gmaps.png}
+    \caption{Google Maps}
+    \label{fig:google-maps}
+\end{figure}
 
-\todo{Use cases, diagrams, architecture}
+\subsubsection{The advantages}
+\begin{itemize}
+    \item Known and tested user interface which is embedded often to another application.
+    \item No registration is required.
+    \item Place detail includes plenty of useful information.
+    \item GPS navigation with one click.
+\end{itemize}
+
+\subsubsection{The drawbacks}
+\begin{itemize}
+    \item Not domain focused, that means it does not offer focused content on particular businesses such as restaurants.
+    \item No advanced filtering and result sorting.
+\end{itemize}
+
+To the conclusion, five applications were analysed on the Android system. Three apps are focused mainly on gastronomy. Another one specialises on beer. Last one, \textit{Google maps} is one of the most universal and robust. 
+Each application has its own unique \gls{ui} \todo{not working gls, why??} and overall user experience differs. In the \cref{table:app-analysis} the targeted audience and user interface usefulness is summarised. \todo{review this}
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+\multicolumn{1}{|c|}{Application} & \multicolumn{1}{c|}{Targeted audience} & \multicolumn{1}{c|}{Overall \gls{ui}} \\ \hline
+Gastromapa Lukáše hejlíka         & Everyone                               & Great                           \\ \hline
+Pivní deník                       & Beer drinkers                          & Bad.                            \\ \hline
+Restu                             & Everyone                               & Bad.                            \\ \hline
+Zomato                            & Everyone                               & Good                            \\ \hline
+Google                            & Everyone                               & Great but complex              \\ \hline
+\end{tabular}
+\caption{Analysed applications \gls{ui} summarization}
+\label{table:app-analysis}
+\end{table}
+
+
+\section{Application prototype}
+
+% TODO: REVIEW
+
+One crucial step during the creation of software product is prototyping. Prototypes can help introduce different design ideas, can be easily tested, evaluated and changed. Prototyping techniques differ, but the desired output is the same -- provide visually concept of the final product. Prototypes do not help only visually, but they are part of user experience research and can find out which parts of the user interface should be changed before it is implemented.
+
+There is no one correct definition of how prototypes should look and how they should be created. The prototype can be of form as simple sketch on paper to sophisticated pixel-perfect application~\cite{adobe-prototype}. Prototypes can be created multiple times during the whole creation process. 
+
+In the early stages \gls{lofi} prototype is typically created. With \gls{lofi}, the application can be evaluated and user-tested if desired design concept is usable and understandable for users. When \gls{lofi} is finalised, the next prototype~--~\gls{hifi} is created. \gls{hifi} comes out from \gls{lofi} and should behave as fully functional application on the target platform. With \gls{hifi} once again, the application is evaluated with users and tested. 
+
+To be more precise, according to \cite{adobe-prototype} \gls{lofi} prototype is a way to translate high-level concepts into tangible and testable artefacts. The most significant  functionality  of \gls{lofi} prototypes is to check and test the functionality of the product before visual appearance. Advantage of \gls{lofi} is that it is inexpensive, fast way to propose prototype. On the other hand, \gls{lofi} lacks complexity and cannot supply advanced interactivity. \gls{lofi} should be used to quickly create a prototype and get user feedback in the early stages of the creation process. 
+
+After the~\gls{lofi} prototype, the \gls{hifi} is created. This prototype appears and function as similar as possible to the actual built application. \gls{hifi} should be created on the targeted platform and behave as it is the~final product. The goal is to have more complex \gls{ui} interactivity and have better feedback from user testing. Thanks to the fact that prototype looks like a real application user behaves more naturally and can get more precise a meaningful feedback than with \gls{lofi} prototype. 
+
+To conclusion, \gls{lofi} prototypes are tested only internally with a small number of users and can be iterated more often and faster. While \gls{hifi} is more expensive to build and should be created and tested after \gls{lofi} prototype was accepted. On the other hand, \gls{hifi} gives better feedback from user testing, thus provides more valuable information.
+
+
+\subsection{Coffee Time Prototype}
+After the specification was written next step was to create \textit{task list}. Task list is written from the user's perspective that is, each task describe the user's action. It should tackle all important functionalities and even obvious one such as ``add record'' or ``remove record''.
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/analysis/task-list-graph.png}
+    \caption{Coffee Time Task Graph}
+    \label{fig:task-graph}
+\end{figure}
+
+Because the task list can become very long, it is usually transformed into \textit{task graph}. Task graph does not have any specific definition, but it should contain every task along with each available screen within the application. Coffee Time's task graph is listed in \cref{fig:task-graph}. The blue rectangles are screens and the yellow ones are any task what can users do.
+
+\subsubsection{Low Fidelity Prototype}
+\todo{link to used SW?}
+
+\todo{link to clickable pdf?}
+
+\subsubsection{High Fidelity Prototype}
+\todo {link to created hifi? GIT-tag}
 
 \subsection{Nielsen heuristic}
 \todo{Nielsen heuristic evaluation}
+
+\todo{Use results from MI-NUR. User prototype testing and results}
+
+\todo{domain, architecture, tag state diagram, }
+
+% TODO: \REVIEW ------------------------------------
+
+
 
 \section{Technical analysis}
 
