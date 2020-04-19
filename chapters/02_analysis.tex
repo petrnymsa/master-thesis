@@ -2,7 +2,7 @@
 % TODO Review ---------
 In this chapter, the specification of the implemented application is outlined. The analysis of similar applications was made to obtain ideas.  After analysis, the low fidelity prototype was created to outline the first vision of the final application. Next, the high-fidelity prototype, along with Nielsen's heuristics analysis and user testing, were made. At the end of the chapter, considered tools and services are briefly described which are used to implement the application. 
 
-\section{Considered application}
+\section{Considered Application}
 
 Coffee Time is an application focused on searching nearby cafes. Users should be able to search and find nearby cafes around them to decide which establishment to visit. Each cafe is displayed with information such as distance, user's reviews, photos, opening hours and more. 
 
@@ -20,35 +20,180 @@ The application is location-based and offers a map view to support the convenien
 
 To conclusion, Coffee Time is application focused on one domain -- searching nearby cafes where to go to study, talk with friends or for example have a great coffee. The application should be simple to use with a clean user interface. 
 
-\subsection{Use cases}
-\todo{use cases, use case scenarios}
-From the specification above, the use cases and use case scenarios were formed. The use cases diagram is listed in \cref{fig:use_case} and shows every use cases from the user perspective. Technically there is the role of ``application administrator'' which can check control back-end or available application's tags, but it skipped due to not importance of application perspective. 
+\section{Use Cases}
+From the specification above, the use cases and use case scenarios were formed. The use cases diagram is listed in \cref{fig:use_case} and shows every use cases from the user perspective. Technically there is the role of application administrator which can check control back-end or available application's tags, but it skipped due to not importance of application perspective. 
 
 \begin{figure}[htp]
     \centering
     \includegraphics[width=\linewidth]{img/analysis/use_case.pdf}
-    \caption{Application's use case diagram}
+    \caption{Application's use case diagram \todo{Add UC2 map}}
     \label{fig:use_case}
 \end{figure}
 
 As shown on diagram, the application has several use cases
 
 \begin{itemize}
-    \item UC1: Displaying nearby cafes as a list or as map view
-    \item UC2: From each cafe, it is possible to start navigation
-    \item UC3: Each cafe can be marked as a favourite
-    \item UC4: Setting filter to filter the cafe results
-    \item UC5: User can display favourites cafes
-    \item UC6: User can review the cafe's tags
-    \item UC7: User can suggest a new tag to the cafe
+    \item UC1: Display nearby cafes as a list.
+    \item UC2: Display nearby cafes as a list.
+    \item UC3: Start navigation.
+    \item UC4: Toggle cafe as a favourite.
+    \item UC5: Setting the filter.
+    \item UC6: Display favourite cafes.
+    \item UC7: Review the cafe's tags.
+    \item UC8: Suggest a new tag.
 \end{itemize}
 
-\subsubsection{UC1: Displaying Nearby Cafes}
-User can display nearby cafes. The result is filtered by set filter, which can be altered by \textit{C4}
+\subsection{UC1: Display Nearby Cafes As a List}
+User can display nearby cafes in the form of the list view. The result is filtered by setting a filter, which can be altered by \textit{UC5}.
+
+\textbf{Pre-Conditions} The user must be on the cafe list screen.
+
+\newpara
+\textbf{Basic Flow}
+
+\begin{enumerate}
+    \item User launch Coffee Time and lands on cafe list.
+    \item Cafe list shows nearby cafes around him. Each cafe is displayed in the form of a card.
+    \item User can pull the list down to refresh results. 
+    \item User taps on cafe's card and is redirected to the detail view.
+\end{enumerate}
+
+\textbf{Alternative flow 1} The user launch navigation to the selected cafe.
+
+% -------------
+
+\subsection{UC2: Display Nearby Cafes as Map}
+User can display nearby cafes in the form of the map view. Each cafe is shown as a map marker.
+
+\textbf{Pre-Conditions} The user must be on the map screen.
+
+\newpara
+\textbf{Basic Flow}
+
+\begin{enumerate}
+    \item User launch application and change screen to map view. 
+    \item Nearby cafes are shown as markers.
+    \item The user taps on the marker and is redirected to the detail screen.
+\end{enumerate}
+
+\textbf{Alternative flow 1} The user taps anywhere on the map to display nearby cafes on the selected location.
+
+% -------------
+
+\subsection{UC3: Start navigation}
+Use case allows starting navigation to selected cafe through native navigation applications.
+
+\textbf{Pre-Conditions} The navigation services must be enabled.
+
+\newpara
+\textbf{Basic Flow}
+
+\begin{enumerate}
+    \item The user selects the cafe.
+    \item The user selects navigate action. 
+    \item The system request to open navigation application is opened. 
+    \item User enables navigation and is redirected to navigation application. 
+\end{enumerate}
+
+\textbf{Alternative flow 1} The user dismisses navigation request and cancels navigation.
+
+% -------------
+
+
+\subsection{UC4: Toggle cafe as a favourite}
+Each cafe can be marked as a favourite to faster future access. 
+
+\textbf{Pre-Conditions} The cafe must be loaded, that is visible to the user. The user must be either on the cafe list screen, detail screen or favourite screen. 
+
+\newpara
+\textbf{Basic Flow}
+
+\begin{enumerate}
+    \item User has a cafe which wants to toggle as a favourite.
+    \item User toggles cafe as a favourite.
+\end{enumerate}
+
+% -------------
+
+\subsection{UC5: Setting the filter}
+User changes the filter settings to filter out the cafe results.
+
+\textbf{Pre-Conditions} There are results to filter.
+
+\newpara
+\textbf{Basic Flow}
+
+\begin{enumerate}
+    \item User opens filter settings screen.
+    \item If it is suitable user changes results ordering from ``by distance'' (default) to ``by popularity''.
+    \item If it is suitable user changes opening hours filter.
+    \item Add tags to filter by, if any.  
+    \item Returns back to the previous screen
+    \item The results are filtered with the chosen filter.
+\end{enumerate}
+
+% -------------
+
+\subsection{UC6: Display favourite cafes}
+Display every favourite cafe in the form of the list view. 
+
+\textbf{Pre-Conditions} The user must be on the map screen.
+
+\newpara
+\textbf{Basic Flow}
+
+\begin{enumerate}
+    \item User displays favourite cafe list.
+    \item After the cafe is selected, the user is redirected to the cafe's detail screen.
+\end{enumerate}
+
+\textbf{Alternative flow 1} The user launches navigation to the selected cafe.
+
+\textbf{Alternative flow 2} The user toggles cafe as not-favourite anymore.
+
+% -------------
+
+\subsection{UC7: Review the cafe's tags}
+Use case allows users to review the cafe's tags with likes and dislikes. 
+
+\textbf{Pre-Conditions} Cafe must have tags to review.  User must be on the cafe's detail screen.
+
+\newpara
+\textbf{Basic Flow}
+
+\begin{enumerate}
+    \item The user wants to suggest a change to the selected cafe.
+    \item User reviews each tag with 'like', 'dislike' or skip review for the given tag. 
+    \item User confirms review.
+\end{enumerate}
+
+\textbf{Alternative flow 1} The user decides not to do the review and goes back to the detail screen.
+
+% -------------
+
+\subsection{UC8:  Suggest a new tag}
+Use case allows users to suggest a new tag to the selected cafe.
+
+\textbf{Pre-Conditions} Cafe must have tags to review.  User must be on the cafe's detail screen.
+
+\newpara
+\textbf{Basic Flow}
+
+\begin{enumerate}
+    \item The user wants to suggest a change to the selected cafe.
+    \item The user selects new tags for the suggestion. 
+    \item The user confirms the suggestion.
+\end{enumerate}
+
+\textbf{Alternative flow 1} The user decides not to make the suggestion and goes back to the detail screen.
+
+% -------------
+
+\todo{conclusion for use cases?}
 
 % TODO ---- End Review ---------
 
-\section{Existing alternatives}
+\section{Existing Alternatives}
 The analysis of existing alternatives was made to research already created applications with similar features. Existing applications were searched through Android's official store. Applications with these functionalities were chosen for the review.
 
 \begin{itemize}
@@ -160,7 +305,7 @@ Target audience is anyone who wants to try new restaurants or someone who is loo
 \begin{itemize}
     \item The primary screen is cluttered with many information at one place.
     \item Nearby restaurants list is hidden below ``favourites restaurants'' and ``month collections''.
-    \item Full-text search in some circumstances behaves unexpectedly. For example, to search for restaurants which offer ``asian food'' user has to type exactly ``asian'' but not ``asia''.
+    \item Full-text search in some circumstances behaves unexpectedly. For example, to search for restaurants which offer ``Asian food'' user has to type exactly ``asian'' but not ``asia''.
     \item Readability of some text is worsened by light background and greyish text colour. In some scenarios, it is hard to read.
 \end{itemize}
 
@@ -178,7 +323,7 @@ Within Android system is already installed. Nearby places can be searched direct
 
 \subsubsection{The advantages}
 \begin{itemize}
-    \item Known and tested user interface which is embedded often to another application.
+    \item Well known and tested user interface which is embedded often to another application.
     \item No registration is required.
     \item Place detail includes plenty of useful information.
     \item GPS navigation with one click.
@@ -215,7 +360,7 @@ Google                            & Everyone                               & Gre
 
 One crucial step during the creation of software product is prototyping. Prototypes can help introduce different design ideas, can be easily tested, evaluated and changed. Prototyping techniques differ, but the desired output is the same -- provide visually concept of the final product. Prototypes do not help only visually, but they are part of user experience research and can find out which parts of the user interface should be changed before it is implemented.
 
-There is no one correct definition of how prototypes should look and how they should be created. The prototype can be of form as simple sketch on paper to sophisticated pixel-perfect application~\cite{adobe-prototype}. Prototypes can be created multiple times during the whole creation process. 
+There is no one correct definition of how prototypes should look and how they should be created. The prototype can be of the form as a simple sketch on paper to sophisticated pixel-perfect application~\cite{adobe-prototype}. Prototypes can be created multiple times during the whole creation process. 
 
 In the early stages \gls{lofi} prototype is typically created. With \gls{lofi}, the application can be evaluated and user-tested if desired design concept is usable and understandable for users. When \gls{lofi} is finalised, the next prototype~--~\gls{hifi} is created. \gls{hifi} comes out from \gls{lofi} and should behave as fully functional application on the target platform. With \gls{hifi} once again, the application is evaluated with users and tested. 
 
@@ -227,7 +372,7 @@ To conclusion, \gls{lofi} prototypes are tested only internally with a small num
 
 
 \subsection{Coffee Time Prototype}
-After the specification was written next step was to create \textit{task list}. Task list is written from the user's perspective that is, each task describe the user's action. It should tackle all important functionalities and even obvious one such as ``add record'' or ``remove record''.
+After the specification was written, next step was to create a \textit{task list}. The task list is written from the user's perspective that is, each task describe the user's action. It should tackle all important functionalities and even obvious one such as ``add record'' or ``remove record''.
 
 \begin{figure}[htp]
     \centering
@@ -236,20 +381,70 @@ After the specification was written next step was to create \textit{task list}. 
     \label{fig:task-graph}
 \end{figure}
 
-Because the task list can become very long, it is usually transformed into \textit{task graph}. Task graph does not have any specific definition, but it should contain every task along with each available screen within the application. Coffee Time's task graph is listed in \cref{fig:task-graph}. The blue rectangles are screens and the yellow ones are any task what can users do.
+Because the task list can become very long, it is usually transformed into a \textit{task graph}. The task graph does not have any specific definition, but it should contain every task along with each available screen within the application. Coffee Time's task graph is listed in \cref{fig:task-graph}. The blue rectangles are screens and the yellow ones are any task what users can do. The application's~entry point is highlighted with bold blue rectangle.
+
+A note about \textit{User Interface Design (MI-NUR)} subject which was held during the winter semester of the academic year of 2019/2020. In this subject as a semester work was created the Coffee Time prototype. Sincere gratitude to classmates \textit{Bc. Ondřej John} and \textit{Bc. Vojtěch Polcar} for their co-working on the prototype. Furthermore, much appreciation to \textit{Ing. Jiří Hunka} for feedback and guidance during the work. The classmates helped during prototyping, proposing functionalities, researching and testing. The High-Fidelity prototype was implemented only by the thesis author. 
 
 \subsubsection{Low Fidelity Prototype}
-\todo{link to used SW?}
+As a task graph was defined, the Lo-Fi prototype could be made. Although the application is considered as multi-platform application, the prototype was focused on Android, and its Material design \todo{Material LINK}. The inspiration was taken from typical Material layouts, such as AppBar with title and subsequent actions or tabs the bottom of the screen. 
 
-\todo{link to clickable pdf?}
+First of all, the rough prototype was drawn on paper. Its purpose was to come up with some ideas and considered layout. After that, the Balsamiq \todo{link} prototyping software was used. The Balsamiq tries to mimic pencil and paper. The prototype is created with a set of components which looks like they were drawn by hand.
+The most important feature was the ability to create deep links between screens or components. With a few clicks, the prototype was able to handle actions such as the open application menu or navigate to detail. With that tool, the clickable prototype focused on essential app's features was created. As a result, the PDF was exported. The PDF is enclosed as part of the thesis \todo{link to pdf}. The portion of the result is shown at \cref{fig:lofi}.
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/analysis/lofi.png}
+    \caption{\gls{lofi} prototype. Cafe list (left) and detail screen (right).}
+    \label{fig:lofi}
+\end{figure}
+
+The result was tested with co-workers and closest author's family members. From the testing session, useful feedback was given, which is listed along with short answers. 
+
+\begin{questions}
+   \item On the cafe list, what if the cafe has more tags than it can display in the row. How to solve it? 
+         \begin{answer}
+          The solution is to calculate free screen space and display portion of available tags.
+         \end{answer}
+
+   \item Research more on how to solve user's reviews.
+         \begin{answer}
+         As a considered data source is Google Places API, it was acknowledged that it is not possible to add custom reviews through their API. \todo{link to answer that is not possible}.
+         \end{answer}
+    \item Navigation and contact buttons are too small. 
+        \begin{answer}
+        Taken into account during implementation.
+        \end{answer}
+    \item If the tag in detail is clicked, the cafe list with the given tag is shown.
+        \begin{answer}
+        Taken into account as a valuable tip.
+        \end{answer}
+    \item Focus on usability with mobile devices, mainly when the user's walk or are in public transport.
+        \begin{answer}
+        The usability should be more tested. 
+        \end{answer}
+    \item Focus more to provide understandable information about what tag is and how to use it.
+     \begin{answer}
+        Information and usability should be more revisited.
+    \end{answer}
+\end{questions}
 
 \subsubsection{High Fidelity Prototype}
-\todo {link to created hifi? GIT-tag}
+The \gls{hifi} prototype was created as Flutter application. Because of that, in the future, the already written code could be reused.  The goal was to create a fully functional prototype for Android devices. As was said earlier in this chapter, the goal of \gls{hifi} is provide an application which behaves as real one, which is mainly focused on user interface interaction. That means the application can be without any real communication whatsoever with back-end services. For Coffee Time there was prepared local JSON data source with randomly generated cafe names and their data. Besides that, a few, real one cafes were added to be less general and more known for potential testers.
 
-\subsection{Nielsen heuristic}
-\todo{Nielsen heuristic evaluation}
+\todo{LINK to prototype version} 
+\todo{Prototype image}
 
-\todo{Use results from MI-NUR. User prototype testing and results}
+\todo{User testing with others, video, results}
+
+\todo{Any kind of information about prototype implementation?} 
+
+
+
+\subsection{Nielsen Heuristic}
+\todo{What is Nielsen Heuristic? Add link} 
+
+
+\todo{Nielsen heuristic evaluation, results}
 
 \todo{domain, architecture, tag state diagram, }
 

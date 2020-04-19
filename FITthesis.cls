@@ -66,7 +66,7 @@
 \setsecnumdepth{subsubsection}
 
 % table of contents depth (memoir-style settings)
-\settocdepth{subsection}
+\settocdepth{subsubsection}
 
 % chapter head design (memoir-style settings)
 \chapterstyle{madsen}

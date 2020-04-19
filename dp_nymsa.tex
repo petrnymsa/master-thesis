@@ -24,10 +24,8 @@
 \usepackage{minted} % code highlighting
 \usepackage{notoccite} % prevent TOC cite 
 \usepackage{xcolor}
-\usepackage{blindtext} 
-
-\newcommand{\tg}{\mathop{\mathrm{tg}}} %cesky tangens
-\newcommand{\cotg}{\mathop{\mathrm{cotg}}} %cesky cotangens
+\usepackage{blindtext}
+\usepackage{enumitem}
 
 % % list of acronyms
 \usepackage[acronym,nonumberlist,toc,numberedsection=autolabel]{glossaries}
@@ -41,15 +39,24 @@
 
 \setlength{\fboxsep}{0.005pt}
 \newcommand{\tmpframe}[1]{\fbox{#1}}
-%\renewcommand{\tmpframe}[1]{#1}
+%\renewcommand{\tmpframe}[1]{#1} ENABLE WHEN PRINTING
+
+
+\newcommand{\newpara}
+{
+  \vskip 0.2in
+}
+
+% Q.A env
+
+\newenvironment{questions}{\begin{enumerate}[label=\bfseries\arabic*.]\bfseries}
+                      {\end{enumerate}}
+\newenvironment{answer}{\par\normalfont}{}
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
-% ODTUD DAL VSE ZMENTE
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
-\department{Department of software engineering science}
+\department{Department of Software Engineering}
 \title{Coffee Time Mobile Application in Flutter}
 \authorGN{Petr} %(křestní) jméno (jména) autora
 \authorFN{Nymsa} %příjmení autora
@@ -108,12 +115,8 @@ Práce je zaměřena především na využití frameworku, následný návrh a~i
 
 %\chapter{Seznam použitých zkratek}
 \printglossaries
-% \begin{description}
-% 	\item[GUI] Graphical user interface
-% 	\item[XML] Extensible markup language
-% \end{description}
 
-\chapter{Obsah přiloženého CD}
+\chapter{Content of enclosed CD \todo{USB?}}
 
 Vhodným způsobem vizualizujte obsah přiloženého média. Lze použít balíček \verb|dirtree| a vytvořit např. následující výstup (adresáře src a text s~příslušným obsahem jsou \emph{povinné}):
 
