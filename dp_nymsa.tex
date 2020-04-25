@@ -26,6 +26,9 @@
 \usepackage{xcolor}
 \usepackage{blindtext}
 \usepackage{enumitem}
+\usepackage{tabularx} % tables
+\usepackage{minted} % code highlight
+\usemintedstyle{friendly}
 
 % % list of acronyms
 \usepackage[acronym,nonumberlist,toc,numberedsection=autolabel]{glossaries}
@@ -67,9 +70,9 @@
 
 \abstractCS{Práce se zabývá využitím multiplatformního frameworku Flutter, umožňující tvorbu aplikací pro mobilní systémy, web i desktop systémy. Hlavním tématem je jeho fungování a~použitelnost při tvorbě aplikací. Flutter je prakticky vyzkoušen na návrhu~a~implementaci aplikace Coffee Time pro operační systém Android a~iOS. Aplikace uživatelům pomáhá vyhledávat kavárny v blízkém okolí s~ možností filtrování dle různých kritérií. 
 
-Práce je zaměřena především na využití frameworku, následný návrh a~implementaci ukázkové aplikace. Kromě použitého frameworku Flutter, aplikace využívá i~serverless přístup pro vývoj serverové části. }
+Práce je zaměřena především na využití frameworku, následný návrh a~implementaci ukázkové aplikace. Kromě použitého frameworku Flutter, aplikace využívá i~serverless přístup pro vývoj serverové části. TODO }
 
-\abstractEN{ \todo{todo}Sem doplňte ekvivalent abstraktu Vaší práce v~angličtině.}
+\abstractEN{todo}
 
 \placeForDeclarationOfAuthenticity{Prague}
 \declarationOfAuthenticityOption{4} %volba Prohlášení //TODO
@@ -78,7 +81,7 @@ Práce je zaměřena především na využití frameworku, následný návrh a~i
 
 \keywordsEN{Flutter framework, reactive programming, Android application, cafe search, serverless, Firebase.}
 
-\website{http://site.example/thesis} %volitelná URL práce, objeví se v tiráži
+\website{http://TODO} %volitelná URL práce, objeví se v tiráži
 
 
 \begin{document}
@@ -90,6 +93,8 @@ Práce je zaměřena především na využití frameworku, následný návrh a~i
 %         description={A mathematical expression}
 % }
 \newacronym{ctu}{CTU}{Czech Technical University}
+\newacronym{cta}{CTA}{Coffee Time API}
+\newacronym{gpa}{GPA}{Google Places API}
 \newacronym{lofi}{Lo-Fi}{Low Fidelity}
 \newacronym{hifi}{Hi-Fi}{High Fidelity}
 \newacronym{ui}{UI}{User Interface}

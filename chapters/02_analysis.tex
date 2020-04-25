@@ -16,17 +16,17 @@ Together with likes and dislikes, each tag has a computed score.  Each like give
 If any tags reach the score to -4, the tag is removed from the cafe, more precisely is not shown anymore to users. 
 If such removed tag is proposed by any user again, it obtains "like" review. Thus score is incremented to -3 and is shown again. 
 
-The application is location-based and offers a map view to support the convenience user experience. Google Places API as a data source is considered. Any cafe can be marked as user's favourite to give a faster way to find cafe whenever the user wants. 
+The application is location-based and offers a map view to support the convenience user experience. Google Places API as a data source is considered \todo{link, or describe later}. Any cafe can be marked as user's favourite to give a faster way to find cafe whenever the user wants. 
 
 To conclusion, Coffee Time is application focused on one domain -- searching nearby cafes where to go to study, talk with friends or for example have a great coffee. The application should be simple to use with a clean user interface. 
-
+% ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- %
 \section{Use Cases}
 From the specification above, the use cases and use case scenarios were formed. The use cases diagram is listed in \cref{fig:use_case} and shows every use cases from the user perspective. Technically there is the role of application administrator which can check control back-end or available application's tags, but it skipped due to not importance of application perspective. 
 
 \begin{figure}[htp]
     \centering
     \includegraphics[width=\linewidth]{img/analysis/use_case.pdf}
-    \caption{Application's use case diagram \todo{Add UC2 map}}
+    \caption{Application's use case diagram}
     \label{fig:use_case}
 \end{figure}
 
@@ -34,7 +34,7 @@ As shown on diagram, the application has several use cases
 
 \begin{itemize}
     \item UC1: Display nearby cafes as a list.
-    \item UC2: Display nearby cafes as a list.
+    \item UC2: Display nearby cafes as a map.
     \item UC3: Start navigation.
     \item UC4: Toggle cafe as a favourite.
     \item UC5: Setting the filter.
@@ -98,8 +98,6 @@ Use case allows starting navigation to selected cafe through native navigation a
 \textbf{Alternative flow 1} The user dismisses navigation request and cancels navigation.
 
 % -------------
-
-
 \subsection{UC4: Toggle cafe as a favourite}
 Each cafe can be marked as a favourite to faster future access. 
 
@@ -204,18 +202,16 @@ The analysis of existing alternatives was made to research already created appli
 For comparison five, the most inspiring and distinguish applications were chosen. The following lines briefly describe one of each, their target audience, the advantages and drawbacks. 
 
 \subsection{Gastromapa Lukáše Hejlíka}
-\todo{LINK}
-Published in the first quarter of 2019 as a new application for exploring restaurants in the Czech Republic.  The application's speciality is that restaurants' reviews are not done by users but by gastronomy specialist \textit{Lukáš~Hejlík}.
+Published in the first quarter of 2019 as a new application for exploring restaurants in the Czech Republic.  The application's speciality is that restaurants' reviews are not done by users but by gastronomy specialist \textit{Lukáš~Hejlík}. Tested version~\cite{app-hejlik}.
 
 As soon as the application launches, it displays nearby restaurants. Each establishment is shown as a card with important information such as an address, distance and type of restaurant. The main card's domain is a large photo which should catch the user's eye to take a look. 
 
 After the card is clicked, the user is presented with the restaurant's detail, where more information such as opening hours, map location and comprehensive review by~\textit{L.~Hejlík} can be found. From this detail navigation to the chosen restaurant can be launched. The target audience is anyone who seeks to visit unknown places and possess the opportunity to taste great food.
 
-
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
     \includegraphics[width=0.33\linewidth]{img/analysis/gastromapa_hejlik.jpg}
-    \caption{Gastromapa \textit{L. Hejlíka} \todo{Include app's images?}}
+    \caption{Gastromapa \textit{L. Hejlíka}}
     \label{fig:gastromapa-hejlik}
 \end{figure}
 
@@ -234,12 +230,12 @@ After the card is clicked, the user is presented with the restaurant's detail, w
 \end{itemize}
 
 \subsection{Pivní deník}
-\todo{LINK} Application \textit{Pivní deník} is used to search nearby pubs in the Czech Republic and their beer offer. The content is created by the community, including served beer and their prices.  Application offers searching nearby restaurants filtered by beer brands. Each user can view a history of places they have visited, furthermore they can mark any pub as their favourite and share their experience.
+Application \textit{Pivní deník} is used to search nearby pubs in the Czech Republic and their beer offer. The content is created by the community, including served beer and their prices.  Application offers searching nearby restaurants filtered by beer brands. Each user can view a history of places they have visited, furthermore they can mark any pub as their favourite and share their experience. Tested version~\cite{app-pivni-denik}.
 
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
     \includegraphics[width=0.33\linewidth]{img/analysis/pivni_denik.png}
-    \caption{Pivní deník \todo{Include app's images?}}
+    \caption{Pivní deník}
     \label{fig:pivni-denik}
 \end{figure}
 
@@ -261,9 +257,9 @@ After the card is clicked, the user is presented with the restaurant's detail, w
 \end{itemize}
 
 \subsection{Restu}
-\todo{LINK} Restu is another gastronomy guide focused on restaurants in the Czech Republic. Through this application reservations can be made. Application has many unique functionalities. For example ``discover'' section which shows attractive offers or the best cafe in the city. Another functionality is the ``check-in'' button which gives credits to the users if they eat at the given restaurant. Target audience is everyone who searches for new places where to eat and make a reservation.
+\textit{Restu} is another gastronomy guide focused on restaurants in the Czech Republic. Through this application reservations can be made. Application has many unique functionalities. For example ``discover'' section which shows attractive offers or the best cafe in the city. Another functionality is the ``check-in'' button which gives credits to the users if they eat at the given restaurant. Target audience is everyone who searches for new places where to eat and make a reservation. Tested version~\cite{app-restu}.
 
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
     \includegraphics[width=0.33\linewidth]{img/analysis/restu.png}
     \caption{Restu \todo{change image}}
@@ -283,11 +279,11 @@ After the card is clicked, the user is presented with the restaurant's detail, w
 \end{itemize}
 
 \subsection{Zomato}
-\todo{LINK} Zomato is primarily web-based restaurant browser in the world. It has its own database of establishments. Content is edited by users.  
+\textit{Zomato} is primarily web-based restaurant browser in the world. It has its own database of establishments. Content is edited by users.  
 On the primary screen are displayed ``week hits'', top restaurants or ``happy hours''. Restaurants are divided into categories such as ``Nightlife'' or ``Daily menu'' which helps for navigation within the application.
-Target audience is anyone who wants to try new restaurants or someone who is looking for action offers. 
+Target audience is anyone who wants to try new restaurants or someone who is looking for action offers. Tested version~\cite{app-zomato}.
 
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
     \includegraphics[width=0.33\linewidth]{img/analysis/zomato.png}
     \caption{Zomato}
@@ -310,9 +306,9 @@ Target audience is anyone who wants to try new restaurants or someone who is loo
 \end{itemize}
 
 \subsection{Google maps}
-\todo{LINK} Popular worldwide map service by Google. One of the world's biggest database of places, restaurants. 
-Google maps for each business, establishment displays additional info such as user reviews, photos, prices. 
-Within Android system is already installed. Nearby places can be searched directly from the map. 
+Popular worldwide map service by \textit{Google}. One of the world's biggest database of places, restaurants. 
+\textit{Google maps} for each business, establishment displays additional info such as user reviews, photos, prices. 
+Within Android system is already installed. Nearby places can be searched directly from the map. Tested version~\cite{app-google-maps}.
 
 \begin{figure}[ht]
     \centering
@@ -336,7 +332,7 @@ Within Android system is already installed. Nearby places can be searched direct
 \end{itemize}
 
 To the conclusion, five applications were analysed on the Android system. Three apps are focused mainly on gastronomy. Another one specialises on beer. Last one, \textit{Google maps} is one of the most universal and robust. 
-Each application has its own unique \gls{ui} \todo{not working gls, why??} and overall user experience differs. In the \cref{table:app-analysis} the targeted audience and user interface usefulness is summarised. \todo{review this}
+Each application has its own unique \gls{ui} \todo{not working gls, why?} and overall user experience differs. In the \cref{table:app-analysis} the targeted audience and user interface usefulness is summarised.
 
 \begin{table}[htbp]
 \centering
@@ -353,7 +349,7 @@ Google                            & Everyone                               & Gre
 \label{table:app-analysis}
 \end{table}
 
-
+% ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- %
 \section{Application prototype}
 
 % TODO: REVIEW
@@ -386,9 +382,9 @@ Because the task list can become very long, it is usually transformed into a \te
 A note about \textit{User Interface Design (MI-NUR)} subject which was held during the winter semester of the academic year of 2019/2020. In this subject as a semester work was created the Coffee Time prototype. Sincere gratitude to classmates \textit{Bc. Ondřej John} and \textit{Bc. Vojtěch Polcar} for their co-working on the prototype. Furthermore, much appreciation to \textit{Ing. Jiří Hunka} for feedback and guidance during the work. The classmates helped during prototyping, proposing functionalities, researching and testing. The High-Fidelity prototype was implemented only by the thesis author. 
 
 \subsubsection{Low Fidelity Prototype}
-As a task graph was defined, the Lo-Fi prototype could be made. Although the application is considered as multi-platform application, the prototype was focused on Android, and its Material design \todo{Material LINK}. The inspiration was taken from typical Material layouts, such as AppBar with title and subsequent actions or tabs the bottom of the screen. 
+As a task graph was defined, the Lo-Fi prototype could be made. Although the application is considered as multi-platform application, the prototype was focused on Android, and its Material design \cite{material-design}. The inspiration was taken from typical Material layouts, such as AppBar with title and subsequent actions or tabs the bottom of the screen. 
 
-First of all, the rough prototype was drawn on paper. Its purpose was to come up with some ideas and considered layout. After that, the Balsamiq \todo{link} prototyping software was used. The Balsamiq tries to mimic pencil and paper. The prototype is created with a set of components which looks like they were drawn by hand.
+First of all, the rough prototype was drawn on paper. Its purpose was to come up with some ideas and considered layout. After that, the \textit{Balsamiq} \cite{balsamiq} prototyping software was used. The \textit{Balsamiq} tries to mimic pencil and paper. The prototype is created with a set of components which looks like they were drawn by hand.
 The most important feature was the ability to create deep links between screens or components. With a few clicks, the prototype was able to handle actions such as the open application menu or navigate to detail. With that tool, the clickable prototype focused on essential app's features was created. As a result, the PDF was exported. The PDF is enclosed as part of the thesis \todo{link to pdf}. The portion of the result is shown at \cref{fig:lofi}.
 
 \begin{figure}[htp]
@@ -401,12 +397,12 @@ The most important feature was the ability to create deep links between screens 
 The result was tested with co-workers and closest author's family members. From the testing session, useful feedback was given, which is listed along with short answers. 
 
 \begin{questions}
-   \item On the cafe list, what if the cafe has more tags than it can display in the row. How to solve it? 
+  \item On the cafe list, what if the cafe has more tags than it can display in the row. How to solve it? 
          \begin{answer}
           The solution is to calculate free screen space and display portion of available tags.
          \end{answer}
 
-   \item Research more on how to solve user's reviews.
+  \item Research more on how to solve user's reviews.
          \begin{answer}
          As a considered data source is Google Places API, it was acknowledged that it is not possible to add custom reviews through their API. \todo{link to answer that is not possible}.
          \end{answer}
@@ -429,38 +425,382 @@ The result was tested with co-workers and closest author's family members. From 
 \end{questions}
 
 \subsubsection{High Fidelity Prototype}
-The \gls{hifi} prototype was created as Flutter application. Because of that, in the future, the already written code could be reused.  The goal was to create a fully functional prototype for Android devices. As was said earlier in this chapter, the goal of \gls{hifi} is provide an application which behaves as real one, which is mainly focused on user interface interaction. That means the application can be without any real communication whatsoever with back-end services. For Coffee Time there was prepared local JSON data source with randomly generated cafe names and their data. Besides that, a few, real one cafes were added to be less general and more known for potential testers.
+The \gls{hifi} prototype was created as Flutter application. Because of that, in the future, the already written code could be reused.  The goal was to create a fully functional prototype for Android devices. As was said earlier in this chapter, the goal of \gls{hifi} is provide an application which behaves as real one, which is mainly focused on user interface interaction. That means the application can be without any real communication with back-end services. For Coffee Time there was prepared local JSON data source with randomly generated cafe names and their data. Besides that, a few, real one cafes were added to be less general and more known for potential testers. The \gls{hifi} focused on all earlier described use cases. The cafe list screen and cafe's detail screen is shown~at~\cref{fig:hifi}.
 
 \todo{LINK to prototype version} 
-\todo{Prototype image}
 
-\todo{User testing with others, video, results}
-
-\todo{Any kind of information about prototype implementation?} 
-
-
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/analysis/hifi.jpg}
+    \caption{\gls{hifi} prototype. Cafe list (left) and detail screen (right).}
+    \label{fig:hifi}
+\end{figure}
 
 \subsection{Nielsen Heuristic}
-\todo{What is Nielsen Heuristic? Add link} 
+\textit{Nielsen Heuristic}~\cite{nielsen} is a usability engineering method for finding the usability problems in a user interface design so that they can be attended to as part of an iterative design process. Heuristic evaluation involves a small set of rules and these rules should be judged by a small group of ``evaluators''.
 
+Following lines describe one of each of ten rules. Each description is taken from article~\cite{nielsen}.
 
-\todo{Nielsen heuristic evaluation, results}
+\begin{enumerate}
+    \item \textbf{Visibility of system status} -- The system should always keep users informed about what is going on through appropriate feedback within a reasonable time. 
+    
+    \item \textbf{Match between system and the real world} -- The system should speak the users' language, with words, phrases and concepts familiar to the user, rather than system-oriented terms. Follow real-world conventions, making information appear in a natural and logical order.
+    
+    \item \textbf{User control and freedom} -- Users often choose system functions by mistake and will need a clearly marked "emergency exit" to leave the unwanted state without having to go through an extended dialogue. Support undo and redo.
+    
+    \item \textbf{Consistency and standards} -- Users should not have to wonder whether different words, situations, or actions mean the same thing.
+    
+    \item \textbf{Error prevention} -- Even better than good error messages is a careful design which prevents a problem from occurring in the first place. Either eliminate error-prone conditions or check for them and present users with a confirmation option before they commit to the action.
+    
+    \item \textbf{Recognition rather than recall} -- Minimize the user's memory load by making objects, actions, and options visible. The user should not have to remember information from one part of the dialogue to another. Instructions for the use of the system should be visible or easily retrievable whenever appropriate.
+    
+    \item \textbf{Flexibility and efficiency of use} -- Accelerators — unseen by the novice user — may often speed up the interaction for the expert user such that the system can cater to both inexperienced and experienced users. Allow users to tailor frequent actions.
+    
+    \item \textbf{Aesthetic and minimalist design} -- Dialogues should not contain information which is irrelevant or rarely needed. Every extra unit of information in a dialogue competes with the relevant units of information and diminishes their relative visibility.
+    
+    \item \textbf{Help users recognise, diagnose, and recover from errors} -- Error messages should be expressed in plain language (no codes), precisely indicate the problem, and constructively suggest a solution.
+    
+    \item \textbf{Help and documentation} -- Even though it is better if the system can be used without documentation, it may be necessary to provide help and documentation. Any such information should be easy to search, focused on the user's task, list concrete steps to be carried out, and not be too large.
+\end{enumerate}
 
-\todo{domain, architecture, tag state diagram, }
+\subsubsection{Coffee Time Evaluation}
+During \textit{MI-NUR} lecture, the above-described heuristic was evaluated against \gls{hifi} prototype. Each screen was taken individually and judged with all rules. Note that only found rules violation are described for each screen.
 
-% TODO: \REVIEW ------------------------------------
+\begin{itemize}
+    \item Cafe list
+    \begin{itemize}
+        \item Rule \#2: Some tags icons are hard to understand, and their meaning can be easily misunderstood. 
+        \item Rule \#8: When filtering is on, it occupies nearly one-third of the screen.
+        \item Rule \#9: There is no visible error handling for missing internet connection or location services.
+    \end{itemize}
+    \item Favourites cafes
+    \begin{itemize}
+        \item Rule \#2: Same as Cafe list.
+        \item Rule \#3: When a favourite cafe is set off, there is no indication that action is permanent without the ability to undoing it. 
+    \end{itemize}
+    \item Detail screen
+    \begin{itemize}
+        \item Rule \#2: Same as Cafe list.
+        \item Rule \#6: It is not clear how to start navigation. This functionality is provided by the button to the right of the cafe's address. There should be a more visible indication that this action is possible.
+    \end{itemize}
+    \item Map  screen -- No rules violation found. 
+    \item Filter screen -- The only violation is the same as within Cafe list about icons.
+\end{itemize}
 
+Once the violations are found, they should be prioritised. The priority indicates how serious violation is. The more severe violation, the more unusable is it for users. The priorities are 
 
+\begin{itemize}
+    \item 1 -- negligible
+    \item 2 -- visible issue
+    \item 3 -- the usability can suffer
+    \item 4 -- frustrating experience
+    \item 5 -- User is not able to use application at all
+\end{itemize}
 
-\section{Technical analysis}
+The most violated rule is number \#2 with tag icons. With this issue suffer most of the screen, because icons are used very often.  This issue has priority 3.  The second issue with favourites cafes (priority 2) can be solved, for example, with small notification with the undo button. The prototype does not have implemented any kind of error handling regarding internet connection or location services (priority 2). 
+
+\subsection{User Testing}
+The prototype was tested with seven testers. An important note is that four testers are people who have ``IT knowledge'' and are classmates from university. It was assumed that their understanding could vary against other testers.
+
+The process of testing was as follows -- application was launched on a real device. Each testing was recorded. The recording was essential to know what testers thought, how they used the application and behaved. Each user had the same set of use case scenarios, and the supervisor did not interact either provide any advice to testers how to proceed. There was only one exception when the supervisor was allowed to advise, and that was when tester did not know how to proceed -- he became ``totally lost''. This situation could indicate two different things. First, from the test case scenario, it was not particularly evident what tester should do. Secondly, the test case was understandable, but the application interface not. The second problem is more important for testing and the results.  The test case scenario can be rewritten or with the help of supervisor fully explained. 
+
+The description of test case scenarios, along with established issues, follows. Each test case has an introduction for users in which situation they are.  Next contains test case goal, expected user behaviour and actual behaviour. Note that, the actual behaviour is not part of this summarization. Instead, there found issues are summarised. 
+
+\subsubsection{Test Case 1: Favourite Cafe}
+User visits his favourite cafe and he would like to add this Cafe to his favourite list. 
+\begin{itemize}
+    \item \textbf{Goal} -- Add Cafe to favourites.
+    \item \textbf{Expected behaviour}
+    \begin{enumerate}
+        \item User is located on the cafe list screen. The targeted cafe is displayed.
+        \item User clicks on the heart icon located in top right corner of the cafe's tile. 
+        \item Alternative flow: User is located on detail screen and taps heart icon located on the top of the screen. 
+    \end{enumerate}
+    \item \textbf{Found Issues} -- The testers went through a test case without any issues.
+\end{itemize}
+
+\subsubsection{Test Case 2: Start Navigation to Selected Cafe}
+User has selected cafe and wants to navigation to the cafe's location.
+\begin{itemize}
+    \item \textbf{Goal} -- Start navigation.
+    \item \textbf{Expected behaviour}
+    \begin{enumerate}
+        \item User is located on the cafe list screen. The targeted cafe is displayed.
+        \item User clicks on the navigation icon located in top left corner of the cafe's tile. 
+        \item Alternative flow: User is located on the detail screen and taps navigation icon located to the right of address.
+    \end{enumerate}
+    \item \textbf{Found Issues}
+    \begin{enumerate}
+        \item Three different icons used to start navigation. Icon is different on the cafe list from icon within detail screen.
+        \item In the detail screen, it is not clear that icon can start navigation.
+    \end{enumerate}
+    \item \textbf{Proposed solution}
+    \begin{enumerate}
+        \item Use same icon everywhere.
+        \item The same problem stated in the Nielsen heuristic evaluation. The icon should be highlighted. Can be added ``elevation''~\cite{material-design-elevation} -- shadow under the component to provide depth. 
+    \end{enumerate}
+\end{itemize}
+
+\subsubsection{Test Case 3: Filter Cafes with Tags}
+User is interested in cafes where they offer beside the coffee has also beer.
+\begin{itemize}
+    \item \textbf{Goal} -- Filter Cafes that has ``beer'' tag.
+    \item \textbf{Expected behaviour}
+    \begin{enumerate}
+        \item On the cafe list screen, the user selects filter icon to open filter screen.
+        \item Within filter screen, the user selects to filter by tags and choose ``beer''.
+        \item User confirms the filter. 
+    \end{enumerate}
+    \item \textbf{Found Issues}
+    \begin{enumerate}
+        \item ``Filter screen is confusing. Confirmation is useless.''
+        \item ``Do not open filter screen, just open some modal window to selects tags''.
+        \item The filter icon is unclear.
+        \item ``If the user is located on the detail screen, clicking on the tag icon should set the~ filter.'' 
+    \end{enumerate}
+    \item \textbf{Proposed solution}
+    \begin{enumerate}
+        \item The filter icon is standardised icon. 
+        \item Clicking on tag should set the filter. 
+    \end{enumerate}
+\end{itemize}
+
+\subsubsection{Test Case 4: Suggest New Tag}
+User visits regularly cafe which is friendly to dog owners. The user found out that this information is missing in the application. 
+\begin{itemize}
+    \item \textbf{Goal} -- The user suggests tag ``dog friendly'' or similar for the cafe. 
+    \item \textbf{Expected behaviour}
+    \begin{enumerate}
+        \item User selects cafe and opens detail screen.
+        \item User clicks on ``suggest change''.
+        \item User adds tag ``dog friendly'' and confirms suggestion.
+    \end{enumerate}
+    \item \textbf{Found Issues} -- No issues found.
+\end{itemize}
+
+\subsubsection{Test Case 5: Tag review}
+User visits regularly cafe which has mistaken information about ``available parking''. He would like to inform about this wrong tag. 
+\begin{itemize}
+    \item \textbf{Goal} -- The user should review ``parking'' with dislike. 
+    \item \textbf{Expected behaviour}
+    \begin{enumerate}
+        \item User selects cafe and opens detail screen.
+        \item User clicks on ``suggest change''.
+        \item User reviews ``parking'' with dislikes and confirms suggestion. 
+    \end{enumerate}
+    \item \textbf{Found Issues} -- No issues found.
+\end{itemize}
+
+\subsubsection{Test Case 6: Most popular nearby cafe}
+User wants find the most popular cafe around him. 
+\begin{itemize}
+    \item \textbf{Goal} -- The user change ordering from ``by distance'' to ``by popularity''.
+    \item \textbf{Expected behaviour}
+    \begin{enumerate}
+        \item User opens filter screen.
+        \item User changes ordering to by popularity.
+        \item User confirms filter.
+    \end{enumerate}
+    \item \textbf{Found Issues} -- No issues found.
+\end{itemize}
+
+From testers was obtained beneficial feedback which helps to tune user interface for better usability. Besides feedback from individual test cases, a few additional tips were given.
+
+\begin{itemize}
+    \item Cafe's name on tile can be harder to read with the contrasting background image. \textit{Can be solved with making photo darker.}
+    \item Landscape mode is not working. \textit{During prototype it wasn't considered.}
+    \item The map marker could contain more information than cafe's name.
+\end{itemize}
+
+All feedback was gathered and was taken into account during the next phase of implementation.
+% ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- %
+\section{Back-end Analysis}
+In this section, the technical analysis of available technologies for back-end services is discussed. The focus is only on the back-end part. The technical detail of the mobile application is discussed in the next chapter \todo{link to chapter}.
+
+One vital part of the whole architecture is~\gls{gpa} \todo{link about api}. This API offers access to Google Maps services, searching places, place details, place photos and more. The API has five services \todo{link to sum}. 
+
+\begin{itemize}
+    \item Place search -- a list of places based on the user's location or search query.
+    \item Place details -- returns more detail information about a specific place.
+    \item Place photos -- provides access to place-related photos.
+    \item Place autocomplete -- automatically fills in the name or address of a place.
+    \item Query autocomplete -- provides a query prediction service for text-based geographic searches.
+\end{itemize}
+
+To access these services, the Google~API~Key must be obtained. (\todo{ link to API key info}).
 
 \subsection{Google Places API}
-\todo{Google places API and how it is used.}
+The Google Places API returns much information about each place, but the application uses an only subset of available information. The full documentation what  API offers can be found here \todo{places api link search}. The application makes usage of four available services - Find a place, Nearby search, Place detail and Place photos. Some parameters are the same for each service, and the output of each service is similar. 
 
-\section{Serverless approach \todo{Maybe move it to another chapter before analysis?}}
+Each place has several fields such as name, address, location, rating and much more. However, not every field is used in the application, and it is not necessary to obtain these fields in the response. On top of that, each field is included in the pricing category. That means that some of the fields are more expensive to obtain than others. \todo{include price level info link}. It was important to analyse which fields are essential to get before the API model could be created. Following lines summarize each usage of API, its parameters, fields and expected output.
+
+\subsubsection{Find Place}
+The purpose of this service to find places based on the text-based query or custom location.  \Cref{table:gapi-find-place-params} describes each of used parameter.\Cref{table:gapi-find-place-fields} describes each expected field in the response. 
+
+\begin{table}[htbp]
+\centering
+\begin{tabularx}{\textwidth}{|l|X|}
+\hline
+\textbf{Parameter} & \textbf{Usage}                                                    \\ \hline
+key                & API key                                                           \\ \hline
+input              & search query                                                      \\ \hline
+inputtype          & set to textquery                                                  \\ \hline
+language           & language code                    \\ \hline
+locationbias       & set to circle:radius@lat,lng.                                     \\ \hline
+\end{tabularx}
+\caption{Find place parameters}
+\label{table:gapi-find-place-params}
+\end{table}
+% ------
+\begin{table}[htbp]
+\centering
+\begin{tabularx}{\textwidth}{|l|X|}
+\hline
+\textbf{Field}     & \textbf{Description}                                                      \\ \hline
+place\_id          & unique place identification                                                \\ \hline
+name               & place's name                                                              \\ \hline
+icon               & place's icon                                                              \\ \hline
+geometry           & geolocated latitude,longitude                                             \\ \hline
+formatted\_address & human-readable address                                                    \\ \hline
+types              & list of place categories such as ``cafe''                                 \\ \hline
+photos             & contains photo width, height and photo\_reference                          \\ \hline
+opening\_hours     & contains only open\_now. For full information, detail request is required \\ \hline
+price\_level       & value from 0 to 4                                                         \\ \hline
+rating             & value from 1.0 to 5.0                                                     \\ \hline
+\end{tabularx}
+\caption{Find place fields}
+\label{table:gapi-find-place-fields}
+\end{table}
+
+\subsubsection{Nearby Search}
+\textit{Nearby Search} allows finding nearby places around the given location. In contrast with \textit{Find place}, the \textit{Nearby Search} returns all fields available to place and can return up to~60~places. The result is paginated~up~to three pages with~20~places in each page. If the result has another page, the pagetoken is included in the response. As before the \cref{table:gapi-nearby-search-parameters} shows service parameters.
+
+% TODO TODO --- end up here
+\begin{table}[htbp]
+\centering
+\begin{tabularx}{\textwidth}{|l|X|}
+\hline
+\textbf{Parameter} & \textbf{Usage} \\ \hline
+key                & API key \\ \hline
+location           & latitude,longtitude \\ \hline
+radius             & circular radius in meters, max 50 000m  \\ \hline
+language           & language code \\ \hline
+opennow         & place should be open. If place does not have this field, it is omitted from results  \\ \hline
+type & place type, always set to \textit{cafe} \\ \hline
+pagetoken & token for next page \\ \hline 
+\end{tabularx}
+\caption{Nearby Search parameters}
+\label{table:gapi-nearby-search-parameters}
+\end{table}
+
+\subsubsection{Place Details}
+Each place has additional information accessible through place details. \Cref{table:gapi-details-parameters} describes each parameter used, and~\cref{table:gapi-find-place-fields} describes fields which should be returned in the response.
+
+\begin{table}[htbp]
+\centering
+\begin{tabularx}{\textwidth}{|l|X|}
+\hline
+\textbf{Parameter} & \textbf{Usage} \\ \hline
+key                & API key \\ \hline
+place\_id           & place's id \\ \hline
+language           & language code \\ \hline
+\end{tabularx}
+\caption{Place Details parameters}
+\label{table:gapi-details-parameters}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\begin{tabularx}{\textwidth}{|l|X|}
+\hline
+\textbf{Parameter} & \textbf{Usage} \\ \hline
+international\_phone\_number           & phone number in international format \\ \hline
+opening\_hours           & opening times and if is currently open \\ \hline
+photos                & additional up to ten photos \\ \hline
+review           & up to five user reviews \\ \hline
+utc\_offset           &  offset in minutes from UTC \\ \hline
+website           & place's website \\ \hline
+\end{tabularx}
+\caption{Place Details fields}
+\label{table:gapi-details-fields}
+\end{table}
+
+Note that \textit{opening\_hours} contains localised \textit{weekday\_text}. If a place is always open, the \textit{close} field within \textit{opening\_hours} is missing and \textit{open} field has day equal to zero and time equal to ``0000''.
+
+\subsubsection{The API Response Format}
+The \gls{gpa} can respond with \textit{JSON} or \textit{XML} format. The \textit{JSON} format was chosen as a more typical and standard format for REST API and mobile communication. \todo{FACT, LINK}. 
+
+\begin{listing}[h!]
+\begin{minted}{json}
+{
+  "html_attributions": [],
+   "results": [      
+      {
+         "business_status": "OPERATIONAL",
+         "id": "0c19db184d6705e945686f3d83ae02a3fbf23068",
+         "name": "JS Café",
+         "opening_hours": {
+            "open_now": true
+         },
+      }
+   ],
+   "status": "OK"
+}
+\end{minted}
+\caption{Nearby Search example output (shortened).}
+\label{listing:gapi-example-response}
+\end{listing}
+
+The \textit{Find Place}, \textit{Nearby Search} and \textit{Place Details} has similar response format where \verb|<status>| indicates response code because \gls{gpa} for every request always responds with HTTP status code 200~OK. The status field can have several values such as \verb|OK| for successful request, \verb|ZERO_RESULTS| for empty results, \verb|INVALID_REQUEST| for general invalid request and much more \todo{link to status codes}. Each service has different result field name -- \verb|candidates| for \textit{Find Place}, \verb|results| for \textit{Nearby Search} and~\verb|result| for \textit{Place Details}. An~example output is shown~at~\cref{listing:gapi-example-response}.
+
+\subsubsection{Place Photos}
+Each place can have photos. The response from \textit{Find Place} or \textit{Nearby Search} contains \verb|photo_reference| along with width and height of the photo. For~obtaining actual photo itself, the~ \textit{Place Photos} endpoint must be called. The~endpoint accepts as always the \verb|key| (API key) and \verb|photo_reference|. The~result can be altered with parameters for maximal width or height. Returns byte encoded image if the request was successful otherwise HTTP status code ``\textit{400 Bad Request}'' or ``\textit{403 Forbidden}'' if the quota limit was reached. 
+
+Although Google Places API returns plenty of information about each place, one added benefit of the Coffee Time application is user suggested tags. This requirement cannot be fulfilled only with Places API, so there is a requirement for another, custom, API. 
+
+\subsection{Cofee Time API}
+\todo{todo}
+
+\subsubsection{The Cafe Tags}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.5\linewidth]{img/analysis/tag_cafe_basic.pdf}
+    \caption{Cafe's tag and Cafe relation}
+    \label{fig:tag-cafe-relation}
+\end{figure}
+
+The set of available tags is predefined, with the requirement to be able to change it any time without changes within the client or in~the API. Each tag has a~title and icon and can be translated into another language. This definition and requirement for no changes within the client imply that used icon has to be part of tag's definition in the \gls{cta}. To sum up, each tag is an entity with a unique title, icon and translation. 
+
+As was said earlier in this chapter, each cafe can have assigned tags. Each assigned tag is reviewed by users with the concept of ``likes'' and ``dislikes''.  This requirement implies that for each cafe is needed to be known assigned tags and their reviews. This relation is shown at~\cref{fig:tag-cafe-relation}.
+
+\subsection{The Selection of the Right Technology}
+For building API there are many technologies to use and many ways to achieve it. One of the ways is implementing API from the ground with technologies such as \textit{.NET Core} and its \textit{ASP .NET Core API}. Then the~API can be deployed to service hosting providers such as~Microsoft Azure \todo{link}. Another way is to use serverless services such as \textit{Amazon Web Services} \todo{link} or \textit{Google Firebase} \todo{link}. 
 
 \todo{Firebase. Cloud functions. Firestore - NoSQL document based database. Pricing}
+
+\subsection{The API Communication}
+\todo{review, review naming,...}
+As was decided, the Firebase service and its Cloud Functions and FireStore services are used. The~\cref{fig:api-communication} shows communication between the client application and CTA. 
+
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.5\linewidth]{img/analysis/api-communication-flow.pdf}
+    \caption{Client and API communication flow. \todo{review name}}
+    \label{fig:api-communication}
+\end{figure}
+
+\begin{enumerate}
+    \item HTTP request to Coffee Time API.
+    \item The request is processed and redirected to Google Places API.
+    \item The response from Google Places API is obtained.
+    \item If appropriate the query to storage is issued, and response is enhanced with obtained data.
+    \item The final result is returned to the client.
+\end{enumerate}
+
+\todo{chapter conclusion}
 \blind[2]
 
-
+% TODO: \REVIEW ------------------------------------
 
