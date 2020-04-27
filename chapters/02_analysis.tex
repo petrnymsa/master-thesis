@@ -1,5 +1,4 @@
 \chapter{Coffee Time Analysis}
-% TODO Review ---------
 In this chapter, the specification of the implemented application is outlined. The analysis of similar applications was made to obtain ideas.  After analysis, the low fidelity prototype was created to outline the first vision of the final application. Next, the high-fidelity prototype, along with Nielsen's heuristics analysis and user testing, were made. At the end of the chapter, considered tools and services are briefly described which are used to implement the application. 
 
 \section{Considered Application}
@@ -16,7 +15,7 @@ Together with likes and dislikes, each tag has a computed score.  Each like give
 If any tags reach the score to -4, the tag is removed from the cafe, more precisely is not shown anymore to users. 
 If such removed tag is proposed by any user again, it obtains "like" review. Thus score is incremented to -3 and is shown again. 
 
-The application is location-based and offers a map view to support the convenience user experience. Google Places API as a data source is considered \todo{link, or describe later}. Any cafe can be marked as user's favourite to give a faster way to find cafe whenever the user wants. 
+The application is location-based and offers a map view to support the convenience user experience. Any cafe can be marked as user's favourite to give a faster way to find cafe whenever the user wants. 
 
 To conclusion, Coffee Time is application focused on one domain -- searching nearby cafes where to go to study, talk with friends or for example have a great coffee. The application should be simple to use with a clean user interface. 
 % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- %
@@ -189,8 +188,6 @@ Use case allows users to suggest a new tag to the selected cafe.
 
 \todo{conclusion for use cases?}
 
-% TODO ---- End Review ---------
-
 \section{Existing Alternatives}
 The analysis of existing alternatives was made to research already created applications with similar features. Existing applications were searched through Android's official store. Applications with these functionalities were chosen for the review.
 
@@ -351,9 +348,6 @@ Google                            & Everyone                               & Gre
 
 % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- %
 \section{Application prototype}
-
-% TODO: REVIEW
-
 One crucial step during the creation of software product is prototyping. Prototypes can help introduce different design ideas, can be easily tested, evaluated and changed. Prototyping techniques differ, but the desired output is the same -- provide visually concept of the final product. Prototypes do not help only visually, but they are part of user experience research and can find out which parts of the user interface should be changed before it is implemented.
 
 There is no one correct definition of how prototypes should look and how they should be created. The prototype can be of the form as a simple sketch on paper to sophisticated pixel-perfect application~\cite{adobe-prototype}. Prototypes can be created multiple times during the whole creation process. 
@@ -365,7 +359,6 @@ To be more precise, according to \cite{adobe-prototype} \gls{lofi} prototype is 
 After the~\gls{lofi} prototype, the \gls{hifi} is created. This prototype appears and function as similar as possible to the actual built application. \gls{hifi} should be created on the targeted platform and behave as it is the~final product. The goal is to have more complex \gls{ui} interactivity and have better feedback from user testing. Thanks to the fact that prototype looks like a real application user behaves more naturally and can get more precise a meaningful feedback than with \gls{lofi} prototype. 
 
 To conclusion, \gls{lofi} prototypes are tested only internally with a small number of users and can be iterated more often and faster. While \gls{hifi} is more expensive to build and should be created and tested after \gls{lofi} prototype was accepted. On the other hand, \gls{hifi} gives better feedback from user testing, thus provides more valuable information.
-
 
 \subsection{Coffee Time Prototype}
 After the specification was written, next step was to create a \textit{task list}. The task list is written from the user's perspective that is, each task describe the user's action. It should tackle all important functionalities and even obvious one such as ``add record'' or ``remove record''.
@@ -615,9 +608,9 @@ From testers was obtained beneficial feedback which helps to tune user interface
 All feedback was gathered and was taken into account during the next phase of implementation.
 % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- %
 \section{Back-end Analysis}
-In this section, the technical analysis of available technologies for back-end services is discussed. The focus is only on the back-end part. The technical detail of the mobile application is discussed in the next chapter \todo{link to chapter}.
+In this section, the technical analysis of available technologies for back-end services is discussed. The focus is only on the back-end part. The technical detail of the mobile application is discussed in the next~\cref{ch:implementation}.
 
-One vital part of the whole architecture is~\gls{gpa} \todo{link about api}. This API offers access to Google Maps services, searching places, place details, place photos and more. The API has five services \todo{link to sum}. 
+One vital part of the whole architecture is~\gls{gpa}~\cite{google-places-api}. This API offers access to Google Maps services, searching places, place details, place photos and more. The API has five services~\cite{google-places-api}. 
 
 \begin{itemize}
     \item Place search -- a list of places based on the user's location or search query.
@@ -627,15 +620,15 @@ One vital part of the whole architecture is~\gls{gpa} \todo{link about api}. Thi
     \item Query autocomplete -- provides a query prediction service for text-based geographic searches.
 \end{itemize}
 
-To access these services, the Google~API~Key must be obtained. (\todo{ link to API key info}).
-
+To access these services, the Google~API~Key must be obtained~\cite{google-places-api-key}.
+% --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- #
 \subsection{Google Places API}
-The Google Places API returns much information about each place, but the application uses an only subset of available information. The full documentation what  API offers can be found here \todo{places api link search}. The application makes usage of four available services - Find a place, Nearby search, Place detail and Place photos. Some parameters are the same for each service, and the output of each service is similar. 
+The Google Places API returns plenty of information about each place, but the application uses an only subset of available information. The application makes usage of four available services - Find a place, Nearby search, Place detail and Place photos. Some parameters are the same for each service, and the output of each service is similar. 
 
-Each place has several fields such as name, address, location, rating and much more. However, not every field is used in the application, and it is not necessary to obtain these fields in the response. On top of that, each field is included in the pricing category. That means that some of the fields are more expensive to obtain than others. \todo{include price level info link}. It was important to analyse which fields are essential to get before the API model could be created. Following lines summarize each usage of API, its parameters, fields and expected output.
-
+Each place has several fields such as name, address, location, rating and much more. However, not every field is used in the application, and it is not necessary to obtain these fields in the response. On top of that, each field is included in the pricing category. That means that some of the fields are more expensive to obtain than others~\cite{google-places-api-billing}. It was important to analyse which fields are essential to get before the API model could be created. Following lines summarize each API usage, its parameters, fields and expected output.
+% --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- &
 \subsubsection{Find Place}
-The purpose of this service to find places based on the text-based query or custom location.  \Cref{table:gapi-find-place-params} describes each of used parameter.\Cref{table:gapi-find-place-fields} describes each expected field in the response. 
+The purpose of this service is to find places based on the text-based query or custom location.  \Cref{table:gapi-find-place-params} describes each of used parameter.\Cref{table:gapi-find-place-fields} describes each expected field in the response. 
 
 \begin{table}[htbp]
 \centering
@@ -671,11 +664,10 @@ rating             & value from 1.0 to 5.0                                      
 \caption{Find place fields}
 \label{table:gapi-find-place-fields}
 \end{table}
-
+% --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- &
 \subsubsection{Nearby Search}
 \textit{Nearby Search} allows finding nearby places around the given location. In contrast with \textit{Find place}, the \textit{Nearby Search} returns all fields available to place and can return up to~60~places. The result is paginated~up~to three pages with~20~places in each page. If the result has another page, the pagetoken is included in the response. As before the \cref{table:gapi-nearby-search-parameters} shows service parameters.
 
-% TODO TODO --- end up here
 \begin{table}[htbp]
 \centering
 \begin{tabularx}{\textwidth}{|l|X|}
@@ -692,7 +684,7 @@ pagetoken & token for next page \\ \hline
 \caption{Nearby Search parameters}
 \label{table:gapi-nearby-search-parameters}
 \end{table}
-
+% --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- &
 \subsubsection{Place Details}
 Each place has additional information accessible through place details. \Cref{table:gapi-details-parameters} describes each parameter used, and~\cref{table:gapi-find-place-fields} describes fields which should be returned in the response.
 
@@ -726,9 +718,9 @@ website           & place's website \\ \hline
 \end{table}
 
 Note that \textit{opening\_hours} contains localised \textit{weekday\_text}. If a place is always open, the \textit{close} field within \textit{opening\_hours} is missing and \textit{open} field has day equal to zero and time equal to ``0000''.
-
+% --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- &
 \subsubsection{The API Response Format}
-The \gls{gpa} can respond with \textit{JSON} or \textit{XML} format. The \textit{JSON} format was chosen as a more typical and standard format for REST API and mobile communication. \todo{FACT, LINK}. 
+The \gls{gpa} can respond with \textit{JSON} or \textit{XML} format. The \textit{JSON} format was chosen as a~more typically used and standard format for REST~API and mobile communication~\cite{xml-vs-json}. 
 
 \begin{listing}[h!]
 \begin{minted}{json}
@@ -751,56 +743,141 @@ The \gls{gpa} can respond with \textit{JSON} or \textit{XML} format. The \textit
 \label{listing:gapi-example-response}
 \end{listing}
 
-The \textit{Find Place}, \textit{Nearby Search} and \textit{Place Details} has similar response format where \verb|<status>| indicates response code because \gls{gpa} for every request always responds with HTTP status code 200~OK. The status field can have several values such as \verb|OK| for successful request, \verb|ZERO_RESULTS| for empty results, \verb|INVALID_REQUEST| for general invalid request and much more \todo{link to status codes}. Each service has different result field name -- \verb|candidates| for \textit{Find Place}, \verb|results| for \textit{Nearby Search} and~\verb|result| for \textit{Place Details}. An~example output is shown~at~\cref{listing:gapi-example-response}.
-
+The \textit{Find Place}, \textit{Nearby Search} and \textit{Place Details} has similar response format where \verb|<status>| indicates response code because \gls{gpa} for every request always responds with HTTP status code 200~OK. The status field can have several values such as \verb|OK| for successful request, \verb|ZERO_RESULTS| for empty results or \verb|INVALID_REQUEST| for general invalid request. Each service has different result field name -- \verb|candidates| for \textit{Find Place}, \verb|results| for \textit{Nearby Search} and~\verb|result| for \textit{Place Details}. An~example output is shown~at~\cref{listing:gapi-example-response}.
+% --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- &
 \subsubsection{Place Photos}
 Each place can have photos. The response from \textit{Find Place} or \textit{Nearby Search} contains \verb|photo_reference| along with width and height of the photo. For~obtaining actual photo itself, the~ \textit{Place Photos} endpoint must be called. The~endpoint accepts as always the \verb|key| (API key) and \verb|photo_reference|. The~result can be altered with parameters for maximal width or height. Returns byte encoded image if the request was successful otherwise HTTP status code ``\textit{400 Bad Request}'' or ``\textit{403 Forbidden}'' if the quota limit was reached. 
 
 Although Google Places API returns plenty of information about each place, one added benefit of the Coffee Time application is user suggested tags. This requirement cannot be fulfilled only with Places API, so there is a requirement for another, custom, API. 
-
-\subsection{Cofee Time API}
-\todo{todo}
-
-\subsubsection{The Cafe Tags}
-
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.5\linewidth]{img/analysis/tag_cafe_basic.pdf}
-    \caption{Cafe's tag and Cafe relation}
-    \label{fig:tag-cafe-relation}
-\end{figure}
-
-The set of available tags is predefined, with the requirement to be able to change it any time without changes within the client or in~the API. Each tag has a~title and icon and can be translated into another language. This definition and requirement for no changes within the client imply that used icon has to be part of tag's definition in the \gls{cta}. To sum up, each tag is an entity with a unique title, icon and translation. 
-
-As was said earlier in this chapter, each cafe can have assigned tags. Each assigned tag is reviewed by users with the concept of ``likes'' and ``dislikes''.  This requirement implies that for each cafe is needed to be known assigned tags and their reviews. This relation is shown at~\cref{fig:tag-cafe-relation}.
-
-\subsection{The Selection of the Right Technology}
-For building API there are many technologies to use and many ways to achieve it. One of the ways is implementing API from the ground with technologies such as \textit{.NET Core} and its \textit{ASP .NET Core API}. Then the~API can be deployed to service hosting providers such as~Microsoft Azure \todo{link}. Another way is to use serverless services such as \textit{Amazon Web Services} \todo{link} or \textit{Google Firebase} \todo{link}. 
-
-\todo{Firebase. Cloud functions. Firestore - NoSQL document based database. Pricing}
-
-\subsection{The API Communication}
-\todo{review, review naming,...}
-As was decided, the Firebase service and its Cloud Functions and FireStore services are used. The~\cref{fig:api-communication} shows communication between the client application and CTA. 
-
+% --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- #
+\subsection{Coffee Time API}
+The~\gls{cta} will be used for two main functionalities. First of all, it will provide access to Google Places API and secondly, it will be used for getting assigned tags for cafes. While it is possible to use \gls{gpa} directly from the mobile application (client), it would lead to the~need for another request to obtain the~cafe's tags and another possible required custom information. Hence, if custom API is used as a~proxy to~\gls{gpa}, with one request to this API, the response can be modified with additional data and returned at~once. The~\cref{fig:api-communication} shows such a~communication. 
 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.5\linewidth]{img/analysis/api-communication-flow.pdf}
-    \caption{Client and API communication flow. \todo{review name}}
+    \caption{Client and API communication flow}
     \label{fig:api-communication}
 \end{figure}
 
 \begin{enumerate}
-    \item HTTP request to Coffee Time API.
+    \item HTTP request made by client to Coffee Time API.
     \item The request is processed and redirected to Google Places API.
     \item The response from Google Places API is obtained.
     \item If appropriate the query to storage is issued, and response is enhanced with obtained data.
     \item The final result is returned to the client.
 \end{enumerate}
+% --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- &
+\subsubsection{The Cafe Tags}
 
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\linewidth]{img/analysis/tag-cafe-relation.pdf}
+    \caption{Cafe's tag and Cafe relation}
+    \label{fig:tag-cafe-relation}
+\end{figure}
+
+The set of available tags is predefined, with the requirement to be able to change it any time without changes within the client or in~the API. Each tag has a~title and icon and can be translated into another language. This definition and requirement for no changes within the client imply that used icon has to be part of tag's definition in the~\gls{cta}. To sum up, each tag is an entity with a unique title, icon and translation. 
+
+As was said earlier in this chapter, each cafe can have assigned tags. Each assigned tag is reviewed by users with the concept of ``likes'' and ``dislikes''.  This requirement implies that for each cafe is needed to be known assigned tags and their reviews. This relation is shown at~\cref{fig:tag-cafe-relation}.
+% --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- &
+\subsubsection{Domain Model}
+Within detail screen, additional information is displayed, which can be obtained from the Place Details call. This concludes that the application's cafe domain entity is split into two entities - Cafe and Cafe Detail entities.  The~domain entity graph is listed in~\cref{fig:domain} \todo{review this}.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.9\linewidth]{img/analysis/domain.pdf}
+    \caption{Coffee Time domain model}
+    \label{fig:domain}
+\end{figure}
+% --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- &
+\subsubsection{The API Endpoints}
+The~\gls{cta} has endpoints divided into three categories - places, tags and photos. As a client is considered to be multilingual, the API is too. The Places API accepts, as was described earlier, language parameter to specify how the response should be localised. The API is proposed with language parameter in place and required as a mandatory part of the~URI. The tags category offers endpoint for obtaining and manipulating tags. As of last, photo category gives access to downloading the place's photo. Every response coming from \gls{gpa} which returns places are modified such that each ``place'' entry contains additional \verb|tags| field which is an~array of the~\verb|tag| model. 
+
+The~\cref{table:cta-places} describes each API endpoint and its usage. Mandatory parameters within URI are highlighted as \verb|<param>|. Each URI is shown without prefix \verb|http[s]://domain/api| (the hosting url and \verb|/api| suffix).
+% -----------------------------
+\begin{table}[ht]
+\centering
+\begin{tabularx}{\textwidth}{|l|l|X|}
+\hline
+\textbf{URI} & \textbf{HTTP Method} & \textbf{Description} \\ \hline
+\verb|<language>/nearby?parameters| & GET & Get nearby cafes \\ \hline
+\verb|<language>/find?parameters| & GET & Find cafes within area based on text query \\ \hline
+\verb|<language>/detail/<place_id>| & GET & Place's details of given \verb|place_id| \\ \hline
+\verb|<language>/basic/<place_id>| & GET & Returns basic place information \\ \hline
+\end{tabularx}
+\caption{Places endpoints}
+\label{table:cta-places}
+\end{table}
+% -----------------------------
+\begin{table}[ht]
+\centering
+\begin{tabularx}{\textwidth}{|l|l|X|}
+\hline
+\textbf{Parameter} & \textbf{Required} & \textbf{Description} \\ \hline
+\verb|location=lat,lng| & Yes & Location to search, where \verb|lat|=latitude, \verb|lng|=longitude \\ \hline
+\verb|radius| & No & If omitted, the results is sorted by \textit{prominence} (see below), otherwise by distance\\ \hline
+\verb|opennow| & No & If present returns only opened cafes\\ \hline
+\verb|pagetoken| & No & If present, next page returned\\ \hline
+\end{tabularx}
+\caption{Nearby parameters}
+\label{table:cta-nearby-params}
+\end{table}
+
+The~\cref{table:cta-nearby-params} describes \textit{nearby} parameter. Note that, if radius is omitted, the results are sorted by Google's ranking -- ``Ranking will favor prominent places within the specified area. Prominence can be affected by a place's ranking in Google's index, global popularity, and other factors''~\cite{google-places-api-nearby-req} otherwise the results are sorted by distance. 
+% -----------------------------
+\begin{table}[ht]
+\centering
+\begin{tabularx}{\textwidth}{|l|l|X|}
+\hline
+\textbf{Parameter} & \textbf{Required} & \textbf{Description} \\ \hline
+\verb|input| & Yes & Search query to use \\ \hline
+\verb|location=lat,lng| & No & Search within circular area defined by radius \\ \hline
+\verb|radius| & No & Circular radius in meters\\ \hline
+\end{tabularx}
+\caption{Find parameters}
+\label{table:cta-find-params}
+\end{table}
+
+The~\cref{table:cta-find-params} describes \textit{find} parameters. The \verb|location=lan,lng| and \verb|radius| must be provded both if used. 
+% -----------------------------
+\begin{table}[ht]
+\centering
+\begin{tabularx}{\textwidth}{|l|l|X|}
+\hline
+\textbf{URI} & \textbf{HTTP Method} & \textbf{Description} \\ \hline
+\verb|/tags| & GET & Get all defined tags \\ \hline
+\verb|/tags/<place_id>| & GET & Get all assigned tags to given \verb|place_id| \\ \hline
+\verb|/tags/<place_id>| & POST & Updates tag's review for given \verb|place_id| \\ \hline
+\end{tabularx}
+\caption{Tags endpoints}
+\label{table:cta-tags}
+\end{table}
+
+\begin{listing}[ht]
+\begin{minted}{json}
+[
+    {
+        "id": "tag",
+        "change": "like|dislike"
+    }
+]
+\end{minted}
+\caption{Tag update content example}
+\label{listing:tag-update-post}
+\end{listing}
+
+The~\cref{table:cta-tags} describes all endpoints relative to \textit{tags}. The POST request to \verb|/tags/<place_id>| should have body with array of \textit{TagUpdate} model. The example is listed in~\cref{listing:tag-update-post} where \verb|id| contains tag's id and \verb|change| contains value of \verb|like| or \verb|dislike|. More details are described later in~\cref{ch:implementation} about API implementation.
+
+% --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- #
+\subsection{The Selection of the Right Technology}
+\todo{describe requirements for api and which technology meets them}
+For building API there are many technologies to use and many ways to achieve it. One of the ways is implementing API from the ground with technologies such as \textit{.NET Core} and its \textit{ASP .NET Core API}. Then the~API can be deployed to service hosting providers such as~Microsoft Azure \todo{link}. Another way is to use serverless services such as \textit{Amazon Web Services} \todo{link} or \textit{Google Firebase} \todo{link}. 
+
+\todo{Firebase. Cloud functions. Firestore - NoSQL document based database. Pricing}
+% ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- %
+\section{The Conclusion}
 \todo{chapter conclusion}
-\blind[2]
 
 % TODO: \REVIEW ------------------------------------
 

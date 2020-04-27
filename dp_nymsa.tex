@@ -21,7 +21,6 @@
 \usepackage{cleveref} % intelligent crossreference
 \usepackage{hyperref} % cross-reference
 \usepackage{afterpage}
-\usepackage{minted} % code highlighting
 \usepackage{notoccite} % prevent TOC cite 
 \usepackage{xcolor}
 \usepackage{blindtext}
@@ -36,6 +35,11 @@
 \makeglossaries
 
 % Used from http://www.herout.net/blog/2017/03/pomalu-uz-pojdme-psat/
+\newglossaryentry{formula}
+{
+        name=formula,
+        description={A mathematical expression}
+}
 \newcommand{\todo}[1]{\textcolor{red}{\textbf{[#1]}}}
 \newcommand{\blind}[1][1]{\textcolor{gray}{\Blindtext[#1][1]}}
 \newcommand{\RNum}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
@@ -87,11 +91,11 @@ Práce je zaměřena především na využití frameworku, následný návrh a~i
 \begin{document}
 
 % Acronyms and glossary
-% \newglossaryentry{formula}
-% {
-%         name=formula,
-%         description={A mathematical expression}
-% }
+\newglossaryentry{formula}
+{
+        name=formula,
+        description={A mathematical expression}
+}
 \newacronym{ctu}{CTU}{Czech Technical University}
 \newacronym{cta}{CTA}{Coffee Time API}
 \newacronym{gpa}{GPA}{Google Places API}
@@ -99,6 +103,7 @@ Práce je zaměřena především na využití frameworku, následný návrh a~i
 \newacronym{hifi}{Hi-Fi}{High Fidelity}
 \newacronym{ui}{UI}{User Interface}
 
+\glsresetall
 % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
 \include{chapters/00_introduction}
