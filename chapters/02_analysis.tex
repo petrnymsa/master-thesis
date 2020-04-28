@@ -186,8 +186,6 @@ Use case allows users to suggest a new tag to the selected cafe.
 
 % -------------
 
-\todo{conclusion for use cases?}
-
 \section{Existing Alternatives}
 The analysis of existing alternatives was made to research already created applications with similar features. Existing applications were searched through Android's official store. Applications with these functionalities were chosen for the review.
 
@@ -258,8 +256,8 @@ Application \textit{Pivní deník} is used to search nearby pubs in the Czech Re
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.33\linewidth]{img/analysis/restu.png}
-    \caption{Restu \todo{change image}}
+    \includegraphics[width=0.33\linewidth]{img/analysis/restu.jpg}
+    \caption{Restu}
     \label{fig:restu}
 \end{figure}
 
@@ -329,7 +327,7 @@ Within Android system is already installed. Nearby places can be searched direct
 \end{itemize}
 
 To the conclusion, five applications were analysed on the Android system. Three apps are focused mainly on gastronomy. Another one specialises on beer. Last one, \textit{Google maps} is one of the most universal and robust. 
-Each application has its own unique \gls{ui} \todo{not working gls, why?} and overall user experience differs. In the \cref{table:app-analysis} the targeted audience and user interface usefulness is summarised.
+Each application has its own unique \gls{ui} and overall user experience differs. In the~\cref{table:app-analysis} the~targeted audience and user interface usefulness is summarised.
 
 \begin{table}[htbp]
 \centering
@@ -378,7 +376,7 @@ A note about \textit{User Interface Design (MI-NUR)} subject which was held duri
 As a task graph was defined, the Lo-Fi prototype could be made. Although the application is considered as multi-platform application, the prototype was focused on Android, and its Material design \cite{material-design}. The inspiration was taken from typical Material layouts, such as AppBar with title and subsequent actions or tabs the bottom of the screen. 
 
 First of all, the rough prototype was drawn on paper. Its purpose was to come up with some ideas and considered layout. After that, the \textit{Balsamiq} \cite{balsamiq} prototyping software was used. The \textit{Balsamiq} tries to mimic pencil and paper. The prototype is created with a set of components which looks like they were drawn by hand.
-The most important feature was the ability to create deep links between screens or components. With a few clicks, the prototype was able to handle actions such as the open application menu or navigate to detail. With that tool, the clickable prototype focused on essential app's features was created. As a result, the PDF was exported. The PDF is enclosed as part of the thesis \todo{link to pdf}. The portion of the result is shown at \cref{fig:lofi}.
+The most important feature was the ability to create deep links between screens or components. With a few clicks, the prototype was able to handle actions such as the open application menu or navigate to detail. With that tool, the clickable prototype focused on essential app's features was created. As a result, the PDF was exported. The PDF is enclosed as part of the thesis located at \verb|prototype/lofi.pdf|. The portion of the result is shown at \cref{fig:lofi}.
 
 \begin{figure}[htp]
     \centering
@@ -397,7 +395,7 @@ The result was tested with co-workers and closest author's family members. From 
 
   \item Research more on how to solve user's reviews.
          \begin{answer}
-         As a considered data source is Google Places API, it was acknowledged that it is not possible to add custom reviews through their API. \todo{link to answer that is not possible}.
+         As a considered data source is Google Places API, it was acknowledged that it is not possible to add custom reviews through their API.
          \end{answer}
     \item Navigation and contact buttons are too small. 
         \begin{answer}
@@ -418,13 +416,11 @@ The result was tested with co-workers and closest author's family members. From 
 \end{questions}
 
 \subsubsection{High Fidelity Prototype}
-The \gls{hifi} prototype was created as Flutter application. Because of that, in the future, the already written code could be reused.  The goal was to create a fully functional prototype for Android devices. As was said earlier in this chapter, the goal of \gls{hifi} is provide an application which behaves as real one, which is mainly focused on user interface interaction. That means the application can be without any real communication with back-end services. For Coffee Time there was prepared local JSON data source with randomly generated cafe names and their data. Besides that, a few, real one cafes were added to be less general and more known for potential testers. The \gls{hifi} focused on all earlier described use cases. The cafe list screen and cafe's detail screen is shown~at~\cref{fig:hifi}.
-
-\todo{LINK to prototype version} 
+The \gls{hifi} prototype was created as Flutter application. Because of that, in the future, the already written code could be reused.  The goal was to create a fully functional prototype for Android devices. As was said earlier in this chapter, the goal of \gls{hifi} is provide an application which behaves as real one, which is mainly focused on user interface interaction. That means the application can be without any real communication with back-end services. For Coffee Time there was prepared local JSON data source with randomly generated cafe names and their data. Besides that, a few, real one cafes were added to be less general and more known for potential testers. The \gls{hifi} focused on all earlier described use cases. The cafe list screen and cafe's detail screen is shown~at~\cref{fig:hifi}. The prototype's source code can be found at~\verb|https://github.com/petrnymsa/coffee-time/releases/tag/prototype|~\cite{hifi-prototype}. 
 
 \begin{figure}[htp]
     \centering
-    \includegraphics[width=0.9\textwidth]{img/analysis/hifi.jpg}
+    \includegraphics[width=0.6\textwidth]{img/analysis/hifi.jpg}
     \caption{\gls{hifi} prototype. Cafe list (left) and detail screen (right).}
     \label{fig:hifi}
 \end{figure}
@@ -782,7 +778,7 @@ The set of available tags is predefined, with the requirement to be able to chan
 As was said earlier in this chapter, each cafe can have assigned tags. Each assigned tag is reviewed by users with the concept of ``likes'' and ``dislikes''.  This requirement implies that for each cafe is needed to be known assigned tags and their reviews. This relation is shown at~\cref{fig:tag-cafe-relation}.
 % --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- &
 \subsubsection{Domain Model}
-Within detail screen, additional information is displayed, which can be obtained from the Place Details call. This concludes that the application's cafe domain entity is split into two entities - Cafe and Cafe Detail entities.  The~domain entity graph is listed in~\cref{fig:domain} \todo{review this}.
+Within detail screen, additional information is displayed, which can be obtained from the Place Details call. This concludes that the application's cafe domain entity is split into two entities - Cafe and Cafe Detail entities. The~domain entity graph is listed in~\cref{fig:domain} which shows all entities related to~\gls{cta} response.
 
 \begin{figure}[ht]
     \centering
@@ -871,13 +867,35 @@ The~\cref{table:cta-tags} describes all endpoints relative to \textit{tags}. The
 
 % --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- #
 \subsection{The Selection of the Right Technology}
-\todo{describe requirements for api and which technology meets them}
-For building API there are many technologies to use and many ways to achieve it. One of the ways is implementing API from the ground with technologies such as \textit{.NET Core} and its \textit{ASP .NET Core API}. Then the~API can be deployed to service hosting providers such as~Microsoft Azure \todo{link}. Another way is to use serverless services such as \textit{Amazon Web Services} \todo{link} or \textit{Google Firebase} \todo{link}. 
+The technology which will be used to build the API should fulfil the following requirements
 
-\todo{Firebase. Cloud functions. Firestore - NoSQL document based database. Pricing}
+\begin{itemize}
+    \item The access to API should be secured
+    \item The back-end service should be simply scaled up when needed
+    \item The maintenance cost should be kept low
+\end{itemize}
+
+There are many technologies which can be used to achieve this requirements. One of the ways is implementing API from the ground with technologies such as \textit{.NET Core} and its \textit{ASP .NET Core API}. Then the~API can be deployed to service hosting providers such as~\textit{Microsoft Azure} or through technologies such as Docker containers and Kubernetes~\cite{kubernetes} as container orchestration. 
+
+Another way is to use serverless services. The serverless is approach where ``the cloud provider is responsible for executing a piece of code by dynamically allocating the resources. And only charging for the amount of resources used to run the code. The code is typically run inside stateless containers that can be triggered by a variety of events including http requests, database events, queuing services, monitoring alerts, file uploads, scheduled events (cron jobs), etc''~\cite{what-is-serverless}. This approach is sometimes called as \textit{Functions as a Service} (FaaS in short). The major providers are \textit{Amazon Web Services} and its \textit{Lambda Functions}, \textit{Microsoft Azure Functions} or \textit{Cloud Functions (Firebase Functions)} by \textit{Google}. \todo{links to every service?}. 
+
+The~\textit{Firebase} by~\textit{Google} is collection of services which helps to build mobile application faster, improve application quality and grow business. The~\textit{Firebase} offer services as real-time NoSQL database, application usage analytics, A/B user testing, cloud web hosting or Cloud Functions and much more. Within one service, the storage for data, the API as functions and security can be made. 
+
+\subsubsection{Cloud Firestore}
+\textit{Cloud Firestore} is a flexible, scalable database for mobile, web, and server development. It keeps data in sync across client apps through realtime listeners and offers offline support for mobile and web. The \textit{Cloud Firestore} uses NoSQL data model. The data are stored in documents that contain fields mapping to values. These documents are stored in collections, which are containers for documents that can used to organize data. Documents support many different data types, from simple strings and numbers, to complex, nested objects. Documents can include subcollections and build hierarchical data structures that scale as database grows~\cite{cloud-firestore}.
+
+\subsubsection{Cloud Functions}
+\textit{Cloud Functions} for \textit{Firebase} is a serverless framework that lets automatically run backend code in response to events triggered by Firebase and HTTPS requests. After function is deployed, Google's servers begin to manage the function immediately. The~function can be used directly with an HTTP request. Each function runs in isolation, in its own environment with its own configuration and are scaled accordingly to usage load~\cite{cloud-functions}. 
+
+\subsubsection{Firebase Authentication}
+\textit{Firebase Auth} offers service to secure application with \textit{OAuth~2.0} standard~\cite{oauth}. It automatically integrates with identity providers such as \textit{Google}, \textit{Microsoft}, \textit{Facebook} and more. Besides that it offers standard authentication through user's email or phone~\cite{cloud-auth} and anonymous authentication where for each user randomly generated identifier is used. The~service guarantees that for each user, as long they use the same device, the identifier stays the same. 
+\\
+\\
+The~\textit{Cloud Functions} can be used to build Coffee Time API. The~\textit{Cloud Firestore} as a database (storage) and API can be secured through \textit{Firebase Authentication}. On top of that, \textit{Firebase} offers services for analysis, logging and user testing. The~\textit{Firebase} has ``pay as you go'' model and offers a free plan (Spark plan). The Spark plan offers up to 1~GiB data storage, 20~thousands of writes and 50~thousand of document reads per day. The~\textit{Cloud Functions} can be invoked 125~thousand times per month. This pricing perfectly suits the requirements and can be used freely to build Coffee Time application. If the application becomes popular and frequently used, the actual price of \textit{Firebase} services is calculated by current usage and services can be scaled up accordingly. How the \textit{Firebase} services are used in detail is more described in~\cref{ch:implementation} \todo{cref to section}. 
+
 % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- %
 \section{The Conclusion}
-\todo{chapter conclusion}
+In this chapter, the considered application Coffee Time was introduced. The analysis of existing alternatives was made to obtain inspiration for how each application behaves. The prototype was created to propose user interface and test it with users. In the end, the analysis of Coffee Time API was made along with analysis of chosen technology to build API.
 
 % TODO: \REVIEW ------------------------------------
 
