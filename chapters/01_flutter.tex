@@ -93,7 +93,7 @@ Later on in this chapter, the pattern Business Logic Component (BLoC) is introdu
 \section{Everything Is a Widget}
 In this section, we will discuss in more details how the UI is built. Every UI consists of the layout and individual components. The layout defines the screen's base structure, such as a menu on the top and subsequent actions in the bottom. Then the layout is composed of individual components, such as menu, buttons or icons. Together they create a final interface.
 
-These building blocks in the Flutter are called ``Widgets''. Whatever it is simple text, button or complex parts of the~layout, such as grid with multiple columns and rows -- \textbf{everything is a widget}.  Widgets describe what their view should look like given their current configuration and state. When a widget's state changes, the widget rebuilds its description, which the framework diffs against the previous description in order to determine the minimal changes needed in the underlying render tree to transition from one state to the next~\cite{flutter-widget-intro}. As the~composition to the~tree implies, each widget has at most one parent and zero or more children widgets. This tree, called ``widget tree'', is in fact, one of the~three trees involved. The~framework has a sophisticated way of decision about how the~trees should be rebuilt and screen updated. This behaviour is in more details described later in this chapter.
+These building blocks in Flutter are called ``Widgets''. Whatever it is simple text, button or complex parts of the~layout, such as grid with multiple columns and rows -- \textbf{everything is a widget}.  Widgets describe what their view should look like given their current configuration and state. When a widget's state changes, the widget rebuilds its description, which the framework diffs against the previous description in order to determine the minimal changes needed in the underlying render tree to transition from one state to the next~\cite{flutter-widget-intro}. As the~composition to the~tree implies, each widget has at most one parent and zero or more children widgets. This tree, called ``widget tree'', is in fact, one of the~three trees involved. The~framework has a sophisticated way of decision about how the~trees should be rebuilt and screen updated. This behaviour is in more details described later in this chapter.
 
 Flutter framework uses only one language to define both the~user interface and business logic as well.  Widgets are Dart class which inherits from some of the widget's base class (typically \textit{StatelessWidget} or \textit{StatefulWidget}). Each widget has a build method which defines how the widget should be built (and drawn on the screen). 
 % --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- #
@@ -117,7 +117,7 @@ An example of widget composition creating a~layout is shown at~\cref{fig:flutter
 \end{figure}
 % --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- #
 \subsection{Stateless vs Stateful Widget}
-In the introduction was said that Flutter's approach of displaying current user interface is declarative -- ``here is the current state of the application, draw something on the screen accordingly''.  In the Flutter, whenever application' state changes, the user interface is redrawn. There is no imperative changing of the~\gls{ui}, such as \verb|textWidget.text = 'new text'|. The~advantage of the~declarative approach is that there is only one code path for any state of the~\gls{ui}. Developers just describe how the screen should look for a given state, and that is it~\cite{flutter-declarative}. The \gls{ui} can be described as a formula where \gls{ui} is equal to function which takes a state and returns new \gls{ui}~(\cref{fig:flutter-ui-formula}).
+In the introduction was said that Flutter's approach of displaying current user interface is declarative -- ``here is the current state of the application, draw something on the screen accordingly''.  In Flutter, whenever application' state changes, the user interface is redrawn. There is no imperative changing of the~\gls{ui}, such as \verb|textWidget.text = 'new text'|. The~advantage of the~declarative approach is that there is only one code path for any state of the~\gls{ui}. Developers just describe how the screen should look for a given state, and that is it~\cite{flutter-declarative}. The \gls{ui} can be described as a formula where \gls{ui} is equal to function which takes a state and returns new \gls{ui}~(\cref{fig:flutter-ui-formula}).
 
 \begin{figure}[htp]
     \centering
@@ -384,7 +384,7 @@ return Text('Count: ${model.count}');
 
 The HomePage~(\cref{listing:counter-inherited-homepage} is wrapped by~\verb|CounterModelProvider| to provide access to any its children. Within the HomePage's build method, \verb|CounterModel| is obtained without listening. It is used for button's callbacks to invoke \textit{increment} (\textit{decrement}) method. Inside \verb|CounterTextContainer| (\cref{listing:counter-inherited-text-container} is used Text widget and \verb|CounterText| where the~\verb|CounterModel| is accessed to get current value. Note that every widget is Stateless. The~most important thing is that only the~\textit{CounterText is rebuilt} when the~state changes~(see~\cref{fig:counter-app-inherited-widget}) in comparison with \verb|setState| approach where the~whole application was rebuilt.
 
-Although InheritedWidget solves many issues, the amount of code needed to achieve these results can be more unreadable and hard to maintain than approach with plain \verb|setState| method. However, the Flutter's community created package which abstracts InheritedWidget and simplify this process. 
+Although InheritedWidget solves many issues, the amount of code needed to achieve these results can be more unreadable and hard to maintain than approach with plain \verb|setState| method. However, Flutter's community created package which abstracts InheritedWidget and simplify this process. 
 % --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- #
 \subsection{Provider Package}
 
@@ -536,7 +536,6 @@ children: <Widget>[
 \label{listing:counter-bloc-counter-text}
 \end{listing}
 
-
 The~\verb|flutter_bloc| has base \verb|Bloc<E,S>| class where \verb|E| is an ``event type'' and \verb|S| is a ``state type''. Each BLoC class has to inherit this base class and overrides ``mapEventToState'' method in order to respond to any event and \textit{yield} new state. How the~package works and how it can be used is more discussed in~\cref{ch:implementation}. The~\cref{listing:counter-bloc-bloc} shows \verb|CounterBloc| implementation. Events are represented as enum \verb|CounterEvent| with \textit{increment} and \textit{decrement} respectively. The state is simple \textit{integer} type. The \verb|flutter_bloc| package uses under the~hood \textit{Provider} so it is very similar how the~BLoC is provided to the widget tree. The bloc is accessed with \verb|context.bloc| in order to add new events. An example is shown at~\cref{listing:counter-bloc-homepage}.  \verb|CounterTextContainer| widget (\cref{listing:counter-bloc-counter-text}) uses \verb|BlocBuilder| widget which rebuilds whenever new state arrives. 
 % --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- #
 \subsection{Conclusion}
@@ -566,7 +565,7 @@ From a developer perspective, everything is a widget what is related to the~\gls
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.75\linewidth]{img/flutter/internals_3_trees.png}
-    \caption{Three trees - Widget, Element and Render Tree}
+    \caption{Three trees - Widget, Element and Render Tree~\cite{didier-internals}}
     \label{fig:flutter-internal-3-trees}
 \end{figure}
 
@@ -583,17 +582,20 @@ Every Widget can be assigned to one of the three categories~\cite{didier-interna
 Depending on the Widget category, a corresponding Element type is associated. There are two main Element types - \textit{ComponentElement} and \textit{RenderObjectElement}. The first one does not directly correspond to visual rendering. The latter one has a connection to RenderObjects.  Also, every Widget has its corresponding Element object, speaking of StatefulWidget has corresponding StatefulElement where the state is associated. This statement also implies that BuildContext is Element itself. 
 % --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- #
 \subsection{Deciding What to Redraw}
-Redraw mechanic relies on invalidating either an Element or a RenderObject~\cite{didier-internals}.  Whenever the Widget should be rebuilt, the corresponding Element is marked as dirty. Invalidation of RenderObject can happen, for example, when changes to its dimension, position or geometry are made or when the Element tree is marked as dirty. When engine decides that new repaint should happen, it iterates over all invalidated (dirty) elements and request them to rebuild. Internally the rebuild works as: 
-\begin{enumerate}
-\item The corresponding Widget's build method is called which returns a new Widget.
-\item If the Element has no child, the new Widget is inflated
-\item Otherwise the new Widget is compared to the one referenced by the child element and
-\begin{itemize}
-\item if they are same (same widget type and Key), the update is made and the child element in the Element Tree is kept
-\item if they are not same, the child element is unmounted (and discarded) and the new Widget is inflated
-\end{itemize}
-\item The inflating of the Widget leads to creating a new element, which is inserted into the element tree as a new child of the Element. 
-\end{enumerate}
+Redraw mechanic relies on invalidating either an Element or a RenderObject~\cite{didier-internals}.  Whenever the Widget should be rebuilt, the corresponding Element is marked as dirty. Invalidation of RenderObject can happen, for example, when changes to its dimension, position or geometry are made or when the Element tree is marked as dirty. When engine decides that new repaint should happen, it iterates over all invalidated (dirty) elements and request them to rebuild. Internally the rebuild works as~\cite{didier-internals}:
+\begin{quote}
+    \begin{enumerate}
+    \item The corresponding Widget's build method is called which returns a new Widget.
+    \item If the Element has no child, the~new Widget is inflated
+    \item Otherwise the new Widget is compared to the one referenced by the~child element and
+        \begin{itemize}
+        \item if they are same (same widget type and Key), the update is made and the child element in the~Element Tree is kept
+        \item if they are not same, the child element is unmounted (and discarded) and the new Widget is inflated
+        \end{itemize}
+    \item The inflating of the Widget leads to creating a new element, which is inserted into the element tree as a new child of the Element. 
+    \end{enumerate}
+\end{quote}
+
 
 After that, the ElementTree is considered as a stable and similar process is made with Render Tree -- every RenderObject marked as dirty performs its layout (calculating dimension and geometry), every RenderObject marked to repaint is repainted. In the end, the device screen is redrawn. 
 % --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- #
@@ -656,14 +658,11 @@ class _SquareState extends State<Square> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: color,
-      width: 100,
-      height: 100);
+    return Container(color: color,width: 100,height: 100);
   }
 }
 \end{minted}
-\caption{Square widget as Stateful}
+\caption{Square widget as StatefulWidget}
 \label{listing:keys_square_stateful}
 \end{listing}
 
@@ -677,7 +676,7 @@ The keys should be put to the most top Widget, which is used as a root widget of
 \subsection{Const Optimisation}
 On of the Dart's features are \textit{const} constructors which makes instance as a~\textit{compile-time constant}. This feature can be used to optimise widget builds and prevent unnecessary rebuilds. Most of the Widgets has \textit{const} constructor, and if possible, the~\textit{const} constructor should be used. Such as Icon widget or Text widget if they accept non-changing values they can be made compile-time constants and Flutter when rebuilding the tree will these Widget reuses instead of creating a new one. 
 
+The problem of performance optimisation is a vast subject for discussion, and it could have its own chapter. The const constructors are only ``tip of the iceberg''. In general, it is somewhat common sense to~avoid unnecessary \gls{ui} rebuilds or avoid using animations carelessly such as animate each line of Text within ListView whenever the~list is updated. Some other optimisation tips are discussed later in the~implementation chapter. 
+
 \section{Conclusion}
-\todo{....}
-
-
+The first chapter introduced Flutter framework, its philosophy ``everything is a widget'' as a~primary user interface building block. The~notion of state and several state management approaches were discussed, how they can be implemented and how they affect the rebuilding of \gls{ui}. In the~end, part of Flutter internals was uncovered and explained to grasp a better understanding of how the~framework works.
