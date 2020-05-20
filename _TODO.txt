@@ -1,0 +1,4 @@
+Závěrečná kontrola:
+	Správné uvozovky
+    Přetékání řádků
+    Správné pomlčky (--)
