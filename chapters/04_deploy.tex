@@ -4,7 +4,7 @@
 Before application can be released to production it should be properly tested. In this last chapter, the development process is outlined, automated unit testing and pull-request approach of development even as single developer. Later on, the process of incrementally tested application though internal a beta testing channels on the Android devices is explained. In the end, released version of the application is shown along with link to \textit{Google Play Store}. 
 
 \section{Development Workflow}
-Application was developed as fully open-sourced (MIT licensed) application available at GitHub. Even as a single developer, author wanted to have full control over development process. The development workflow was setup accordingly:
+Coffee Time was developed as fully open-sourced (MIT licensed) application available at GitHub. Even as a single developer, author wanted to have full control over development process. The development workflow was setup accordingly:
 
 \begin{itemize}
     \item \textit{Master} branch is production code. Code within \textit{master} has to be fully tested, working code. Each commit within \textit{master} branch has to have own tag -- version number.
@@ -63,7 +63,7 @@ jobs:
 
 GitHub has a feature called GitHub Actions -- automation of the development workflow. Whenever pull request is created or new commits are pushed to created pull requests or \textit{dev} branch, an automated action is run. This action checkouts current code, build it with Flutter tools and run unit tests. If any of those action fails, build is marked as failed and in case of a pull request, pull request can not be closed. 
 
-Configuration of GitHub Actions are done through configuration files within YAML format. Coffee Time build action configuration is shown in~\Cref{listing:gh-ci}. Action is triggered on push to \textit{feature}, \textit{fix} or \textit{dev} branch and only if change set contains any file within \textit{mobile} folder. Java and Flutter tools are installed in order to build Flutter application. Before building application, Dart packages has to be downloaded. Finally after application is built, unit tests are started. If any of tests failed, whole action is marked as failed.
+Configuration of GitHub Actions are done through configuration files within YAML format. Coffee Time build action configuration is shown in~\Cref{listing:gh-ci}. Action is triggered on push to \textit{feature}, \textit{fix} or \textit{dev} branch and only if change set contains any file within \textit{mobile} folder. Java and Flutter tools are installed in order to build Flutter application. Before building application, Dart packages has to be downloaded. Finally after the application is built, unit tests are started. If any of tests failed, whole action is marked as failed.
 
 \section{Internal Testing}
 In the moment, when application had minimal working feature, internal testing channel on \textit{Google Play Services} was created in order to have early feedback from internal testers. Internal Channel provides access to applications in early stages to selected users. In case of Coffee Time application, internal testers were author's closest persons and family members. A number of testers were up to ten people and during development, they gave valuable feedback. An example of such feedback was not working navigation action on some Android versions. 
@@ -117,7 +117,7 @@ New testers encountered old issue only with ``unclear filter icon''. The more se
 As the test results did not find any serious issues which could prevent release the application, final steps were taken to deploy the application to the production.
 
 \section{Release}
-Coffee Time was released as version \textit{1.0.0} to the \textit{Google Play Store} for Android devices. In order to publish a release, a proper name and description in all available languages had to be filled before the application can be accepted. Moreover, the store displays application photo, logo a and cover image. These fields were necessary to fill as well. After release, two minor versions \textit{1.0.1} and \textit{1.0.2} were released as hotfixes to prevent application crash on some devices.
+Coffee Time was released as version \textit{1.0.0} to the \textit{Google Play Store} for Android devices. In order to publish a release, a proper name and description in all available languages had to be filled before the application could be accepted. Moreover, the store displays application photo, logo a and cover image. These fields were necessary to fill as well. After release, two minor versions \textit{1.0.1} and \textit{1.0.2} were released as hotfixes to prevent application crash on some devices.
 
 \Cref{fig:ct-released-version} shows released version. In contrast with prototype version (\Cref{fig:hifi}), there are no significant changes other than 
 
@@ -130,7 +130,7 @@ Coffee Time was released as version \textit{1.0.0} to the \textit{Google Play St
 \begin{figure}[h!]
     \centering
     \includegraphics[width=\textwidth]{img/deploy/app.jpg}
-    \caption{Released Version -- Cafe List and Detail Screens}
+    \caption{Released Version -- Cafe List and Detail Screens.}
     \label{fig:ct-released-version}
 \end{figure}
 
@@ -151,5 +151,5 @@ Coffee Time was successful implemented and released to production for \textit{An
 \begin{itemize}
     \item Application design was inspired from Material Design and this design do not correspond with Apple Deisgn,
     \item \textit{iOS} development requires \textit{MacOS} device in order to build \textit{iOS} application,
-    \item and finally, goal was to provide fully functional application at leas for \textit{Android}. In the future development, the \textit{iOS} version is planned as well. 
+    \item and finally, goal was to provide fully functional application at least for \textit{Android}. In the future development, the \textit{iOS} version is planned as well. 
 \end{itemize}

@@ -7,7 +7,7 @@ Coffee Time is an application focused on searching nearby cafes. Users should be
 
 Added value to this standard information is a feature so-called ``the tags''. These tags are user-added additional info which describes more precisely what given cafe offer or for instance if that cafe allows pets inside. 
 
-The set of tags is defined, and users can add these tags to the~cafe.  Each tag can be reviewed by other users. These reviews are done through ``like'' and ``dislike'' functionality. The~purpose of tag's reviews is to prevent outdated information or misleading information.  
+The set of tags is defined, and users can add these tags to the~cafe.  Each tag can be reviewed by other users. These reviews are done through ``like'' and ``dislike'' functionality. The~purpose of tag's reviews is to prevent outdated or misleading information.  
 
 The example of such review can be ``User visited cafe which has tag 'dog friendly', but unfortunately this information was incorrect. Consequently, the~user decided to open the~application and review the~cafe's tag 'dog friendly' with dislike.''
 
@@ -25,11 +25,11 @@ From the specification above, the use cases and use case scenarios were formed. 
 \begin{figure}[htp]
     \centering
     \includegraphics[width=\linewidth]{img/analysis/use_case.pdf}
-    \caption{Application's use case diagram}
+    \caption{Application Use Case Diagram.}
     \label{fig:use_case}
 \end{figure}
 
-As shown on diagram, the application has several use cases listed below
+As shown on diagram, the application has several use cases:
 
 \begin{itemize}
     \item UC1: Display nearby cafes as a list.
@@ -43,19 +43,19 @@ As shown on diagram, the application has several use cases listed below
 \end{itemize}
 
 \subsection{UC1: Display Nearby Cafes As a List}
-User can display nearby cafes in the form of the list view. The result is filtered by setting a filter, which can be altered by \textit{UC5}.
+An user can display nearby cafes in the~form of the list view. The~result is filtered by setting a filter, which can be altered by \textit{UC5}.
 
 \newpara
-\noindent \textbf{Pre-Conditions} The user must be on the cafe list screen.
+\noindent \textbf{Pre-Conditions} An~user must be on the cafe list screen.
 
 \newpara
 \noindent \textbf{Basic Flow}
 
 \begin{enumerate}
-    \item User launch Coffee Time and lands on cafe list.
+    \item An user launch Coffee Time and lands on cafe list.
     \item Cafe list shows nearby cafes around him. Each cafe is displayed in the form of a card.
-    \item User can pull the list down to refresh results. 
-    \item User taps on cafe's card and is redirected to the detail view.
+    \item An user can pull the list down to refresh results. 
+    \item An user taps on cafe's card and is redirected to the detail view.
 \end{enumerate}
 
 \noindent \textbf{Alternative Flow 1} The user launch navigation to the selected cafe.
@@ -63,7 +63,7 @@ User can display nearby cafes in the form of the list view. The result is filter
 % -------------
 
 \subsection{UC2: Display Nearby Cafes as Map}
-User can display nearby cafes in the form of the map view. Each cafe is shown as a map marker.
+An user can display nearby cafes in the form of the map view. Each cafe is shown as a map marker.
 \newpara
 \noindent  \textbf{Pre-Conditions} The user must be on the map screen.
 
@@ -71,16 +71,16 @@ User can display nearby cafes in the form of the map view. Each cafe is shown as
 \noindent \textbf{Basic Flow}
 
 \begin{enumerate}
-    \item User launch application and change screen to map view. 
+    \item An user launch application and change screen to map view. 
     \item Nearby cafes are shown as markers.
-    \item The user taps on the marker and is redirected to the detail screen.
+    \item An user taps on the marker and is redirected to the detail screen.
 \end{enumerate}
 
-\noindent  \textbf{Alternative Flow 1} The user taps anywhere on the map to display nearby cafes on the selected location.
+\noindent  \textbf{Alternative Flow 1} An user taps anywhere on the map to display nearby cafes on the selected location.
 
 % -------------
 
-\subsection{UC3: Start navigation}
+\subsection{UC3: Start Navigation}
 This use case allows starting navigation to selected cafe through native navigation applications.
 \newpara
 \noindent \textbf{Pre-Conditions} The navigation services must be enabled.
@@ -89,16 +89,16 @@ This use case allows starting navigation to selected cafe through native navigat
 \noindent \textbf{Basic Flow}
 
 \begin{enumerate}
-    \item The user selects the cafe.
-    \item The user selects navigate action. 
+    \item An user selects the cafe.
+    \item An user selects navigate action. 
     \item The system request to open navigation application is opened. 
-    \item User enables navigation and is redirected to navigation application. 
+    \item An user enables navigation and is redirected to navigation application. 
 \end{enumerate}
 
 \noindent \textbf{Alternative Flow 1} The user dismisses navigation request and cancels navigation.
 
 % -------------
-\subsection{UC4: Toggle cafe as a favourite}
+\subsection{UC4: Toggle Cafe as a Favourite}
 Each cafe can be marked as a favourite to faster future access. 
 
 \newpara
@@ -108,14 +108,14 @@ Each cafe can be marked as a favourite to faster future access.
 \noindent \textbf{Basic Flow}
 
 \begin{enumerate}
-    \item User has a cafe which wants to toggle as a favourite.
-    \item User toggles cafe as a favourite.
+    \item An user has a cafe which wants to toggle as a favourite.
+    \item An user toggles cafe as a favourite.
 \end{enumerate}
 
 % -------------
 
-\subsection{UC5: Setting the filter}
-User changes the filter settings to filter out the cafe results.
+\subsection{UC5: Setting the Filter}
+An user changes the filter settings to filter out the cafe results.
 
 \newpara
 \noindent \textbf{Pre-Conditions} There are results to filter.
@@ -124,7 +124,7 @@ User changes the filter settings to filter out the cafe results.
 \noindent \textbf{Basic Flow}
 
 \begin{enumerate}
-    \item User opens filter settings screen.
+    \item An user opens filter settings screen.
     \item If it is suitable user changes results ordering from ``by distance'' (default) to ``by popularity''.
     \item If it is suitable user changes opening hours filter.
     \item Add tags to filter by, if any.  
@@ -134,7 +134,7 @@ User changes the filter settings to filter out the cafe results.
 
 % -------------
 
-\subsection{UC6: Display favourite cafes}
+\subsection{UC6: Display Favourite Cafes}
 Display every favourite cafe in the form of the list view. 
 
 \newpara
@@ -144,36 +144,36 @@ Display every favourite cafe in the form of the list view.
 \noindent \textbf{Basic Flow}
 
 \begin{enumerate}
-    \item User displays favourite cafe list.
+    \item An user displays favourite cafe list.
     \item After the cafe is selected, the user is redirected to the cafe's detail screen.
 \end{enumerate}
 
-\textbf{Alternative Flow 1} The user launches navigation to the selected cafe.
+\textbf{Alternative Flow 1} An user launches navigation to the selected cafe.
 
-\textbf{Alternative Flow 2} The user toggles cafe as not-favourite anymore.
+\textbf{Alternative Flow 2} An user toggles cafe as not-favourite anymore.
 
 % -------------
 
-\subsection{UC7: Review the cafe's tags}
+\subsection{UC7: Review the Cafe's Tags}
 Use case allows users to review the cafe's tags with likes and dislikes. 
 
 \newpara
-\noindent \textbf{Pre-Conditions} Cafe must have tags to review.  User must be on the cafe's detail screen.
+\noindent \textbf{Pre-Conditions} Cafe must have tags to review. User must be on the cafe's detail screen.
 
 \newpara
 \noindent \textbf{Basic Flow}
 
 \begin{enumerate}
-    \item The user wants to suggest a change to the selected cafe.
-    \item User reviews each tag with 'like', 'dislike' or skip review for the given tag. 
-    \item User confirms review.
+    \item An user wants to suggest a~change to the~selected cafe.
+    \item An user reviews each tag with ``like'', ``dislike'' or skip review for the~given tag. 
+    \item An user confirms review.
 \end{enumerate}
 
-\noindent \textbf{Alternative Flow 1} The user decides not to do the review and goes back to the detail screen.
+\noindent \textbf{Alternative Flow 1} An user decides not to do the~review and goes back to the~detail screen.
 
 % -------------
 
-\subsection{UC8:  Suggest a new tag}
+\subsection{UC8: Suggest a New Tag}
 Use case allows users to suggest a new tag to the selected cafe.
 
 \newpara
@@ -183,17 +183,17 @@ Use case allows users to suggest a new tag to the selected cafe.
 \noindent \textbf{Basic Flow}
 
 \begin{enumerate}
-    \item The user wants to suggest a change to the selected cafe.
-    \item The user selects new tags for the suggestion. 
-    \item The user confirms the suggestion.
+    \item An user wants to suggest a change to the~selected cafe.
+    \item An user selects new tags for the~suggestion. 
+    \item An user confirms the suggestion.
 \end{enumerate}
 
-\noindent \textbf{Alternative Flow 1} The user decides not to make the suggestion and goes back to the detail screen.
+\noindent \textbf{Alternative Flow 1} An user decides not to make the suggestion and goes back to the detail screen.
 
 % -------------
 
 \section{Existing Alternatives}
-The analysis of existing alternatives was made to research already created applications with similar features. Existing applications were searched through Android's official store. Applications with these functionalities were chosen for the review:
+The~analysis of existing alternatives was made to research already created applications with similar features. Existing applications were searched through Android's official store. Applications with these functionalities were chosen for the review:
 
 \begin{itemize}
     \item nearby place search,
@@ -203,34 +203,34 @@ The analysis of existing alternatives was made to research already created appli
 For comparison the most five inspiring and distinguish applications were chosen. The following lines briefly describe one of each, their target audience, the advantages and drawbacks. 
 
 \subsection{Gastromapa Lukáše Hejlíka}
-Published in the first quarter of 2019 as a new application for exploring restaurants in the Czech Republic. The application's speciality is that restaurants' reviews are not done by users but by gastronomy specialist \textit{Lukáš~Hejlík}.
+Published in the~first quarter of 2019 as a~new application for exploring restaurants in the~Czech Republic. The~application's speciality is that restaurants' reviews are not done by users but by gastronomy specialist \textit{Lukáš~Hejlík}.
 
-As soon as the application launches, it displays nearby restaurants. Each establishment is shown as a card with important information such as an address, distance, and type of restaurant. The main card's focus is a large photo which should catch the user's eye to take a look. 
+As soon as the application launches, it displays nearby restaurants. Each establishment is shown as a~card with important information such as an~address, distance, and type of restaurant. The~main card's focus is a large photo which should catch the user's eye to take a~look. 
 
-After the card is clicked, the user is presented with the restaurant's detail, where more information such as opening hours, map location and comprehensive review by~\textit{L.~Hejlík} can be found. From this detail navigation to the chosen restaurant can be launched. The target audience is anyone who seeks to visit unknown places and possess the opportunity to taste great food.
+After the card is clicked, the user is presented with the restaurant's detail, where more information such as opening hours, map location and comprehensive review by~\textit{L.~Hejlík} can be found. The~navigation to the~chosen restaurant can be launched from this view as well. The~target audience is anyone who seeks to visit unknown places and possess the opportunity to taste great food.
 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.33\linewidth]{img/analysis/app-hejlik.jpg}
-    \caption{Gastromapa \textit{L. Hejlíka} \cite{app-hejlik}}
+    \caption{Gastromapa \textit{L. Hejlíka} \cite{app-hejlik}.}
     \label{fig:gastromapa-hejlik}
 \end{figure}
 
-\subsubsection{The advantages}
+\subsubsection{The Advantages}
 \begin{itemize}
     \item Design is fresh, clean and users can immediately see relevant content.
-    \item Thanks to clean design application is easy to use and understand.
+    \item Thanks to clean design the application is easy to use and understand.
     \item The whole application behaves smoothly without any noticeable freezing.
 \end{itemize}
 
-\subsubsection{The drawbacks}
+\subsubsection{The Drawbacks}
 \begin{itemize}
-    \item The navigation button has a blackish colour that after scrolling disappears. If the restaurant has a darker photo, the button is hard to notice. 
-    \item When coming back to the main screen, loading of the list is started again, and the previous search is lost.
+    \item The navigation button has a blackish colour that after scrolling disappears. If the~restaurant has a darker photo, the button is hard to notice. 
+    \item When coming back to the main screen, loading of the list is started again, and the~previous search is lost.
     \item Detail screen on entry is fully covered with restaurant photo. From a design point of view, it is a nice touch, but users must scroll to see any information. 
 \end{itemize}
 
-\subsection{Pivní deník}
+\subsection{Pivní Deník}
 Application \textit{Pivní deník} is used to search nearby pubs in the Czech Republic and their beer offer. The content is created by the community, including served beer and their prices.  Application offers searching nearby restaurants filtered by beer brands. Each user can view a history of places they have visited. Furthermore they can mark any pub as their favourite and share their experience.
 
 
@@ -239,13 +239,13 @@ Application \textit{Pivní deník} is used to search nearby pubs in the Czech Re
     \begin{minipage}{0.45\linewidth}
         \centering
         \includegraphics[width=0.75\linewidth]{img/analysis/app-pivni-denik.jpg}
-        \caption{Pivní deník \cite{app-pivni-denik}}
+        \caption{Pivní deník \cite{app-pivni-denik}.}
         \label{fig:pivni-denik}
     \end{minipage}\hfill
     \begin{minipage}{0.45\linewidth}
         \centering
         \includegraphics[width=0.75\linewidth]{img/analysis/app-restu.jpg}
-        \caption{Restu \cite{app-restu}}
+        \caption{Restu \cite{app-restu}.}
         \label{fig:restu}
     \end{minipage}
 \end{figure}
@@ -257,14 +257,14 @@ Application \textit{Pivní deník} is used to search nearby pubs in the Czech Re
 %     \label{fig:pivni-denik}
 % \end{figure}
 
-\subsubsection{The advantages}
+\subsubsection{The Advantages}
 \begin{itemize}
     \item Pubs are displayed as a list or points on the map.
     \item The served brands are displayed directly within the list, so it is not needed to visit details.
     \item The registration is optional for searching. If users want to contribute, they have to have an account.
 \end{itemize}
 
-\subsubsection{The drawbacks}
+\subsubsection{The Drawbacks}
 \begin{itemize}
     \item A registration can be done through Facebook or e-mail. With e-mail registration, the user is forced to leave the application and is redirected to the web page where registration is finished.
     \item As was said, content is created by the community. During the research, it was clear that many information is outdated or misleading. 
@@ -284,20 +284,20 @@ Application \textit{Pivní deník} is used to search nearby pubs in the Czech Re
 %     \label{fig:restu}
 % \end{figure}
 
-\subsubsection{The advantages}
+\subsubsection{The Advantages}
 \begin{itemize}
     \item Clean and well-structured layout.
     \item Opt-in registration.
 \end{itemize}
 
-\subsubsection{The drawbacks}
+\subsubsection{The Drawbacks}
 \begin{itemize}
     \item When a restaurant card is selected, window of the restaurant pops up but at the bottom cannot be hidden again.
     \item To review the restaurant, the user has to be signed in and the restaurant must be open. If the restaurant is closed, the review cannot be added.
 \end{itemize}
 
 \subsection{Zomato}
-\textit{Zomato} is primarily web-based restaurant browser in the world. It has its own database of establishments. Content is edited by users.  
+\textit{Zomato} started as web-based restaurant browser, which has its own database of establishments and its content is edited by users.  
 On the primary screen there are displayed ``week hits'', top restaurants, or ``happy hours''. Restaurants are divided into categories such as ``Nightlife'' or ``Daily menu'' which helps for navigation within the application.
 Target audience is anyone who wants to try new restaurants or someone who is looking for action offers.
 
@@ -313,25 +313,25 @@ Target audience is anyone who wants to try new restaurants or someone who is loo
     \begin{minipage}{0.45\linewidth}
        \centering
     \includegraphics[width=0.75\linewidth]{img/analysis/app-zomato.jpg}
-    \caption{Zomato \cite{app-zomato}}
+    \caption{Zomato \cite{app-zomato}.}
     \label{fig:zomato}
     \end{minipage}\hfill
     \begin{minipage}{0.45\linewidth}
         \centering
         \includegraphics[width=0.75\linewidth]{img/analysis/app-gmaps.jpg}
-        \caption{Google Maps \cite{app-google-maps}}
+        \caption{Google Maps \cite{app-google-maps}.}
         \label{fig:google-maps}
     \end{minipage}
 \end{figure}
 
-\subsubsection{The advantages}
+\subsubsection{The Advantages}
 \begin{itemize}
     \item Well solved filtering. The filter setting is intuitive and it displays the most used filters. 
     \item Advanced options for filtering with tags such as ``dog friendly'' or ``Wi-Fi free''.
-    \item Friendships with other users. If another user added a~review, notification is received.
+    \item Friendships with other users. If another user added a~review, a~notification is received.
 \end{itemize}
 
-\subsubsection{The drawbacks}
+\subsubsection{The Drawbacks}
 \begin{itemize}
     \item The primary screen is cluttered with many information at one place.
     \item Nearby restaurants list is hidden below ``favourites restaurants'' and ``month collections''.
@@ -339,7 +339,7 @@ Target audience is anyone who wants to try new restaurants or someone who is loo
     \item Readability of some text is worsened by light background and greyish text colour. In some scenarios, it is hard to read the content.
 \end{itemize}
 
-\subsection{Google maps}
+\subsection{Google Maps}
 Popular worldwide map service by \textit{Google}. One of the world's biggest database of places, including restaurants. 
 \textit{Google maps} for each business, establishment displays additional info such as user reviews, photos, prices. 
 Within Android system is already installed. Nearby places can be searched directly from the map.
@@ -351,7 +351,7 @@ Within Android system is already installed. Nearby places can be searched direct
 %     \label{fig:google-maps}
 % \end{figure}
 
-\subsubsection{The advantages}
+\subsubsection{The Advantages}
 \begin{itemize}
     \item Well known and tested user interface which is embedded often to another application.
     \item No registration is required.
@@ -359,7 +359,7 @@ Within Android system is already installed. Nearby places can be searched direct
     \item GPS navigation with one click.
 \end{itemize}
 
-\subsubsection{The drawbacks}
+\subsubsection{The Drawbacks}
 \begin{itemize}
     \item Not domain focused, that means it does not offer focused content on particular businesses such as restaurants.
     \item No advanced filtering and result sorting.
@@ -379,7 +379,7 @@ Restu                             & Everyone                               & Bad
 Zomato                            & Everyone                               & Good                            \\ \hline
 Google                            & Everyone                               & Great but complex              \\ \hline
 \end{tabular}
-\caption{Analysed applications \gls{ui} summarization}
+\caption{Analysed Applications \gls{ui} Summarization.}
 \label{table:app-analysis}
 \end{table}
 
@@ -393,9 +393,9 @@ In the early stages, \gls{lofi} prototype is typically created. With \gls{lofi},
 
 To be more precise, according to \cite{adobe-prototype}, \gls{lofi} prototype is a~way to translate high-level concepts into tangible and testable artefacts. The most significant  functionality of \gls{lofi} prototypes is to check and test the functionality of the~product before visual appearance. Advantage of \gls{lofi} is that it is inexpensive, fast way to propose prototype. On the other hand, \gls{lofi} lacks complexity and cannot supply advanced interactivity. \gls{lofi} should be used to quickly create a prototype and get user feedback in the early stages of the creation process. 
 
-After the~\gls{lofi} prototype, the \gls{hifi} is created. This prototype appears and function as similar as possible to the actual built application. \gls{hifi} should be created on the targeted platform and behave as it is the~final product. The goal is to have more complex \gls{ui} interactivity and have better feedback from user testing. Thanks to the fact that prototype looks like a real application, user behaves more naturally and can get more precise a meaningful feedback than with \gls{lofi} prototype. 
+After the~\gls{lofi} prototype, the \gls{hifi} is created. This prototype appears and function as similar as possible to the actually built application. \gls{hifi} should be created on the targeted platform and behave as it is the~final product. The goal is to have more complex \gls{ui} interactivity and have better feedback from user testing. Thanks to the fact that prototype looks like a real application, user behaves more naturally and can get more precise a meaningful feedback than with \gls{lofi} prototype. 
 
-In conclusion, \gls{lofi} prototypes are tested only internally with a small number of users and can be iterated more often and faster. While \gls{hifi} is more expensive to build and therefore should be created and tested after \gls{lofi} prototype was accepted. On the other hand, \gls{hifi} gives better feedback from user testing, thus provides more valuable information.
+In conclusion, \gls{lofi} prototypes are tested only internally with a small number of users and can be iterated more often and faster. The \gls{hifi} should be created and tested after \gls{lofi} prototype was accepted, because the~\gls{hifi} is more expensive to create. On the other hand, \gls{hifi} gives better feedback from user testing, thus provides more valuable information.
 % --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- #
 \subsection{Coffee Time Prototype}
 After the specification was written, next step was to create a \textit{task list}. The task list is written from the user's perspective -- each task describe an user's action. It should tackle all important functionalities and even obvious one such as ``add record'' or ``remove record''.
@@ -403,7 +403,7 @@ After the specification was written, next step was to create a \textit{task list
 \begin{figure}[htp]
     \centering
     \includegraphics[width=0.9\textwidth]{img/analysis/task-list-graph.png}
-    \caption{Coffee Time Task Graph}
+    \caption{Coffee Time Task Graph.}
     \label{fig:task-graph}
 \end{figure}
 
@@ -420,7 +420,7 @@ The most important feature was the ability to create deep links between screens 
 \begin{figure}[htp]
     \centering
     \includegraphics[width=0.75\textwidth]{img/analysis/lofi.png}
-    \caption{\gls{lofi} prototype. Cafe list (left) and detail screen (right).}
+    \caption{\gls{lofi} prototype. Cafe list (left) and Detail Screen (right).}
     \label{fig:lofi}
 \end{figure}
 
@@ -460,7 +460,7 @@ The \gls{hifi} prototype was created as Flutter application. Because of that, in
 \begin{figure}[htp]
     \centering
     \includegraphics[width=0.6\textwidth]{img/analysis/hifi.jpg}
-    \caption{\gls{hifi} prototype. Cafe list (left) and detail screen (right).}
+    \caption{\gls{hifi} Prototype. Cafe List (left) and Detail Screen (right).}
     \label{fig:hifi}
 \end{figure}
 % --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- #
@@ -675,7 +675,7 @@ inputtype          & set to textquery                                           
 language           & language code                    \\ \hline
 locationbias       & set to circle:radius@lat,lng.                                     \\ \hline
 \end{tabularx}
-\caption{Find place parameters}
+\caption{Find Place Parameters.}
 \label{table:gapi-find-place-params}
 \end{table}
 % ------
@@ -695,7 +695,7 @@ opening\_hours     & contains only open\_now. For full information, detail reque
 price\_level       & value from 0 to 4                                                         \\ \hline
 rating             & value from 1.0 to 5.0                                                     \\ \hline
 \end{tabularx}
-\caption{Find place fields}
+\caption{Find Place Fields.}
 \label{table:gapi-find-place-fields}
 \end{table}
 % --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- &
@@ -715,7 +715,7 @@ opennow         & place should be open. If place does not have this field, it is
 type & place type, always set to \textit{cafe} \\ \hline
 pagetoken & token for next page \\ \hline 
 \end{tabularx}
-\caption{Nearby Search parameters}
+\caption{Nearby Search Parameters.}
 \label{table:gapi-nearby-search-parameters}
 \end{table}
 % --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- &
@@ -731,7 +731,7 @@ key                & API key \\ \hline
 place\_id           & place's id \\ \hline
 language           & language code \\ \hline
 \end{tabularx}
-\caption{Place Details parameters}
+\caption{Place Details Parameters.}
 \label{table:gapi-details-parameters}
 \end{table}
 
@@ -747,7 +747,7 @@ review           & up to five user reviews \\ \hline
 utc\_offset           &  offset in minutes from UTC \\ \hline
 website           & place's website \\ \hline
 \end{tabularx}
-\caption{Place Details fields}
+\caption{Place Details Fields.}
 \label{table:gapi-details-fields}
 \end{table}
 
@@ -773,7 +773,7 @@ The \gls{gpa} can respond with \textit{JSON} or \textit{XML} format. The \textit
    "status": "OK"
 }
 \end{minted}
-\caption{Nearby Search example output (shortened).}
+\caption{Nearby Search Example Output (shortened).}
 \label{listing:gapi-example-response}
 \end{listing}
 
@@ -790,7 +790,7 @@ The~\gls{cta} will be used for two main functionalities. First of all, it will p
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.5\linewidth]{img/analysis/api-communication-flow.pdf}
-    \caption{Client and API communication flow}
+    \caption{Client and API Communication Flow.}
     \label{fig:api-communication}
 \end{figure}
 
@@ -807,7 +807,7 @@ The~\gls{cta} will be used for two main functionalities. First of all, it will p
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.8\linewidth]{img/analysis/tag-cafe-relation.pdf}
-    \caption{Cafe's tag and Cafe relation}
+    \caption{Cafe's Tag and Cafe Relation.}
     \label{fig:tag-cafe-relation}
 \end{figure}
 
@@ -821,7 +821,7 @@ Within detail screen, additional information is displayed, which can be obtained
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.9\linewidth]{img/analysis/domain.pdf}
-    \caption{Coffee Time domain model}
+    \caption{Coffee Time Domain Model.}
     \label{fig:domain}
 \end{figure}
 % --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- &
@@ -836,11 +836,11 @@ The technology which will be used to build the API should fulfil the following r
     \item The maintenance cost should be kept low.
 \end{itemize}
 
-There are many technologies which can be used to achieve this requirements. One of the ways is implementing API from the ground with technologies such as \textit{.NET Core} and its \textit{ASP .NET Core API}. Then the~API can be deployed to service hosting providers such as~\textit{Microsoft Azure} or through technologies such as Docker containers and Kubernetes~\cite{kubernetes} as container orchestration. 
+There are many technologies which can be used to achieve this requirements. One of the ways is implementing API from the ground with technologies such as \textit{.NET Core} and its \textit{ASP .NET Core API}. Then the~API can be deployed to service hosting providers such as~\textit{Microsoft Azure} or through technologies such as~\textit{Docker} containers and \textit{Kubernetes}~\cite{kubernetes} as container orchestration. 
 
-Another way is to use serverless services. The serverless is approach where ``the cloud provider is responsible for executing a piece of code by dynamically allocating the resources. And only charging for the amount of resources used to run the code. The code is typically run inside stateless containers that can be triggered by a variety of events including http requests, database events, queuing services, monitoring alerts, file uploads, scheduled events (cron jobs), etc''~\cite{what-is-serverless}. This approach is sometimes called as \textit{Functions as a Service} (FaaS in short). The major providers are \textit{Amazon Web Services} and its \textit{Lambda Functions}, \textit{Microsoft Azure Functions} or \textit{Cloud Functions (Firebase Functions)} by \textit{Google}. 
+Another way is to use serverless services. The serverless is approach where ``The cloud provider is responsible for executing a piece of code by dynamically allocating the resources. And only charging for the amount of resources used to run the code. The code is typically run inside stateless containers that can be triggered by a variety of events including http requests, database events, queuing services, monitoring alerts, file uploads, scheduled events (cron jobs), etc.''~\cite{what-is-serverless}. This approach is sometimes called as \textit{Functions as a Service} (FaaS in short). The major providers are \textit{Amazon Web Services} and its \textit{Lambda Functions}, \textit{Microsoft Azure Functions} or \textit{Cloud Functions (Firebase Functions)} by \textit{Google}. 
 
-The~\textit{Firebase} by~\textit{Google} is collection of services which helps to build mobile application faster, improve application quality and grow business. The~\textit{Firebase} offer services as real-time NoSQL database, application usage analytics, A/B user testing, cloud web hosting or Cloud Functions and much more. Within one service, the storage for data, the API as functions and security can be made. 
+The~\textit{Firebase} by~\textit{Google} is collection of services which helps to build mobile application faster, improve application quality and grow business. The~\textit{Firebase} offer services as real-time NoSQL database, application usage analytics, A/B user testing, cloud web hosting or \textit{Cloud Functions} and much more. Within one service, the storage for data, the API as functions and security can be made. 
 % --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- &
 \subsubsection{Cloud Firestore}
 \textit{Cloud Firestore} is a flexible, scalable database for mobile, web, and server development. It keeps data in sync across client apps through realtime listeners and offers offline support for mobile and web. The \textit{Cloud Firestore} uses NoSQL data model. The data are stored in documents that contain fields mapping to values. These documents are stored in collections, which are containers for documents that are used to organize data. Documents support many different data types, from simple strings and numbers, to complex, nested objects. Documents can include subcollections and build hierarchical data structures that scale as database grows~\cite{cloud-firestore}.

@@ -3,7 +3,7 @@
 When the Coffee Time specification was created and the prototype was tested, the implementation itself could begin. In this chapter, the implementation details are covered. In the beginning, the proposed architecture of the application is introduced and explained. Next section describes how the Coffee Time API is designed and implemented. Which framework for creating REST API was chosen and how it can be connected to Firebase services. Detailed section of the mobile application implementation follows. In this section, used techniques and packages are described to achieve desired functionality. 
 % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- %
 \section{Clean Architecture}
-In order to have easy to write, maintainable and testatable code, some overall architecture should be considered. The~architecture should follow these rules: 
+In order to have easy to write, maintainable and testable code, some overall architecture should be considered. The~architecture should follow these rules: 
 \begin{enumerate}
 \item Independence of \gls{ui} from application business logic. 
 \item The business logic has to be testable without any dependent requirements such as server connections.
@@ -14,7 +14,7 @@ In order to have easy to write, maintainable and testatable code, some overall a
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.75\linewidth]{img/implementation/CleanArchitecture.jpg}
-    \caption{Clean Architecture defined by B.~Martin~\cite{clean-architecture-article}}
+    \caption{Clean Architecture defined by B.~Martin~\cite{clean-architecture-article}.}
     \label{fig:clean-arch-bmartin}
 \end{figure}
 
@@ -23,7 +23,7 @@ There are several attempts and approaches on how to design such architecture~\ci
 \begin{quote}
 \textbf{Entities} encapsulate Enterprise-wide business rules. These entities, which can be simple objects or hierarchical structure of objects are the least likely to change when something external changes.
 
-\textbf{Use Cases} are application-specific business rules. They encapsulate all of the use cases of the system. These use cases orchestrate the flow of data to and from the entities and direct those entities to use their enterprise-wide business rules to achieve the goals of the use case. Changes within the use case do not affect entities and similarly, changes of outer layers (such as interchanging database provider) do not affect the use case. 
+\textbf{Use Cases} are application-specific business rules. They encapsulate all of the use cases of the system. These use cases orchestrate the flow of data to and from the entities and direct those entities to use their enterprise-wide business rules to achieve the goals of the use case. Changes within the use case do not affect entities and similarly, changes of outer layers (such as interchanging database provider) do not affect the use cases. 
 
 \textbf{Interface Adapters} converts data from the format most convenient for the use cases and entities to the format most convenient for some external agency such as database or API.  The application presentation (UI) should be here. Data models in this layer most likely consist only of data that are passed down to the use cases and then back from use cases to the view.  This layer is also responsible for converting any data from external forms into an internal form used by the use cases.
 
@@ -39,7 +39,7 @@ Functions are written under Node.js~\cite{node-js}, and every function that is e
 Express.js has a simple yet powerful mechanism of middlewares, where each request can be pre-processed before sending to the next processing. For example, it can be used to check if the user is authorised to make the request. With this setup, nothing prevented to create Coffee Time API. Furthermore, as~Express.js allows to define REST API, only one cloud function can be exported -- ``the api'' function. All requests are processed through this function. However, before implementation itself, it had to be defined what API will offer and how it can be consumed. 
 % --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- #
 \subsection{The API Endpoints}
-The API has endpoints divided into three categories -- places, tags and photos. As a~client is considered to be multilingual, the API is too. The Places API accepts, as was described earlier, language parameter to specify how the response should be localised. The API is designed with language parameter as a mandatory part of the~URL for place related requests. The tags category has endpoints for obtaining and manipulating tags. Lastly, photo category gives access to downloading the place's photo. Every response coming from \gls{gpa} which returns places are modified such that each ``place'' entry contains additional \verb|tags| field which is an~array of the~\verb|tag| model. 
+The API has endpoints divided into three categories -- places, tags and photos. As a~client is considered to be multilingual, the API is too. The Places API accepts, as was described earlier, language parameter to specify how the response should be localised. The API is designed with language parameter as a mandatory part of the~URL for places related requests. The tags category has endpoints for obtaining and manipulating tags. Lastly, photo category gives access to downloading the place's photo. Every response coming from \gls{gpa} which returns places are modified such that each ``place'' entry contains additional \verb|tags| field which is an~array of the~\verb|tag| model. 
 
 The~\cref{table:cta-places} describes each API endpoint and its usage. Mandatory parameters within the~URL are highlighted as \verb|<param>|. Each URL is shown without prefix \verb|http[s]://domain/api| (the hosting URL and \verb|/api| suffix).
 % -----------------------------
@@ -53,7 +53,7 @@ The~\cref{table:cta-places} describes each API endpoint and its usage. Mandatory
 \verb|<language>/detail/<place_id>| & GET & Place's details of given \verb|place_id| \\ \hline
 \verb|<language>/basic/<place_id>| & GET & Returns basic place information \\ \hline
 \end{tabularx}
-\caption{Places endpoints}
+\caption{Places Endpoints.}
 \label{table:cta-places}
 \end{table}
 % -----------------------------
@@ -67,7 +67,7 @@ The~\cref{table:cta-places} describes each API endpoint and its usage. Mandatory
 \verb|opennow| & No & If present returns only opened cafes\\ \hline
 \verb|pagetoken| & No & If present, next page returned\\ \hline
 \end{tabularx}
-\caption{Nearby parameters}
+\caption{Nearby Parameters.}
 \label{table:cta-nearby-params}
 \end{table}
 
@@ -97,7 +97,7 @@ The~\cref{table:cta-find-params} describes \textit{find} parameters. The \verb|l
 \verb|/tags/<place_id>| & GET & Get all assigned tags to given \verb|place_id| \\ \hline
 \verb|/tags/<place_id>| & POST & Updates tag's review for given \verb|place_id| \\ \hline
 \end{tabularx}
-\caption{Tags endpoints}
+\caption{Tags Endpoints.}
 \label{table:cta-tags}
 \end{table}
 
@@ -117,7 +117,7 @@ The~\cref{table:cta-find-params} describes \textit{find} parameters. The \verb|l
 \Cref{table:cta-tags} describes all endpoints related to \textit{tags}. The POST request to \verb|/tags/<place_id>| should have a~body with array of \textit{TagUpdate} model. The example is listed in~\cref{listing:tag-update-post} where \verb|id| contains tag id and \verb|change| contains value of \verb|like| or \verb|dislike| which corresponds with increasing (decreasing) tag's score. 
 % --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- #
 \subsection{Express.js Pipeline}
-Express.js framework has a powerful, configurable way how to process incoming request. Every request can be processed through functions, called middlewares, before sent to a router. The router is a set of functions which maps part of URL with HTTP method to trigger response to the incoming request. Together it creates a flexible way of developing any form of a web-server or in case of Coffee Time API a REST API. 
+Express.js framework has a powerful and configurable way how to process incoming request. Every request can be processed through functions, called middlewares, before sent to a router. The router is a set of functions which maps part of URL with HTTP method to trigger response to the incoming request. Together it creates a flexible way of developing any form of a web-server or in case of Coffee Time API a REST API. 
 
 Middleware functions can execute any code, make changes to the request (or to the response), end the request-response cycle or call next middleware~\cite{express-js-middleware}. The~function accepts three parameters -- \verb|req|, \verb|res| and \verb|next|. \verb|Req| is a request object containing all information related to the incoming request. The \verb|res| is a response object which can be used to alter the response, and \verb|next| is the callback function to trigger next middleware. In case of the Coffee Time API, three middlewares are used to process every incoming request.
 
@@ -197,7 +197,7 @@ In order to have access to Firestore storage and to authorise tokens, a \textit{
 \end{figure}
 
 \subsection{Functions Deployment}
-While developing functions, they can be run locally and served through localhost. Once the code is ready, it has te bo deployed to the Firebase Cloud Functions service. In order to do that, \textit{Firebase CLI} tooling and its deploy command have to be used. If a~version exists already in the~Firebase, it is replaced by the new one.
+Developer can run functions locally and serve them through localhost while developing them. Once the code is ready, it has to be deployed to the Firebase Cloud Functions service. In order to do that, \textit{Firebase CLI} tooling and its deploy command have to be used. If a~version exists already in the~Firebase, it is replaced by a new one.
 
 Firebase Cloud Functions can be deployed to different physical areas such as \textit{West Europe} or \textit{US East}. While the Coffee Time application is mainly tested in the Czech Republic, \textit{West Europe} was selected as the best option because of its closest availability. One downside is that each location is part of the~API~URL. This can add complexity to the~client side if more locations are used in case of globally available application. 
 
@@ -214,7 +214,7 @@ One of important requirements of the Presentation layer and overall Flutter's ph
 
 \subsubsection{Equatable Package}
 If the default equality behaviour has to be changed, the \verb|==| operator and \verb|hashCode| getter have to be overridden~\cite{dart-equality}.
-Even with small classes, this work becomes quickly tedious and can leads to unnecessary bugs when for example some property is added and developer forgot to update these overrides. In case of complex classes this problem just grows. 
+Even with small classes, this work becomes quickly tedious and can leads to unnecessary bugs for example when some property is added and developer forgot to update these overrides. Therefore in case of complex classes the amount of bugs only increases. 
 
 \textit{Equatable} package~\cite{package-equatable} (developed by \textit{F. Angelov}) was created to simplify creating immutable classes with proper equality implementation. Class which needs to implement equality has to extend \verb|Equatable| base class provided by the package. Then it is needed to override \verb|props| getter where all class properties are listed. With that setup, equatable package internally provides proper equality comparison. This package is used to for all entities and classes which needed proper equality implementation. An example of its usage is shown in~\Cref{listing:ct-opening-hour-entity}, which is \verb|OpeningHours| entity implementation. 
 
@@ -262,7 +262,7 @@ Domain Layer also defines repository contracts. The repository is used to as con
     \label{fig:ct-tag-repo-interface}
 \end{figure}
 
-In order to have convenient approach of handling exceptions raised within repository (or from layers above) in repository layer, each method of repository returns type \verb|Either<L,R>|. Either is functional concept~\cite{ibm-either} of returning two distinct values from one method. It is used to return desired return type in case of success or error in case of exception. This approach helps to avoid \verb|try - catch| clauses in presentation layer and code can is more readable in functional way. 
+In order to have convenient approach of handling exceptions raised within repository (or from layers above) in repository layer, each method of repository returns type \verb|Either<L,R>|. Either is functional concept~\cite{ibm-either} of returning two distinct values from one method. It is used to return desired return type in case of success or error in case of exception. This approach helps to avoid \verb|try - catch| clauses in presentation layer and the code is more readable in functional way. 
 
 The \verb|Either<L,R>| is generic class, where \verb|L| is left type and \verb|R| is right type. The returned value from such method can be used with \verb|when()| or \verb|map()| methods to access actual returned value. Internally the \verb|Either<L,R>| is implemented with \textit{freezed} package~\cite{package-freezed}. This package and its usage is more precisely described later, in the presentation layer. In this way, Either is strongly typed. Similar approach could be use for example \verb|Tuple<T1,T2>| type, but losing strongly typed solution. 
 
@@ -318,7 +318,7 @@ Purpose of layer service is to implement repositories, add services which commun
 Each service communicates with a concrete part of the Coffee Time API. The~\verb|CafeService| has methods related to obtaining nearby cafes or getting cafe detail, \verb|FavoriteService| has methods to obtain favorited cafes, \verb|PhotoService| gives access to downloading cafe's photos and \verb|TagServices| server for manipulation with tags. 
 
 \subsubsection{Favorite Local Service}
-Current application version uses for saving user's favorite cafes local storage only. Thanks to implementation against interface, in the future, the synchronization of favorited cafes over API can be added without breaking other parts of the~application. 
+Current application version uses for saving user's favorite cafes only local storage. Thanks to implementation against interface, in the future, the synchronization of favorited cafes over API can be added without breaking other parts of the~application. 
 
 \subsubsection{Cached Tag Service}
 To prevent unnecessary amount of calls to API when obtaining all tags, a caching mechanism was implemented for \textit{Tag Service}. When all tags are returned from the API, they are cached for future calls. As a whole implementation is focused on clean code implementation, maintainbality and testability, a generic \verb|CachedValue<T>| class was implemented as wrapper around cachable values. 
@@ -526,9 +526,9 @@ One important part of maintainable and testable code are \textit{SOLID} principl
 
 Each class (module) within Coffee Time Application, such as repository, service or \gls{bloc} which depends on some other classes, depends on abstractions. These dependencies lists as required in class constructor. Dependency Injection mechanism is used to provide concrete implementations of each required abstraction to classes which depends on it. 
 
-Dart (and Flutter) do not provide such Dependency Injection mechanism out of the box. However, \textit{get\_it} is a package, which helps with that. In fact, \textit{get\_it} works more as Service Locator. Every concrete implementation has to be registered and paired with its abstraction counterpart within \textit{GetIt} container. When those implementation are registered, container can be accessed through singleton instance and obtain concrete implementation.
+Dart (and Flutter) does not provide such Dependency Injection mechanism out of the box. However, \textit{get\_it} is a package, which helps with that. In fact, \textit{get\_it} works more as Service Locator. Every concrete implementation has to be registered and paired with its abstraction counterpart within \textit{GetIt} container. When those implementation are registered, container can be accessed through singleton instance and obtain concrete implementation.
 
-However, such Service Locator is usually considered as anti-pattern if used careless. If such container is accessed everywhere, it can hides dependencies and it is highly coupled to every module. On the other hand, if each module list its dependencies within constructor, such modules can be constructed at one place. In this place, usually called ``composition root'', this issue can be avoided. Thus, in the Coffee Time implementation, every dependency is registered within \textit{GetIt} container (see \verb|di_container.dart| file). Then concrete implementations are created through \textit{GetIt} locator mainly in \verb|App.dart| or when doing navigation between screens. 
+However, such Service Locator is usually considered as anti-pattern if used careless. If such container is accessed everywhere, it can hides dependencies and it is highly coupled to every module. On the other hand, if each module lists its dependencies within constructor, such modules can be constructed at one place. In this place, usually called ``composition root'', this issue can be avoided. Thus, in the Coffee Time implementation, every dependency is registered within \textit{GetIt} container (see \verb|di_container.dart| file). Then concrete implementations are created through \textit{GetIt} locator mainly in \verb|App.dart| or when doing navigation between screens. 
 
 \section{Unit Testing}
 Properly written project should have tested code. Coffee Time application has written unit tests for each layer. Domain entities has unit tests for their logic, service has unit tests for proper handling of API communication, repositories has tests for business logic and, \gls{bloc}s are tested that emits proper state based on received events. 
@@ -586,4 +586,4 @@ void main() {
 \end{listing}
 
 \section{Conclusion}
-This chapter described important parts of the implementation. In the beginning, the design and used framework for Coffee Time API implementation along with deployment to Cloud Functions were represented. Then the architecture of the application, each architecture's layer and used techniques were discussed. In the next chapter, a development process with continuous integration is described along with internal testing and final user testing before release.
+This chapter described important parts of the implementation. In the beginning, the design and the used framework for Coffee Time API implementation along with the deployment to Cloud Functions were represented. Furthermore the architecture of the application, each architecture's layer and used techniques were discussed. In the following chapter, a development process with continuous integration is described along with internal testing and final user testing before release.

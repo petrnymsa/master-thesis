@@ -7,7 +7,7 @@ Flutter includes a modern react-style framework, a 2D rendering engine, predefin
 \begin{figure}[htp]
     \centering
     \includegraphics[width=0.5\linewidth]{img/flutter/hello-flutter.pdf}
-    \caption{Widget composition example}
+    \caption{Widget Composition Example.}
     \label{fig:hello-flutter}
 \end{figure}
 
@@ -26,7 +26,7 @@ Container(
     ),
 )
 \end{minted}
-\caption{Widget composition code example}
+\caption{Widget Composition Code Example.}
 \label{listing:hello-flutter}
 \end{listing}
 % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- %
@@ -41,7 +41,7 @@ Flutter uses programming language \textit{Dart}~(specification v2.0~\cite{dart-s
 \begin{figure}[htp]
     \centering
     \includegraphics[width=0.8\linewidth]{img/flutter/dart-platforms.pdf}
-    \caption{Dart platforms~\cite{dart-platforms}}
+    \caption{Dart Platforms~\cite{dart-platforms}.}
     \label{fig:dart-platform}
 \end{figure}
 
@@ -51,8 +51,8 @@ Flutter framework is organised into several layers (see~\Cref{fig:flutter-layer-
 
 \begin{figure}[htp]
     \centering
-    \includegraphics[width=0.8\linewidth]{img/flutter/flutter-layer-cake.png}
-    \caption{Flutter system overview~\cite{flutter-technical-overview}}
+    \includegraphics[width=\linewidth]{img/flutter/flutter-layer-cake.png}
+    \caption{Flutter System Overview~\cite{flutter-technical-overview}.}
     \label{fig:flutter-layer-cake}
 \end{figure}
 
@@ -61,7 +61,7 @@ Unlike the other frameworks, Flutter uses high-performance 2D rendering engine a
 \subsection{Reactive Programming}
 Flutter makes significant usage from the concept of reactive programming. There is nearly always a~requirement to update data in response to user interaction or any other event such as getting data from the~server. More than that, sometimes it is necessary to update different parts of the user interface in response to these events. 
 
-Flutter creates user interface by composing \textbf{immutable} widgets. The immutability is the key point here. Whenever user interface needs to ``redraw'' screen, the~part of the~widget tree is replaced by \textbf{new} widget instances (in fact, it is not simple as that, and this topic is more deeply discussed later in this chapter). In many other \gls{ui} frameworks, such as \textit{Xamarin}, is usually taken the approach of coupling \gls{ui} components with view-models through concepts such as data binding~\cite{xamarin-data-binding}. That means that whenever \gls{ui} needs to~change, the~components mutate application's state. Flutter takes an~entirely different approach. It can be said ``here is the current state of the application, draw something on the screen accordingly''.
+Flutter creates user interface by composing \textbf{immutable} widgets. The~immutability is the key point here. Whenever user interface needs to ``redraw'' screen, the~part of the~widget tree is replaced by \textbf{new} widget instances (in fact, it is not simple as that, and this topic is more deeply discussed later in this chapter). In many other \gls{ui} frameworks, such as \textit{Xamarin}, is usually taken the approach of coupling \gls{ui} components with view-models through concepts such as data binding~\cite{xamarin-data-binding}. That means that whenever \gls{ui} needs to~change, the~components mutate application's state. Flutter takes an~entirely different approach. It can be said ``here is the current state of the~application, draw something on the screen accordingly''.
 
 \subsubsection{The Notion of Streams}
 A Stream can be described as ``a pipe with two ends, only one allowing to insert something into it. When something is inserted into the pipe, it flows inside the pipe and goes out by the other end''~\cite{reactive-didier}. The~Stream can convey any~data type, from simple values to~events, complex object or even another stream. The~data can come to the~Stream, for example, from an external data source such as server connection or from events such as user interactions. In Dart, the Streams support manipulating them, filtering, re-grouping, modify data before they are send and much more. This functionality can be used to build reactive \gls{ui}. Flutter has several widgets supporting streams to rebuild part of the~\gls{ui} whenever new data arrived into the~Stream.
@@ -88,7 +88,7 @@ It means that with reactive programming, according to~\cite{reactive-didier}, th
     \end{itemize}
 \end{quote}
 
-Later on in this chapter, the pattern Business Logic Component (BLoC) is introduced. This pattern uses Streams to manage application life-cycle and are used for state management.
+Later on in this chapter, the pattern Business Logic Component (BLoC) is introduced. This pattern uses Streams to manage application life-cycle and they are used for state management.
 % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- %
 \section{Everything Is a Widget}
 In this section, we will discuss in more detail how the~\gls{ui} is built. Every \gls{ui} consists of the layout and individual components. The layout defines the screen's base structure, such as a menu on the top and subsequent actions on the bottom. Then the layout is composed of individual components, such as a menu, buttons or icons. Together they create a final interface.
@@ -103,7 +103,7 @@ Widgets are not only visible parts of the \gls{ui} such as clickable buttons, te
 \begin{figure}[htp]
     \centering
     \includegraphics[width=0.9\linewidth]{img/flutter/layout_compose.png}
-    \caption{Compose widgets to create layout~\cite{flutter-widget-layout}}
+    \caption{Compose Widgets to Create Layout~\cite{flutter-widget-layout}.}
     \label{fig:flutter-compose-widget}
 \end{figure}
 
@@ -112,7 +112,7 @@ An example of widget composition creating a~layout is shown in~\Cref{fig:flutter
 \begin{figure}[htp]
     \centering
     \includegraphics[width=0.9\linewidth]{img/flutter/layout_compose_detail.png}
-    \caption{Compose widgets to create layout -- left column detailed~\cite{flutter-widget-layout}}
+    \caption{Compose Widgets to Create Layout -- Left Column~\cite{flutter-widget-layout}.}
     \label{fig:flutter-compose-widget-detail}
 \end{figure}
 % --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- #
@@ -122,7 +122,7 @@ In the introduction it was said that Flutter's approach of displaying current us
 \begin{figure}[htp]
     \centering
     \includegraphics[width=0.6\linewidth]{img/flutter/ui_f_state.png}
-    \caption{User interface formula~\cite{flutter-declarative}}
+    \caption{User Interface Formula~\cite{flutter-declarative}.}
     \label{fig:flutter-ui-formula}
 \end{figure}
 % --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- &
@@ -135,7 +135,7 @@ The \textit{BuildContext} is provided to each widget through the~build method an
 The state is anything that forms what should be displayed. The state is any data what are needed in order to rebuild \gls{ui} at the~moment~\cite{flutter-local-app-state}. The~state can be separated into two concepts -- local state and application state. 
 
 \begin{itemize}
-    \item \textbf{Local state} -- Local state is which can be tied into one widget. It can be, for example, current tab in the ``tab selector'' widget, current progress of animation or state of checkbox (checked or unchecked).
+    \item \textbf{Local state} -- Local state is which can be tied into one widget. It~can be, for example, current tab in the ``tab selector'' widget, current progress of animation or state of checkbox (checked or unchecked).
     \item \textbf{Application state} -- Application State is which can not be local, whenever some information is needed to share across multiple widgets, the~state which should be kept during a~user session. An~example of application state can be a~logged user information, loaded articles from the~server or chat messages.
 \end{itemize}
 % --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- &
@@ -147,7 +147,7 @@ Whenever widget needs to manage its state and wants to mutate it for example, in
 
 Stateful Widget does not have only \verb|build()| method but has associated State object which defines several methods to support widget's lifecycle. These methods are \verb|initState()| for any state initialisation and \verb|dispose()| to clear any allocated resources. 
 
-The state object is associated with widget's \textit{BuildContext}. This association is permanent, and state object will never change it~\cite{notion-widget-didier}. Even if the~Widget Context can be moved around the~tree structure, the~state will remain associated with that context. This implies that, the~Stateful Widget can be replaced during tree rebuild with new instance, but the~state object is persisted. 
+The state object is associated with widget's \textit{BuildContext}. This association is permanent, and state object will never change it~\cite{notion-widget-didier}. Even if the~Widget's \textit{BuildContext} can be moved around the~tree structure, the~state will remain associated with that context. This implies that, the~Stateful Widget can be replaced during the~tree rebuild with new a~instance, but the~state object is persisted. 
 % --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- &
 \subsubsection{Force Rebuild with setState()}
 As was mentioned, Stateful Widget can tell the framework to rebuild, and the widget can be redrawn based on the~changed state. The~Stateful Widget has method \verb|setState(callback)| which is used to do such rebuild. Inside \verb|callback| a developer should change the~widget's state to the~new value and framework will rebuild the widget based on that~new state. 
@@ -158,14 +158,14 @@ Suppose application where are two buttons. One button increments a value (\verb|
 \begin{figure}[htp]
     \centering
     \includegraphics[width=0.33\linewidth]{img/flutter/counter_app_base.png}
-    \caption{Counter application}
+    \caption{Counter Application.}
     \label{fig:counter-app}
 \end{figure}
 
 \begin{figure}[htp]
     \centering
     \includegraphics[width=0.75\linewidth]{img/flutter/counter-base.pdf}
-    \caption{Counter application's widget tree}
+    \caption{Counter Application's Widget Tree.}
     \label{fig:counter-app-widget-tree}
 \end{figure}
 
@@ -178,7 +178,7 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 \end{minted}
-\caption{HomePage widget definition}
+\caption{HomePage Widget Definition.}
 \label{listing:counter-homepage-widget}
 \end{listing}
 
@@ -209,7 +209,7 @@ class _HomePageState extends State<HomePage> {
    }
 }
 \end{minted}
-\caption{HomePageState -- setState example}
+\caption{HomePageState -- setState() Example.}
 \label{listing:counter-base-state-homepage}
 \end{listing}
 
@@ -231,14 +231,14 @@ class CounterTextContainer extends StatelessWidget {
   }
 }
 \end{minted}
-\caption{CounterTextContainer -- accepting state as parameter}
+\caption{CounterTextContainer -- Accepting State As Parameter}
 \label{listing:counter-base-text-container}
 \end{listing}
 
 \begin{figure}[htp]
     \centering
     \includegraphics[width=0.75\linewidth]{img/flutter/counter-base-setState.pdf}
-    \caption{Expected rebuilt vs actual rebuilt}
+    \caption{Expected Rebuilt vs Actual Rebuilt.}
     \label{fig:counter-app-base-build}
 \end{figure}
 
@@ -282,7 +282,7 @@ class _CounterInherited extends InheritedWidget {
   bool updateShouldNotify(_CounterInherited oldWidget) => true;
 }
 \end{minted}
-\caption{\_CounterInherited}
+\caption{\_CounterInherited.}
 \label{listing:counter-inherited-counter-inherited}
 \end{listing}
 
@@ -327,7 +327,7 @@ class CounterModel extends State<CounterModelProvider> {
   }
 }
 \end{minted}
-\caption{CounterModel}
+\caption{CounterModel.}
 \label{listing:counter-inherited-counter-model}
 \end{listing}
 
@@ -355,7 +355,7 @@ return Scaffold(
       ],
 ));
 \end{minted}
-\caption{HomePage implementation (code simplified)}
+\caption{HomePage Implementation.}
 \label{listing:counter-inherited-homepage}
 \end{listing}
 
@@ -372,18 +372,18 @@ return Row(
 final model = CounterModelProvider.of(context);
 return Text('Count: ${model.count}');
 \end{minted}
-\caption{CounterTextContainer and CounterText widgets}
+\caption{CounterTextContainer and CounterText Widgets.}
 \label{listing:counter-inherited-text-container}
 \end{listing}
 
 \begin{figure}[htp]
     \centering
     \includegraphics[width=0.75\linewidth]{img/flutter/counter-inherited-widget.pdf}
-    \caption{InheritedWidget approach and its widget tree}
+    \caption{InheritedWidget Approach and Its Widget Tree.}
     \label{fig:counter-app-inherited-widget}
 \end{figure}
 
-The HomePage~(\Cref{listing:counter-inherited-homepage}) is wrapped by~\verb|CounterModelProvider| to provide access to any its children. Within the HomePage's \verb|build()| method, \verb|CounterModel| is obtained without listening. It is used for button's callbacks to invoke \verb|increment()| (\verb|decrement()| respectively) method. Inside \verb|CounterTextContainer| (\Cref{listing:counter-inherited-text-container}) is used Text widget and \verb|CounterText| where the~\verb|CounterModel| is accessed to get current value. Note that every widget is Stateless. The~most important thing is that only the~\textit{CounterText is rebuilt} when the~state changes~(see~\Cref{fig:counter-app-inherited-widget}) in comparison with \verb|setState| approach where the~whole application was rebuilt.
+The HomePage~(\Cref{listing:counter-inherited-homepage}) is wrapped by~\verb|CounterModelProvider| to provide access to any its children. Within the HomePage's \verb|build()| method, \verb|CounterModel| is obtained without listening. It is used for button's callbacks to invoke \verb|increment()| (\verb|decrement()| respectively) method. Inside \verb|CounterTextContainer| (\Cref{listing:counter-inherited-text-container}) is used Text widget and \verb|CounterText| where the~\verb|CounterModel| is accessed to get current value. Note that every widget is Stateless. The~most important thing is that only the~\textit{CounterText is~rebuilt} when the~state changes~(see~\Cref{fig:counter-app-inherited-widget}) in comparison with \verb|setState| approach where the~whole application was rebuilt.
 
 Although InheritedWidget solves many issues, the amount of code needed to achieve these results can be more unreadable and hard to maintain than approach with plain \verb|setState| method. However, Flutter's community created package which abstracts InheritedWidget and simplify this process. 
 % --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- #
@@ -406,7 +406,7 @@ class CounterModel with ChangeNotifier {
   }
 }
 \end{minted}
-\caption{Provider's CounterModel}
+\caption{Provider's CounterModel.}
 \label{listing:counter-provider-model}
 \end{listing}
 
@@ -422,7 +422,7 @@ final model = Provider.of<CounterModel>(context, listen: false);
 // ... rest of the HomePage's build method
 // ... which is same as within InheritedWidget approach
 \end{minted}
-\caption{Provider's HomePage}
+\caption{Provider's HomePage.}
 \label{listing:counter-provider-home-page}
 \end{listing}
 
@@ -445,14 +445,14 @@ return Consumer<CounterModel>(
   ),
 );
 \end{minted}
-\caption{CounterTextContainer with Consumer}
+\caption{CounterTextContainer with Consumer.}
 \label{listing:counter-provider-consumer}
 \end{listing}
 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.75\linewidth]{img/flutter/counter-provider.pdf}
-    \caption{Provider approach and its widget tree}
+    \caption{Provider Approach and Its Widget Tree.}
     \label{fig:counter-app-provider}
 \end{figure}
 
@@ -468,7 +468,7 @@ The result is the same as with \verb|InheritedWidget|~(\Cref{fig:counter-app-pro
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.6\linewidth]{img/flutter/bloc_pattern.png}
-    \caption{A BLoC pattern~\cite{notion-widget-didier}}
+    \caption{A BLoC Pattern~\cite{notion-widget-didier}.}
     \label{fig:bloc-pattern}
 \end{figure}
 
@@ -479,7 +479,7 @@ The~\gls{bloc} solves the responsibility separation where the logic is centralis
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.75\linewidth]{img/flutter/counter-bloc.pdf}
-    \caption{BLoC approach and its widget tree}
+    \caption{BLoC Approach and Its Widget Tree.}
     \label{fig:counter-app-bloc}
 \end{figure}
 
@@ -504,7 +504,7 @@ class CounterBloc extends Bloc<CounterEvent, int> {
   }
 }
 \end{minted}
-\caption{CounterBloc's implementation}
+\caption{CounterBloc's Implementation.}
 \label{listing:counter-bloc-bloc}
 \end{listing}
 
@@ -518,7 +518,7 @@ home: BlocProvider(
 // inside onPressed() callback - add event to bloc
 context.bloc<CounterBloc>().add(CounterEvent.increment),
 \end{minted}
-\caption{BLoC approach -- providing CounterBloc and accessing bloc example}
+\caption{BLoC Approach -- Providing CounterBloc and Accessing Bloc.}
 \label{listing:counter-bloc-homepage}
 \end{listing}
 
@@ -534,7 +534,7 @@ children: <Widget>[
     builder: (context, state) => Text('Count: $state'),
   )]);
 \end{minted}
-\caption{BLoC approach -- CounterTextContainer's implementation}
+\caption{BLoC Approach -- CounterTextContainer's Implementation.}
 \label{listing:counter-bloc-counter-text}
 \end{listing}
 
@@ -567,7 +567,7 @@ From a developer perspective, everything is a widget what is related to the~\gls
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.75\linewidth]{img/flutter/internals_3_trees.png}
-    \caption{Three trees -- Widget, Element and Render Tree~\cite{didier-internals}.}
+    \caption{Three Trees -- Widget, Element and Render Tree~\cite{didier-internals}.}
     \label{fig:flutter-internal-3-trees}
 \end{figure}
 
@@ -607,14 +607,14 @@ When comparing new Widget with current one within Element, the Element decides t
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.75\linewidth]{img/flutter/key_stateful_start.pdf}
-    \caption{Square Widgets and associated Elements with States}
+    \caption{Square Widgets and Associated Elements with States.}
     \label{fig:keys_start}
 \end{figure}
 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.75\linewidth]{img/flutter/key_stateful_wrong_state.pdf}
-    \caption{Square Widgets after swap and associated Elements with wrong States}
+    \caption{Square Widgets After Swap and Associated Elements With Wrong States.}
     \label{fig:keys_wrong}
 \end{figure}
 
@@ -640,7 +640,7 @@ class _SquaresPageState extends State<SquaresPage> {
    }
 }
 \end{minted}
-\caption{SquarePage widget with Stateless Square widgets}
+\caption{SquarePage Widget With Stateless Square Widgets.}
 \label{listing:keys_page_stateless}
 \end{listing}
 
@@ -667,7 +667,7 @@ class _SquareState extends State<Square> {
   }
 }
 \end{minted}
-\caption{Square widget as StatefulWidget}
+\caption{Square Widget as StatefulWidget.}
 \label{listing:keys_square_stateful}
 \end{listing}
 
