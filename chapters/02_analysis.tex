@@ -3,20 +3,20 @@
 In this chapter, the specification of the implemented application is outlined. The analysis of similar applications was made to obtain ideas.  After analysis, the low fidelity prototype was created to outline the first vision of the final application. Next, the high-fidelity prototype, along with Nielsen's heuristics analysis and user testing, were made. At the end of the chapter, considered tools and services which are used to implement the application are briefly described. 
 % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- %
 \section{Considered Application}
-Coffee Time is an application focused on searching nearby cafes. Users should be able to search and find nearby cafes around them and decide which establishment to visit. Each cafe is displayed with information such as distance, user's reviews, photos, opening hours and more. 
+Coffee Time is an application focused on searching nearby cafes. Users should be able to search and find nearby cafes around them and decide which place to visit. Each cafe is displayed with information such as distance, user's reviews, photos, opening hours and more. 
 
 Added value to this standard information is a feature so-called ``the tags''. These tags are user-added additional info which describes more precisely what given cafe offer or for instance if that cafe allows pets inside. 
 
 The set of tags is defined, and users can add these tags to the~cafe.  Each tag can be reviewed by other users. These reviews are done through ``like'' and ``dislike'' functionality. The~purpose of tag's reviews is to prevent outdated or misleading information.  
-The example of such review can be ``User visited cafe which has tag 'dog friendly', but unfortunately this information was incorrect. Consequently, the~user decided to open the~application and review the~cafe's tag 'dog friendly' with dislike.''
+The example of such review can be ``User visited cafe which has tag `dog friendly', but unfortunately this information was incorrect. Consequently, the~user decided to open the~application and review the~cafe's tag `dog friendly' with dislike.''
 
 Together with likes and dislikes, each tag has a computed score.  Each like gives to score plus one and as an opposite, dislike minus one. 
 If any tags reach the score to~-4, the~tag is removed from the cafe, more precisely is not shown anymore to users. 
 If such removed tag is proposed by any user again, it obtains ``like'' review. Thus score is incremented to -3 and the tag is shown again. 
 
-The application is location-based and offers a map view to support the~convenient user experience. Any cafe can be marked as user's favourite to~give a faster way to find cafe whenever the user wants. 
+The application is location-based and offers a map view to support the~convenient user experience. Any cafe can be marked as user's favourite to~give a~faster way to find cafe whenever the user wants. 
 
-In conclusion, Coffee Time is application focused on one domain -- searching nearby cafes in order to know where to~go to~study, talk with friends or~for example have a great coffee. The application should be simple to use with a clean user interface. 
+In conclusion, Coffee Time is application focused on one domain -- searching nearby cafes in order to know where to~go to~study, talk with friends or~for example have a great coffee. The application should be simple to use with a~clean user interface. 
 % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- %
 \section{Use Cases}
 From the specification above, the use cases and use case scenarios were formed. The~use cases diagram is listed in \Cref{fig:use_case} and shows every use case from the~user perspective. Technically there is the role of application administrator who can check control back-end or available application's tags, but it is skipped due to the lack of importance from application perspective. 
@@ -57,14 +57,14 @@ An user can display nearby cafes in the~form of the list view. The~result is fil
     \item An user taps on cafe's card and is redirected to the detail view.
 \end{enumerate}
 
-\noindent \textbf{Alternative Flow 1} The user launch navigation to the selected cafe.
+\noindent \textbf{Alternative Flow 1} An user launch navigation to the selected cafe.
 
 % -------------
 
 \subsection{UC2: Display Nearby Cafes As a Map}
 An user can display nearby cafes in the form of the map view. Each cafe is shown as a map marker.
 \newpara
-\noindent  \textbf{Pre-Conditions} The user must be on the map screen.
+\noindent  \textbf{Pre-Conditions} An user must be on the map screen.
 
 \newpara
 \noindent \textbf{Basic Flow}
@@ -94,14 +94,14 @@ This use case allows starting navigation to selected cafe through native navigat
     \item An user enables navigation and is redirected to navigation application. 
 \end{enumerate}
 
-\noindent \textbf{Alternative Flow 1} The user dismisses navigation request and cancels navigation.
+\noindent \textbf{Alternative Flow 1} An user dismisses navigation request and cancels navigation.
 
 % -------------
 \subsection{UC4: Toggle Cafe As a Favourite}
-Each cafe can be marked as a favourite to faster future access. 
+Each cafe can be marked as a~favourite to faster future access. 
 
 \newpara
-\noindent \textbf{Pre-Conditions} The cafe must be loaded, so that it is visible to the~user. The~user must be either on the~cafe list screen, detail screen or favourite screen. 
+\noindent \textbf{Pre-Conditions} The cafe must be loaded, so that it is visible to the~user. An~user must be either on the~cafe list screen, detail screen or favourite screen. 
 
 \newpara
 \noindent \textbf{Basic Flow}
@@ -137,7 +137,7 @@ An user changes the filter settings to filter out the cafe results.
 Display every favourite cafe in the form of the list view. 
 
 \newpara
-\noindent \textbf{Pre-Conditions} The user must be on the map screen.
+\noindent \textbf{Pre-Conditions} An user must be on the map screen.
 
 \newpara
 \noindent \textbf{Basic Flow}
@@ -229,16 +229,15 @@ After the card is clicked, the user is presented with the restaurant's detail, w
     \item Detail screen on entry is fully covered with restaurant photo. From a design point of view, it is a nice touch, but users must scroll to see any information. 
 \end{itemize}
 
-\subsection{Pivní Deník}
-Application \textit{Pivní deník} is used to search nearby pubs in the Czech Republic and their beer offer. The content is created by the community, including served beer and their prices.  Application offers searching nearby restaurants filtered by beer brands. Each user can view a history of places they have visited. Furthermore they can mark any pub as their favourite and share their experience.
-
+\subsection{Pivní Deníček}
+Application \textit{Pivní deníček} is used to search nearby pubs in the~Czech Republic and their beer offer. The~content is created by the community, including served beer and their prices. The~application offers searching nearby restaurants filtered by beer brands. Each user can view a~history of places they have visited. Furthermore they can mark any pub as their favourite and share their experience.
 
 \begin{figure}[ht]
     \centering
     \begin{minipage}{0.45\linewidth}
         \centering
         \includegraphics[width=0.75\linewidth]{img/analysis/app-pivni-denik.jpg}
-        \caption{Pivní deník \cite{app-pivni-denik}.}
+        \caption{Pivní deníček \cite{app-pivni-denik}.}
         \label{fig:pivni-denik}
     \end{minipage}\hfill
     \begin{minipage}{0.45\linewidth}
@@ -267,14 +266,14 @@ Application \textit{Pivní deník} is used to search nearby pubs in the Czech Re
 \begin{itemize}
     \item A registration can be done through Facebook or e-mail. With e-mail registration, the user is forced to leave the application and is redirected to the web page where registration is finished.
     \item As was said, content is created by the community. During the research, it was clear that many information is outdated or misleading. 
-    \item Overall the application design looks outdated and does not meet current, modern, trends.
+    \item Overall the~application design looks outdated and does not meet current, modern, trends.
     \item On the primary screen, there are displayed user's stats and the most three nearest pubs. The~drawback is that on the~larger screens, there is plenty of unused space. 
     \item Each restaurant displays only one brand of drafted beer. Nowadays, many pubs offer more than one brand. 
     \item The side menu can be opened only with the hamburger icon but not with slide to the right gesture.
 \end{itemize}
 
 \subsection{Restu}
-\textit{Restu} is another gastronomy guide focused on restaurants in the Czech Republic. Through this application reservations can be made. Application has many unique functionalities. For example ``discover'' section which shows attractive offers or the best cafe in the city. Another functionality is the ``check-in'' button which gives credits to the users if they eat at the~given restaurant. Target audience is everyone who searches for new places where to eat and make a~reservation.
+\textit{Restu} is another gastronomy guide focused on restaurants in the Czech Republic. Through this application reservations can be made. Application has many unique functionalities. For example ``discover'' section which shows attractive offers or the best cafe in the city. Another functionality is the~``check-in'' button which gives credits to the users if they eat at the~given restaurant. Target audience is everyone who searches for new places where to eat and make a~reservation.
 
 % \begin{figure}[ht]
 %     \centering
@@ -291,12 +290,12 @@ Application \textit{Pivní deník} is used to search nearby pubs in the Czech Re
 
 \subsubsection{The Drawbacks}
 \begin{itemize}
-    \item When a restaurant card is selected, window of the restaurant pops up but at the bottom cannot be hidden again.
-    \item To review the restaurant, the user has to be signed in and the restaurant must be open. If the restaurant is closed, the review cannot be added.
+    \item When a~restaurant card is selected, window of the restaurant pops up but at the~bottom cannot be hidden again.
+    \item To review the~restaurant, the~user has to be signed in and the~restaurant must be open. If the~restaurant is closed, the review cannot be added.
 \end{itemize}
 
 \subsection{Zomato}
-\textit{Zomato} started as web-based restaurant browser, which has its own database of establishments and its content is edited by users.  
+\textit{Zomato} started as a~web-based restaurant browser. Application has its own database of establishments and its content is edited by users.  
 On the primary screen there are displayed ``week hits'', top restaurants, or ``happy hours''. Restaurants are divided into categories such as ``Nightlife'' or ``Daily menu'' which helps for navigation within the application.
 Target audience is anyone who wants to try new restaurants or someone who is looking for action offers.
 
@@ -373,7 +372,7 @@ Each application has its own unique \gls{ui} and overall user experience differs
 \hline
 \multicolumn{1}{|c|}{Application} & \multicolumn{1}{c|}{Targeted audience} & \multicolumn{1}{c|}{Overall \gls{ui}} \\ \hline
 Gastromapa Lukáše hejlíka         & Everyone                               & Great                           \\ \hline
-Pivní deník                       & Beer drinkers                          & Bad                            \\ \hline
+Pivní deníček                       & Beer drinkers                          & Bad                            \\ \hline
 Restu                             & Everyone                               & Bad                            \\ \hline
 Zomato                            & Everyone                               & Good                            \\ \hline
 Google                            & Everyone                               & Great but complex              \\ \hline
@@ -392,12 +391,12 @@ In the early stages, \gls{lofi} prototype is typically created. With \gls{lofi},
 
 To be more precise, according to \cite{adobe-prototype}, \gls{lofi} prototype is a~way to translate high-level concepts into tangible and testable artefacts. The most significant  functionality of \gls{lofi} prototypes is to check and test the functionality of the~product before visual appearance. Advantage of \gls{lofi} is that it is inexpensive, fast way to propose prototype. On the other hand, \gls{lofi} lacks complexity and cannot supply advanced interactivity. \gls{lofi} should be used to quickly create a prototype and get user feedback in the early stages of the creation process. 
 
-After the~\gls{lofi} prototype, the \gls{hifi} is created. This prototype appears and function as similar as possible to the actually built application. \gls{hifi} should be created on the targeted platform and behave as it is the~final product. The goal is to have more complex \gls{ui} interactivity and have better feedback from user testing. Thanks to the fact that prototype looks like a real application, user behaves more naturally and can give more precise, a~meaningful feedback than with \gls{lofi} prototype. 
+After the~\gls{lofi} prototype, the \gls{hifi} is created. This prototype looks and feels as similar as possible to the~actually built application. \gls{hifi} should be created on the targeted platform and behave as it is the~final product. The~goal is to have more complex \gls{ui} interactivity and have better feedback from user testing. Thanks to the~fact that prototype looks like a real application, user behaves more naturally and can give more precise, a~meaningful feedback than with \gls{lofi} prototype. 
 
-In conclusion, \gls{lofi} prototypes are tested only internally with a small number of users and can be iterated more often and faster. The \gls{hifi} should be created and tested after \gls{lofi} prototype was accepted, because the~\gls{hifi} is more expensive to create. On the other hand, \gls{hifi} gives better feedback from user testing, thus provides more valuable information.
+In conclusion, \gls{lofi} prototypes are tested only internally with a~small number of users and can be iterated more often and faster. The~\gls{hifi} should be created and tested after \gls{lofi} prototype was accepted, because the~\gls{hifi} is more expensive to create. On the~other hand, \gls{hifi} gives better feedback from user testing, thus provides more valuable information.
 % --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- #
 \subsection{Coffee Time Prototype}
-After the specification was written, next step was to create a \textit{task list}. The task list is written from the user's perspective -- each task describe an user's action. It should tackle all important functionalities and even obvious one such as ``add record'' or ``remove record''.
+After the~specification was written, next step was to create a~\textit{task list}. The~task list is written from the user's perspective -- each task describe an user's action. It should tackle all important functionalities and even obvious one such as ``add record'' or ``remove record''.
 
 \begin{figure}[htp]
     \centering
@@ -408,12 +407,12 @@ After the specification was written, next step was to create a \textit{task list
 
 Because the task list can become very long, it is usually transformed into a \textit{task graph}. The task graph does not have any specific definition, but it should contain every task along with each available screen within the application. Coffee Time's task graph is listed in \Cref{fig:task-graph}. The blue rectangles are screens and the yellow ones are any task what users can do. The application's~entry point is highlighted with bold blue rectangle.
 
-A note about \textit{User Interface Design (MI-NUR)} subject which was held during the winter semester of the academic year of 2019/2020. The Coffee Time prototype was crate as a semester work. Sincere gratitude to classmates \textit{Bc. Ondřej John} and \textit{Bc. Vojtěch Polcar} for their co-working on the prototype. Furthermore, much appreciation to \textit{Ing. Jiří Hunka} for feedback and guidance during the work. The classmates helped during prototyping, proposing functionalities, researching and testing. The High-Fidelity prototype was implemented only by the thesis author. 
+A note about \textit{User Interface Design (MI-NUR)} subject which was held during the winter semester of the~academic year of 2019/2020. The Coffee Time prototype was crate as a~semester work. Sincere gratitude to classmates \textit{Bc. Ondřej John} and \textit{Bc. Vojtěch Polcar} for their co-working on the~prototype. Furthermore, much appreciation to \textit{Ing. Jiří Hunka} for feedback and guidance during the~work. The~classmates helped during prototyping, proposing functionalities, researching and testing. The~High-Fidelity prototype was implemented only by the~thesis author. 
 
 \subsubsection{Low Fidelity Prototype}
-As a task graph was defined, the Lo-Fi prototype could be made. Although the application is considered as multi-platform application, the prototype was focused on Android, and its Material design \cite{material-design}. The inspiration was taken from typical Material layouts, such as AppBar with title and subsequent actions or tabs the bottom of the screen. 
+As a~task graph was defined, the~\textit{Lo-Fi} prototype could be made. Although the application is considered as multi-platform application, the~prototype was focused on Android, and its Material design \cite{material-design}. The~inspiration was taken from typical Material layouts, such as \textit{AppBar} with title and subsequent actions or tabs the bottom of the screen. 
 
-First of all, the rough prototype was drawn on paper. Its purpose was to come up with some ideas and considered layout. After that, the \textit{Balsamiq} \cite{balsamiq} prototyping software was used. The \textit{Balsamiq} tries to mimic pencil and paper. The prototype is created with a set of components which looks like they are drawn by hand.
+First of all, the rough prototype was drawn on paper. Its purpose was to come up with some ideas and considered layout. After that, the~\textit{Balsamiq} \cite{balsamiq} prototyping software was used. The~\textit{Balsamiq} tries to mimic pencil and paper. The~prototype is created with a~set of components which looks like they are drawn by hand.
 The most important feature was the ability to create deep links between screens or components. With a few clicks, the prototype was able to handle actions such as the open application menu or navigate to detail. With that tool, the clickable prototype focused on essential app's features was created. As a result, the PDF was exported. The PDF is enclosed as part of the thesis located at \verb|prototype/lofi.pdf|. The portion of the result is shown in~\Cref{fig:lofi}.
 
 \begin{figure}[htp]
@@ -776,7 +775,7 @@ The \gls{gpa} can respond with \textit{JSON} or \textit{XML} format. The \textit
 \label{listing:gapi-example-response}
 \end{listing}
 
-The \textit{Find Place}, \textit{Nearby Search} and \textit{Place Details} has similar response format where \verb|<status>| indicates response code because \gls{gpa} for each request always responds with HTTP status code 200~OK. The status field can have several values such as \verb|OK| for successful request, \verb|ZERO_RESULTS| for empty results or \verb|INVALID_REQUEST| for general invalid request. Each service has different result field name -- \verb|candidates| for \textit{Find Place}, \verb|results| for \textit{Nearby Search} and~\verb|result| for \textit{Place Details}. An~example output is shown~in~\Cref{listing:gapi-example-response}.
+The \textit{Find Place}, \textit{Nearby Search} and \textit{Place Details} has similar response format where \verb|<status>| indicates response code because \gls{gpa} for each request always responds with HTTP status code 200~OK. The~status field can have several values such as \verb|OK| for successful request, \verb|ZERO_RESULTS| for empty results or \verb|INVALID_REQUEST| for general invalid request. Each service has different result field name -- \verb|candidates| for \textit{Find Place}, \verb|results| for \textit{Nearby Search} and~\verb|result| for \textit{Place Details}. An~example output is shown~in~\Cref{listing:gapi-example-response}.
 % --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- &
 \subsubsection{Place Photos}
 Each place can have photos. The response from \textit{Find Place} or \textit{Nearby Search} contains \verb|photo_reference| along with width and height of the photo. For~obtaining actual photo itself, the~\textit{Place Photos} endpoint must be called. The~endpoint accepts as always the~\verb|key| (API key) and \verb|photo_reference|. The~result can be altered with parameters for maximal width or height. Returns byte-encoded image if the~request was successful otherwise HTTP status code \textit{400~Bad Request} or \textit{403~Forbidden} if the quota limit was reached. 
@@ -837,9 +836,9 @@ The technology which will be used to build the API should fulfil the following r
 
 There are many technologies which can be used to achieve this requirements. One of the ways is implementing API from the ground with technologies such as \textit{.NET Core} and its \textit{ASP .NET Core API}. Then the~API can be deployed to service hosting providers such as~\textit{Microsoft Azure} or through technologies such as~\textit{Docker} containers and \textit{Kubernetes}~\cite{kubernetes} as container orchestration. 
 
-Another way is to use serverless services. The serverless is approach where ``The cloud provider is responsible for executing a piece of code by dynamically allocating the resources. And only charging for the amount of resources used to run the code. The code is typically run inside stateless containers that can be triggered by a variety of events including http requests, database events, queuing services, monitoring alerts, file uploads, scheduled events (cron jobs), etc.''~\cite{what-is-serverless}. This approach is sometimes called as \textit{Functions as a Service} (FaaS in short). The major providers are \textit{Amazon Web Services} and its \textit{Lambda Functions}, \textit{Microsoft Azure Functions} or \textit{Cloud Functions (Firebase Functions)} by \textit{Google}. 
+Another way is to use serverless services. The~serverless is approach where ``The cloud provider is responsible for executing a piece of code by dynamically allocating the resources. And only charging for the amount of resources used to run the code. The code is typically run inside stateless containers that can be triggered by a variety of events including http requests, database events, queuing services, monitoring alerts, file uploads, scheduled events (cron jobs), etc.''~\cite{what-is-serverless}. This approach is sometimes called as \textit{Functions as a Service} (FaaS in short). The major providers are \textit{Amazon Web Services} and its \textit{Lambda Functions}, \textit{Microsoft Azure Functions} or \textit{Cloud Functions (Firebase Functions)} by \textit{Google}. 
 
-The~\textit{Firebase} by~\textit{Google} is collection of services which helps to build mobile application faster, improve application quality and grow business. The~\textit{Firebase} offer services as real-time NoSQL database, application usage analytics, A/B user testing, cloud web hosting or \textit{Cloud Functions} and much more. Within one service, the storage for data, the API as functions and security can be made. 
+The~\textit{Firebase} by~\textit{Google} is collection of services which helps to build mobile application faster, improve application quality and grow business. The~\textit{Firebase} offer services as real-time NoSQL database, application usage analytics, A/B user testing, cloud web hosting or \textit{Cloud Functions} and much more. Within one service, the storage for data, the~API as functions and security can be made. 
 % --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- &
 \subsubsection{Cloud Firestore}
 \textit{Cloud Firestore} is a flexible, scalable database for mobile, web, and server development. It keeps data in sync across client apps through realtime listeners and offers offline support for mobile and web. The \textit{Cloud Firestore} uses NoSQL data model. The data are stored in documents that contain fields mapping to values. These documents are stored in collections, which are containers for documents that are used to organize data. Documents support many different data types, from simple strings and numbers, to complex, nested objects. Documents can include subcollections and build hierarchical data structures that scale as database grows~\cite{cloud-firestore}.

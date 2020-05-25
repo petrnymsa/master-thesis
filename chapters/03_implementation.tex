@@ -1,6 +1,6 @@
 \chapter{Implementation}
 \label{ch:implementation}
-When the Coffee Time specification was created and the prototype was tested, the implementation itself could begin. In this chapter, the implementation details are covered. In the beginning, the proposed architecture of the application is introduced and explained. Next section describes how the Coffee Time API is designed and implemented. Which framework for creating REST~API was chosen and how it can be connected to \textit{Firebase} services. Detailed section of the mobile application implementation follows. In this section, used techniques and packages are described to achieve desired functionality. 
+When the Coffee Time specification was created and the~prototype was tested, the~implementation itself could begin. In this chapter, the implementation details are covered. In the beginning, the proposed architecture of the~application is introduced and explained. Next section describes how the Coffee Time API is designed and implemented. Which framework for creating REST~API was chosen and how it can be connected to \textit{Firebase} services. Detailed section of the mobile application implementation follows. In this section, used techniques and packages are described to achieve desired functionality. 
 % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- %
 \section{Clean Architecture}
 In order to have easy to write, maintainable and testable code, some overall architecture should be considered. The~architecture should follow these rules: 
@@ -187,7 +187,7 @@ export const api = firebase.region('europe-west1')
 \end{listing}
 
 \subsection{Integration with Firestore}
-In order to have access to Firestore storage and to authorise tokens, a~\textit{Firebase Admin SDK} is used to communicate with Firebase services. To be able to use SDK, a~\verb|google-services.json| file has to be provided. This file contains all required information to have access to the Firebase. Note that, this file contains sensitive information and should not be committed to the version control. \Cref{fig:cta-relations} shows how the request is processed and the relation between Express.js modules with \textit{Firebase Admin SDK}.
+In order to have access to \textit{Firestore} storage and to authorise tokens, a~\textit{Firebase Admin SDK} is used to communicate with \textit{Firebase} services. To be able to use SDK, a~\verb|google-services.json| file has to be provided. This file contains all required information to have access to the \textit{Firebase}. Note that, this file contains sensitive information and should not be committed to the version control. \Cref{fig:cta-relations} shows how the~request is processed and the relation between \textit{Express.js} modules with \textit{Firebase Admin SDK}.
 
 \begin{figure}[ht]
     \centering
@@ -197,13 +197,13 @@ In order to have access to Firestore storage and to authorise tokens, a~\textit{
 \end{figure}
 
 \subsection{Functions Deployment}
-Developer can run functions locally and serve them through localhost while developing them. Once the code is ready, it has to be deployed to the Firebase Cloud Functions service. In order to do that, \textit{Firebase CLI} tooling and its deploy command have to be used. If a~version exists already in the~Firebase, it is replaced by a new one.
+A~developer can run functions locally and they can be served through localhost while he or she developing them. Once the~code is ready, it has to be deployed to the~\textit{Firebase Cloud Functions} service. In order to do that, \textit{Firebase CLI} tooling and its deploy command have to be used. If a~version exists already in the~\textit{Firebase}, it is replaced by a~new one.
 
-Firebase Cloud Functions can be deployed to different physical areas such as \textit{West Europe} or \textit{US East}. While the Coffee Time application is mainly tested in the Czech Republic, \textit{West Europe} was selected as the best option because of its closest availability. One downside is that each location is part of the~API~URL. This can add complexity to the~client side if more locations are used in case of globally available application. 
+\textit{Firebase Cloud Functions} can be deployed to different physical areas such as \textit{West Europe} or \textit{US East}. While the Coffee Time application is mainly tested in the Czech Republic, \textit{West Europe} was selected as the best option because of its closest availability. One downside is that each location is part of the~API~URL. This can add complexity to the~client side if more locations are used in case of globally available application. 
 
 % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- %
 \section{Coffee Time}
-For Coffee Time purposes, the architecture was slightly simplified and is made from three layers -- domain, data and presentation. The domain layer encapsulates all domain entities and defines contracts for repositories. This layer corresponds with ``Entity'' layer from Clean Architecture. Next, the~Data layer encapsulates all external communication such as API requests or location services. This layer also defines data models which are passed down to the repositories where data are processed and transformed to domain entities. Data layer corresponds with \textit{Interface Adapters}. The presentation layer is responsible for describing the user interface and interacts with \gls{bloc} objects where the business logic is encapsulated.
+For Coffee Time purposes, the architecture was slightly simplified and is made from three layers -- domain, data and presentation. The domain layer encapsulates all domain entities and defines contracts for repositories. This layer corresponds with ``Entity'' layer from Clean Architecture. Next, the~Data layer encapsulates all external communication such as API requests or location services. This layer also defines data models which are passed down to the repositories where data are processed and transformed to domain entities. Data layer corresponds with \textit{Interface Adapters}. The~presentation layer is responsible for describing the user interface and interacts with \gls{bloc} objects where the business logic is encapsulated.
 
 This section describes each layer -- its implementation details and how it is used with other layers.  
 % --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- #
@@ -214,7 +214,7 @@ One of important requirements of the Presentation layer and overall Flutter's ph
 
 \subsubsection{Equatable Package}
 If the default equality behaviour has to be changed, the \verb|==| operator and~\verb|hashCode| getter have to be overridden~\cite{dart-equality}.
-Even with small classes, this work becomes quickly tedious and can leads to unnecessary bugs for example when some property is added and developer forgot to update these overrides. Therefore in case of complex classes the amount of bugs only increases. 
+Even with small classes, this work becomes quickly tedious and can leads to unnecessary bugs for example when some property is added and developer forgot to update these overrides. Therefore in case of complex classes the~amount of bugs only increases. 
 
 \textit{Equatable} package~\cite{package-equatable} (developed by \textit{F. Angelov}) was created to simplify creating immutable classes with proper equality implementation. Class which needs to implement equality has to extend \verb|Equatable| base class provided by the package. Then it is needed to override \verb|props| getter where all class properties are listed. With that setup, equatable package internally provides proper equality comparison. This package is used to for all entities and classes which needed proper equality implementation. An example of its usage is shown in~\Cref{listing:ct-opening-hour-entity}, which is \verb|OpeningHours| entity implementation. 
 
@@ -264,7 +264,7 @@ Domain Layer also defines repository contracts. The repository is used to as con
 
 In order to have convenient approach of handling exceptions raised within repository (or from layers above) in repository layer, each method of repository returns type \verb|Either<L,R>|. Either is functional concept~\cite{ibm-either} of returning two distinct values from one method. It is used to return desired return type in case of success or error in case of exception. This approach helps to avoid \verb|try - catch| clauses in presentation layer and the code is more readable in functional way. 
 
-The \verb|Either<L,R>| is generic class, where \verb|L| is left type and \verb|R| is right type. The returned value from such method can be used with \verb|when()| or \verb|map()| methods to access actual returned value. Internally the \verb|Either<L,R>| is implemented with \textit{freezed} package~\cite{package-freezed}. This package and its usage is more precisely described later, in the presentation layer. In this way, Either is strongly typed. Similar approach could be use for example \verb|Tuple<T1,T2>| type, but losing strongly typed solution. 
+The~\verb|Either<L,R>| is generic class, where \verb|L| is left type and \verb|R| is right type. The returned value from such method can be used with \verb|when()| or \verb|map()| methods to access actual returned value. Internally the \verb|Either<L,R>| is implemented with \textit{freezed} package~\cite{package-freezed}. This package and its usage is more precisely described later, in the presentation layer. In this way, Either is strongly typed. Similar approach could be use for example \verb|Tuple<T1,T2>| type, but losing strongly typed solution. 
 
 \begin{listing}[ht]
 \begin{minted}{dart}
@@ -310,7 +310,7 @@ Purpose of layer service is to implement repositories, add services which commun
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=\textwidth]{img/implementation/repo-services.pdf}
+    \includegraphics[width=\textwidth,angle=270,origin=c]{img/implementation/repo-services.pdf}
     \caption{Repositories and Services Association.}
     \label{fig:ct-repo-services}
 \end{figure}
@@ -321,7 +321,7 @@ Each service communicates with a~concrete part of the~Coffee Time API. The~\text
 Current application version uses for saving user's favorite cafes only local storage. Thanks to implementation against interface, in the future, the synchronization of favorited cafes over API can be added without breaking other parts of the~application. 
 
 \subsubsection{Cached Tag Service}
-To prevent unnecessary amount of calls to API when obtaining all tags, a~caching mechanism was implemented for \textit{Tag Service}. When all tags are returned from the API, they are cached for future calls. As a~whole implementation is focused on clean code implementation, maintainbality and testability, a~generic \verb|CachedValue<T>| class was implemented as wrapper around cachable values. 
+To prevent unnecessary amount of calls to API when obtaining all tags, a~caching mechanism was implemented for \textit{Tag Service}. When all tags are returned from the API, they are cached for future calls. As a~whole implementation is focused on clean code implementation, maintainability and testability, a~generic \verb|CachedValue<T>| class was implemented as wrapper around cachable values. 
 
 \begin{listing}[ht]
 \begin{minted}{dart}

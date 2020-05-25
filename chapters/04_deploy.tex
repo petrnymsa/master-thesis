@@ -4,7 +4,7 @@
 Before application can be released to production it should be properly tested. In this last chapter, the development process is outlined, automated unit testing and pull-request approach of development even as single developer. Later on, the process of incrementally tested application though internal a beta testing channels on the Android devices is explained. In the end, released version of the application is shown along with link to \textit{Google Play Store}. 
 
 \section{Development Workflow}
-Coffee Time was developed as fully open-sourced (MIT licensed) application available at GitHub. Even as a single developer, author wanted to have full control over development process. The development workflow was setup accordingly:
+Coffee Time was developed as fully open-sourced (MIT licensed) application available at GitHub. Even as a~single developer, author wanted to have full control over development process. The~development workflow was setup accordingly:
 
 \begin{itemize}
     \item \textit{Master} branch is production code. Code within \textit{master} has to be fully tested, working code. Each commit within \textit{master} branch has to have own tag -- version number.
@@ -62,9 +62,9 @@ jobs:
 
 \subsection{Continuous Integration}
 
-GitHub has a feature called GitHub Actions -- automation of the development workflow. Whenever pull request is created or new commits are pushed to created pull requests or \textit{dev} branch, an automated action is run. This action checkouts current code, build it with Flutter tools and run unit tests. If any of those action fails, build is marked as failed and in case of a pull request, pull request can not be closed. 
+\textit{GitHub} has a feature called \textit{GitHub Actions} -- automation of the development workflow. Whenever pull request is created or new commits are pushed to created pull requests or \textit{dev} branch, an automated action is run. This action checkouts current code, build it with Flutter tools and run unit tests. If any of those action fails, build is marked as failed and in case of a pull request, pull request can not be closed. 
 
-Configuration of GitHub Actions are done through configuration files within YAML format. Coffee Time build action configuration is shown in~\Cref{listing:gh-ci}. Action is triggered on push to \textit{feature}, \textit{fix} or \textit{dev} branch and only if change set contains any file within \textit{mobile} folder. Java and Flutter tools are installed in order to build Flutter application. Before building application, Dart packages has to be downloaded. Finally after the application is built, unit tests are started. If any of tests failed, whole action is marked as failed.
+Configuration of \textit{GitHub Actions} are done through configuration files within \textit{YAML} format. Coffee Time build action configuration is shown in~\Cref{listing:gh-ci}. Action is triggered on push to \textit{feature}, \textit{fix} or \textit{dev} branch and only if change set contains any file within \textit{mobile} folder. Java and Flutter tools are installed in order to build Flutter application. Before building application, Dart packages has to be downloaded. Finally after the application is built, unit tests are started. If any of tests failed, whole action is marked as failed.
 
 \section{Internal Testing}
 In the moment, when application had minimal working feature, internal testing channel on \textit{Google Play Services} was created in order to have early feedback from internal testers. Internal Channel provides access to applications in early stages to selected users. In case of Coffee Time application, internal testers were author's closest persons and family members. A~number of testers were up to ten people and during development, they gave valuable feedback. An~example of such feedback was not working navigation action on some Android versions. 

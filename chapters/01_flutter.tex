@@ -1,6 +1,6 @@
 \chapter{Flutter Foundations}
 \label{ch:flutter}
-In the introduction, a new, promising, cross-platform framework was introduced. The Flutter's primary goal is to provide the ability to build high-performance, high-fidelity apps for \textit{iOS}, \textit{Android}, web, and desktop systems (Windows, MacOS) from a single code-base~\cite{flutter-technical-overview}. In this chapter, the~framework philosophy will be described. Used programming language and theory of reactive programming is briefly introduced. The chapter describes the concept of widgets as a base building block for every application. Later on, one of the most critical topics -- \textit{state management} is discussed in the~form of existing approaches and recommendation which to prefer when building applications. At the end of this chapter, the brief look under the framework's hood is discussed.
+In the introduction, a new, promising, cross-platform framework was introduced. The Flutter's primary goal is to provide the ability to build high-performance, high-fidelity apps for \textit{iOS}, \textit{Android}, web, and desktop systems (Windows, MacOS) from a~single code-base~\cite{flutter-technical-overview}. In this chapter, the~framework philosophy will be described. Used programming language and theory of reactive programming is briefly introduced. The chapter describes the concept of widgets as a base building block for every application. Later on, one of the most critical topics -- \textit{state management} is discussed in the~form of existing approaches and recommendation which to prefer when building applications. At the end of this chapter, the brief look under the framework's hood is discussed.
 
 Flutter includes a modern react-style framework, a 2D rendering engine, predefined widgets and development tools. The primary premise is a motto ``everything is a widget''. A widget is an immutable building block of application which is part of the user interface. Each widget can define structural elements such as a~button, stylistic elements such as colour or it can define the interface's layout, such as padding. Widgets are composed as a tree hierarchy with a~possibility of composing each widget to another. If any event occurs (such as user interaction), the framework can rebuild part of this tree to redraw the screen.  
 
@@ -34,7 +34,7 @@ Container(
 Flutter uses programming language Dart~(specification v2.0~\cite{dart-specs}). It is also made by Google and it is inspired by languages such as JavaScript. Dart using statically typed system with runtime checks, but like many other languages highly use type inference~\cite{dart-type-system}. Dart can be used from writing simple scripts to full-featured applications. Dart has flexible compiler technology where the~compiler can decide running code in different ways, depending on the~targeted platform~\cite{dart-platforms}. 
 
 \begin{itemize}
-    \item \textbf{Dart Native} -- For programs targeting devices (mobile, desktop, server, and more), Dart Native includes both a Dart VM with \gls{jit} compilation and an~\gls{aot} compiler for producing machine code.
+    \item \textbf{Dart Native} -- For programs targeting devices (mobile, desktop, server, and more), Dart~Native includes both a Dart~VM with \gls{jit} compilation and an~\gls{aot} compiler for producing machine code.
     \item \textbf{Dart Web} -- For programs targeting the web, Dart Web includes both a development time compiler (dartdevc) and a production time compiler (dart2js).
 \end{itemize}
 
@@ -47,7 +47,7 @@ Flutter uses programming language Dart~(specification v2.0~\cite{dart-specs}). I
 
 Flutter performs the use of both ways. If the~targeted platform is web, the~Dart~Web is used. For other platforms Dart~Native is chosen. The~Dart~Native's \gls{jit} compilation is highly used to support fast development process with ``hot-reload'' functionality. Then the~\gls{aot} compilation is used for the best-optimised production-ready result on the native platform.  
 
-Flutter framework is organised into several layers (\Cref{fig:flutter-layer-cake}), where each layer makes usage of the previous one. The upper layers are more frequently used by developers on a daily basis, and lower layers are used only if the developers need to create particular customizations. 
+Flutter framework is organised into several layers (\Cref{fig:flutter-layer-cake}), where each layer makes usage of the previous one. The upper layers are more frequently used by developers on a daily basis, and lower layers are used only if the developers need to create particular customizations.
 
 \begin{figure}[htp]
     \centering
@@ -61,12 +61,12 @@ Unlike the other frameworks, Flutter uses high-performance 2D rendering engine a
 \subsection{Reactive Programming}
 Flutter makes significant usage from the concept of reactive programming. There is nearly always a~requirement to update data in response to user interaction or any other event such as getting data from the~server. More than that, sometimes it is necessary to update different parts of the user interface in response to these events. 
 
-Flutter creates user interface by composing \textbf{immutable} widgets. The~immutability is the key point here. Whenever user interface needs to ``redraw'' screen, the~part of the~widget tree is replaced by \textbf{new} widget instances (in fact, it is not simple as that, and this topic is more deeply discussed later in this chapter). In many other \gls{ui} frameworks, such as \textit{Xamarin}, is usually taken the approach of coupling \gls{ui} components with view-models through concepts such as data binding~\cite{xamarin-data-binding}. That means that whenever \gls{ui} needs to~change, the~components mutate application's state. Flutter takes an~entirely different approach. It can be said ``here is the~current state of the~application, draw something on the~screen accordingly'' -- there is no way to state \verb|widget.property = new value| as widgets are immutable.
+Flutter creates user interface by composing \textit{immutable} widgets. The~immutability is the key point here. Whenever user interface needs to ``redraw'' screen, the~part of the~widget tree is replaced by \textit{new} widget instances (in fact, it is not simple as that, and this topic is more deeply discussed later in this chapter). In many other \gls{ui} frameworks, such as \textit{Xamarin}, is usually taken the approach of coupling \gls{ui} components with view-models through concepts such as data binding~\cite{xamarin-data-binding}. That means that whenever \gls{ui} needs to~change, the~components mutate application's state. Flutter takes an~entirely different approach. It can be said ``here is the~current state of the~application, draw something on the~screen accordingly'' -- there is no way to state \verb|widget.property = new value| as widgets are immutable.
 
 \subsubsection{The Notion of Streams}
 A Stream can be described as ``A pipe with two ends, only one allowing to insert something into it. When something is inserted into the pipe, it flows inside the pipe and goes out by the other end''~\cite{reactive-didier}. The~Stream can convey any~data type, from simple values to~events, complex object or even another stream. The~data can come to the~Stream, for example, from an external data source such as server connection or from events such as user interactions. In~Dart, the Streams support manipulating them, filtering, re-grouping, modify data before they are send and~much more. This functionality can be used to build reactive \gls{ui}. Flutter has several widgets supporting streams to rebuild part of the~\gls{ui} whenever new data arrived into the~Stream.
 
-The answer to the question ``What is reactive programming$?$`` could be ``Reactive programming is programming with asynchronous data streams``~\cite{reactive-didier}\cite{reactive-red-hat}. Within Flutter framework, anything from an interaction event (tap, gesture), changes of a variable, messages, everything that may change is conveyed and triggered by streams.
+The answer to the question ``What is reactive programming$?$'' could be ``Reactive programming is programming with asynchronous data streams``~\cite{reactive-didier}\cite{reactive-red-hat}. Within Flutter framework, anything from an~interaction event (a~tap, a~gesture), changes of a~variable, messages, everything that may change is conveyed and triggered by streams.
 
 It means that with reactive programming, according to~\cite{reactive-didier}, the~application:
 
@@ -88,7 +88,7 @@ It means that with reactive programming, according to~\cite{reactive-didier}, th
     \end{itemize}
 \end{quote}
 
-Later on in this chapter, the pattern Business Logic Component (BLoC) is introduced. This pattern uses Streams to manage application life-cycle and they are used for state management.
+Later on in this chapter, the~Business Logic Component (BLoC) pattern is introduced. This pattern uses Streams to manage application life-cycle and they are used for state management.
 % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- %
 \section{Everything Is a Widget}
 In this section, we will discuss in more detail how the~\gls{ui} is built. Every \gls{ui} consists of the layout and individual components. The~layout defines the~screen's base structure, such as a~menu on the top and subsequent actions on the bottom. Then the~layout is composed of individual components, such as a~menu, buttons or icons. Together they create a final interface.
@@ -149,7 +149,7 @@ Whenever widget needs to manage its state and wants to mutate it for example, in
 
 \textit{Stateful Widget} does not have only \verb|build()| method but has associated \textit{State} object which defines several methods to support widget's lifecycle. These methods are \verb|initState()| for any state initialisation and \verb|dispose()| to clear any allocated resources. 
 
-The state object is associated with widget's \textit{BuildContext}. This association is permanent, and state object will never change it~\cite{notion-widget-didier}. Even if the~widget's \textit{BuildContext} can be moved around the~tree structure, the~state will remain associated with that context. This implies that, the~\textit{Stateful Widget} can be replaced during the~tree rebuild with new a~instance, but the~state object is persisted. 
+The state object is associated with widget's \textit{BuildContext}. This association is permanent, and state object will never change it~\cite{notion-widget-didier}. Even if the~widget's \textit{BuildContext} can be moved around the~tree structure, the~state will remain associated with that context. This implies that the~\textit{Stateful Widget} can be replaced during the~tree rebuild with a~new instance, but the~state object is persisted. 
 % --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- &
 \subsubsection{Force Rebuild with setState()}
 As was mentioned, \textit{Stateful Widge}t can tell the framework to rebuild, and the widget can be redrawn based on the~changed state. The~\textit{Stateful Widget} has method \verb|setState(callback)| which is used to do such rebuild. Inside \verb|callback| a~developer should change the~widget's state to the~new value and framework will rebuild the widget based on that~new state. 
@@ -251,7 +251,7 @@ The expectation is, that if the user pressed any of the buttons, the value is in
 How to define the application-wide state and prevent the necessary rebuilding part of the widget tree is a subject of ``state management'' section.
 % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- %
 \section{State Management Approaches}
-Using \verb|setState()| method is the~perfect solution (and recommended) for local state. However, as~soon as the state needs to be shared across multiple widgets, the managing this state becomes cumbersome. If the~state should be shared, there is only one viable solution -- lifting state up~\cite{flutter-simple-state-management}. The~state should reside in the widget, which is the parent for all widgets that needs access to the~state. Such a~solution can be used (and works) but creates a~few problems. 
+Using \verb|setState()| method is the~perfect solution (and recommended) for local state. However, as~soon as the state needs to be shared across multiple widgets, the managing this state becomes cumbersome. If the~state should be shared, there is only one viable solution -- lifting state up~\cite{flutter-simple-state-management}. The~state should reside in the~widget, which is the parent for all widgets that needs access to the~state. Such a~solution can be used (and works) but creates a~few problems. 
 
 The~very first problem is if some of the~interested widgets are kept in deep layer of the~tree and others are not, the~necessary amount of widgets is rebuilt whenever the state changes. The~second issue is that the~code of the widgets becomes very quickly hard to~manage due to its tight dependencies with upper widgets. The~only doable solution to provide access to the~state is through references or function callbacks. These callbacks have to be passed to every widget down to the~tree. This solution adds the~necessary complexity to maintenance and readability. Last but not least, the~application state usually has some business logic which should have been tested. However, if the~state (and its logic) is put directly into the widget, this logic is hard to test. 
 
@@ -361,7 +361,14 @@ return Scaffold(
 \label{listing:counter-inherited-homepage}
 \end{listing}
 
-\begin{listing}[ht]
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.75\linewidth]{img/flutter/counter-inherited-widget.pdf}
+    \caption{InheritedWidget Approach and Its Widget Tree.}
+    \label{fig:counter-app-inherited-widget}
+\end{figure}
+
+\begin{listing}[h]
 \begin{minted}{dart}
 // CounterTextContainer's build method
 return Row(
@@ -378,14 +385,7 @@ return Text('Count: ${model.count}');
 \label{listing:counter-inherited-text-container}
 \end{listing}
 
-\begin{figure}[htp]
-    \centering
-    \includegraphics[width=0.75\linewidth]{img/flutter/counter-inherited-widget.pdf}
-    \caption{InheritedWidget Approach and Its Widget Tree.}
-    \label{fig:counter-app-inherited-widget}
-\end{figure}
-
-The HomePage~(\Cref{listing:counter-inherited-homepage}) is wrapped by~\verb|CounterModelProvider| to provide access to any its children. Within the HomePage's \verb|build()| method, \verb|CounterModel| is obtained without listening. It is used for button's callbacks to invoke \verb|increment()| (\verb|decrement()| respectively) method. Inside \verb|CounterTextContainer| (\Cref{listing:counter-inherited-text-container}) is used \textit{Text} widget and \verb|CounterText| where the~\verb|CounterModel| is accessed to get current value. Note that every widget is stateless. The~most important thing is that only the~CounterText is~rebuilt when the~state changes~(see~\Cref{fig:counter-app-inherited-widget}) in comparison with \verb|setState()| approach where the~whole application was rebuilt.
+The HomePage~(\Cref{listing:counter-inherited-homepage}) is wrapped by~\verb|CounterModelProvider| to provide access to any its children. Within the HomePage's \verb|build()| method, \verb|CounterModel| is obtained without listening. It is used for button's callbacks to invoke \verb|increment()| (\verb|decrement()| respectively) method. Inside \verb|CounterTextContainer| (\Cref{listing:counter-inherited-text-container}) is used \textit{Text} widget and \verb|CounterText| where the~\verb|CounterModel| is accessed to get current value. Note that every widget is stateless. The~most important thing is that only the~CounterText is~rebuilt when the~state changes~(\Cref{fig:counter-app-inherited-widget}) in comparison with \verb|setState()| approach where the~whole application was rebuilt.
 
 Although \textit{InheritedWidget} solves many issues, the amount of code needed to achieve these results can be more unreadable and hard to maintain than approach with plain \verb|setState()| method. However, Flutter's community created package which abstracts \textit{InheritedWidget} and~simplify this process. 
 % --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- #
@@ -462,7 +462,7 @@ Provider is a community package created by \textit{Remi~Rousselet}~\cite{package
 
 The~\textit{ChangeNotifierProvider} wraps HomePage widget, where \verb|CounterModel| is created. Within HomePage's build method, the \verb|CounterModel| is accessed through \verb|Provider.of<CounterModel>(context, listen: false);| \\(note the~similarity with \textit{InheritedWidget}) without listening to~changes~(\Cref{listing:counter-provider-home-page}). The~\textit{Consumer} widget used within \textit{CounterTextContainer}~(\Cref{listing:counter-provider-consumer}) allows to automatically listening to changes and re-run its \verb|builder| callback. If needed, the \verb|child| argument can be used to construct widget which can be part of the rebuilding widget without rebuilding itself. 
 
-The result is the same as with \textit{InheritedWidget}~(\Cref{fig:counter-app-provider}), but with more readable code. The~\textit{Provider} package became very popular and encouraged by the Flutter team as a~solution for state management~\cite{flutter-simple-state-management}. Package offers more than the~\verb|ChangeNotifier| -- it can be used for dependency injection and it is used by many other packages such as~\textit{flutter\_bloc}~\cite{package-bloc}.
+The~result is the~same as with \textit{InheritedWidget}~(\Cref{fig:counter-app-provider}), but with more readable code. The~\textit{Provider} package became very popular and encouraged by the~Flutter team as a~solution for state management~\cite{flutter-simple-state-management}. Package offers more than the~\verb|ChangeNotifier| -- it can be used for dependency injection and it is used by many other packages such as~\textit{flutter\_bloc}~\cite{package-bloc}.
 % --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- #
 \subsection{Business Logic Component}
 \gls{bloc} is a~pattern originally introduced by~\textit{Paolo Soares} and presented during \textit{DartConf~2018} conference~\cite{bloc-pattern-youtube}. The pattern was popularized by~\textit{Didier Boelens}~\cite{reactive-didier} and it was inspiration to \textit{Felix Angelov} for creation of~\textit{flutter\_bloc} package~\cite{package-bloc} -- a~popular BLoC based state management solution.
@@ -474,7 +474,7 @@ The result is the same as with \textit{InheritedWidget}~(\Cref{fig:counter-app-p
     \label{fig:bloc-pattern}
 \end{figure}
 
-The \gls{bloc} builds on the streams. The \gls{bloc} stands for class, holding business logic where on one side accepts stream of events (event sink) and on the other side provides stream of states~(\Cref{fig:bloc-pattern}). Through event sinks, \gls{bloc} accepts events which are processed and based on them a new state is put to the state stream. In terms of Flutter -- widgets send events and listens for new state coming from state stream. The business logic itself is hidden from them and widgets (the~\gls{ui}) are concerned only about sending event and~rebuilding themselves based on coming state.
+The~\gls{bloc} builds on the streams. The \gls{bloc} stands for class, holding business logic where on one side accepts stream of events (event sink) and on the other side provides stream of states~(\Cref{fig:bloc-pattern}). Through event sinks, \gls{bloc} accepts events which are processed and based on them a new state is put to the state stream. In terms of Flutter -- widgets send events and listens for new state coming from state stream. The business logic itself is hidden from them and widgets (the~\gls{ui}) are concerned only about sending event and~rebuilding themselves based on coming state.
 
 The~\gls{bloc} solves the responsibility separation where the logic is centralised within the~\gls{bloc} class. This leads to better and easier testability. And~third, thanks to the~independence of \gls{ui} with business logic, changing and organizing layouts can be done without changes within the application's logic. The~\gls{ui} is only concerned about building widgets based on the current state and eventually sending events if needed. This also imply that events can be sent from any place within the application without any complexity.
 
@@ -540,7 +540,7 @@ children: <Widget>[
 
 As before, the case study ``counter application'' was also written with the~\gls{bloc} approach. Widget tree and its rebuild~(\Cref{fig:counter-app-bloc}) is practically identical as with \textit{Provider}. The difference lies in the how the code is organised, how the state is managed and the whole philosophy of the application's code. With \textit{InheritedWidget} the~state was mutated and its listeners were notified. With \gls{bloc} approach, whenever new event arrives, new state is returned and its listeners are rebuilt. 
 
-The~\textit{flutter\_bloc} has base \verb|Bloc<E,S>| class where \verb|E| is an ``event type'' and~\verb|S| is a ``state type''. Each \gls{bloc} class has to inherit this base class and~overrides \verb|mapEventToState()| method in order to respond to any event and~\textit{yield} new state. How the~package works and how it can be used is more discussed in~\Cref{ch:implementation}. \Cref{listing:counter-bloc-bloc} shows \verb|CounterBloc| implementation. Events are represented as enum \verb|CounterEvent| with \textit{increment} and \textit{decrement} respectively. The state is simple \verb|integer| type. The~\textit{flutter\_bloc} package uses under the~hood \textit{Provider} so it is very similar how the~\gls{bloc} is provided to the widget tree. The~\gls{bloc} is accessed with \verb|context.bloc| in order to add new events. An example is shown in~\Cref{listing:counter-bloc-homepage}.  \verb|CounterTextContainer| widget (\Cref{listing:counter-bloc-counter-text}) uses \verb|BlocBuilder| widget which rebuilds whenever new state arrives. 
+The~\textit{flutter\_bloc} has base \verb|Bloc<E,S>| class where \verb|E| is an ``event type'' and~\verb|S| is a ``state type''. Each \gls{bloc} class has to inherit this base class and~overrides \verb|mapEventToState()| method in order to respond to any event and~\textit{yield} new state. How the~package works and how it can be used is more discussed in~\Cref{ch:implementation}. \Cref{listing:counter-bloc-bloc} shows \verb|CounterBloc| implementation. Events are represented as enum \verb|CounterEvent| with \textit{increment} and \textit{decrement} respectively. The state is simple \verb|integer| type. The~\textit{flutter\_bloc} package uses under the~hood \textit{Provider} so it is very similar how the~\gls{bloc} is provided to the widget tree. The~\gls{bloc} is accessed with \verb|context.bloc| in order to add new events. An~example is shown in~\Cref{listing:counter-bloc-homepage}.  \verb|CounterTextContainer| widget (\Cref{listing:counter-bloc-counter-text}) uses \verb|BlocBuilder| widget which rebuilds whenever new state arrives. 
 % --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- #
 \subsection{Conclusion}
 In this section, four approaches for state management was introduced. From simple \verb|setState()| approach to stream based \gls{bloc}. As the \gls{bloc} encapsulates business logic into its own class and makes use of stream notion, this approach was chosen as the~state management approach for implementation of our application due to convenient and~straightforward way to usage, along with easy testability.
@@ -549,7 +549,7 @@ In this section, four approaches for state management was introduced. From simpl
 % \todo{How flutter can use native functions, e.g camera. Flutter plugins.}
 % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- %
 \section{Flutter Internals}
-In the last section of this chapter, some of the~internal Flutter's work is discussed. First of all, it is described more in-depth on how the framework is able to build widgets and draw them on the screen. Then the notion of Keys is introduced (an~unique identification of widgets within widget tree). After that some optimisations such as \textit{const} constructors which can give better performance are discussed. 
+In the last section of this chapter, some of the~internal Flutter's work is discussed. First of all, it is described more in-depth on how the framework is able to build widgets and draw them on the screen. Then the notion of Keys is introduced (an~unique identification of widgets within widget tree). After that, some optimisations such as \textit{const} constructors which can give better performance are discussed. 
 
 At~the~beginning of this chapter, \Cref{fig:flutter-layer-cake} shows how Flutter is made. The~middle layer -- the~engine is responsible for rendering and orchestrating Flutter framework. 
 % --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- #
@@ -568,12 +568,12 @@ From a~developer perspective, everything is a widget what is related to the~\gls
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=\linewidth]{img/flutter/internals_3_trees.png}
+    \includegraphics[width=\linewidth]{img/flutter/internals_3_trees.pdf}
     \caption{Three Trees -- Widget, Element and Render Tree~\cite{didier-internals}.}
     \label{fig:flutter-internal-3-trees}
 \end{figure}
 
-When Flutter needs to render the current state to the screen, the engine will request to inflate all widgets~\cite{didier-internals}. This can be simplified as unpacking the ``box of boxes''. Each widget internally uses more granulated, and low-level API's widgets in order to precisely describe the layout. Furthermore, from a developers perspective, the widgets create \textit{Widget Tree}. In fact, internally each widget has assigned \textit{Element} object which forms the \textit{Element Tree}.
+When Flutter needs to render the current state to the screen, the engine will request to inflate all widgets~\cite{didier-internals}. This can be simplified as unpacking the~``box of boxes''. Each widget internally uses more granulated, and low-level API's widgets in order to precisely describe the layout. Furthermore, from a~developers perspective, the~widgets create \textit{Widget Tree}. In fact, internally each widget has assigned \textit{Element} object which forms the \textit{Element Tree}.
 
 Each \textit{Element} points to widget which created it, parent and potentially child \textit{Element} and may also point to a~\textit{RenderObject}~\cite{didier-internals}.  \Cref{fig:flutter-internal-3-trees} shows notion of \textit{Widget~Tree}, \textit{Element~Tree} and \textit{Render~Tree}.
 
@@ -603,7 +603,7 @@ A redraw mechanic relies on invalidating either an~\textit{Element} or a~\textit
 After that, the \textit{Element Tree} is considered as a stable and a similar process is made with \textit{Render Tree} -- every \textit{RenderObject} marked as dirty performs its layout (calculating dimension and geometry), every \textit{RenderObject} marked to repaint is repainted. In the end, the device screen is redrawn. 
 % --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- #
 \subsection{Notion of Keys}
-When comparing new widget with current one within \textit{Element}, the~\textit{Element} decides to rebuild when the widget type and \textit{Key} are different. A~\textit{Key} is an~object associated with a~widget. In the simplest form, a~\textit{Key} can be considered as the unique identification of the widget. In most cases, developers should not need to work with the keys as Flutter manage them internally. However, there are cases where the manual definition of the \textit{Key} is necessary. 
+When comparing new widget with current one within \textit{Element}, the~\textit{Element} decides to rebuild when the widget type and \textit{Key} are different. A~\textit{Key} is an~object associated with a~widget. In the~simplest form, a~\textit{Key} can be considered as the unique identification of the widget. In most cases, developers should not need to work with the keys as Flutter manage them internally. However, there are cases where the manual definition of the \textit{Key} is necessary. 
 
 \begin{figure}[ht]
     \centering
@@ -672,8 +672,8 @@ class _SquareState extends State<Square> {
 \label{listing:keys_square_stateful}
 \end{listing}
 
-However, if the~\verb|Square| becomes \textit{StatefulWidget}~(\Cref{listing:keys_square_stateful}) and the~button is clicked, it seems like nothing happened -- squares stay on the same place. When the~widget is marked to rebuilt, it walks through \textit{Elements} and if the widget type and the \textit{Key} match, the~\textit{Element} updates its reference to new Widget. In the~case of \textit{StatefulWidget}, the~associated state is linked to the~\textit{Element} object~(\Cref{fig:keys_start}). When squares are shifted, the~\textit{Element} is marked as dirty. It walks through square's \textit{StatefulElement} and checks if widget type and \textit{Key} matches -- and they are as no \textit{Keys} are assigned. Hence, the~\textit{Element} updates its widget reference, but the~associated state remains the~same~(\Cref{fig:keys_wrong}). 
-The key is to add \textit{Key}. There are several types of Keys such as \textit{ValueKey}, where some unique value can be assigned (for example article's id). For \verb|Square| example, the \textit{UniqueKey} which generates unique identification is enough for usage.  After the~\textit{Keys} are assigned, \mint{dart}|final squares = [Square(key: UniqueKey()),Square(key: UniqueKey())]| the example works again as expected. The~full example code is available as~before within appendix.
+However, if the~\verb|Square| becomes \textit{StatefulWidget}~(\Cref{listing:keys_square_stateful}) and the~button is clicked, it seems like nothing happened -- squares stay on the same place. When the~widget is marked to rebuilt, it walks through \textit{Elements} and if the~widget type and the~\textit{Key} match, the~\textit{Element} updates its reference to new Widget. In the~case of \textit{StatefulWidget}, the~associated state is linked to the~\textit{Element} object~(\Cref{fig:keys_start}). When squares are shifted, the~\textit{Element} is marked as dirty. It walks through square's \textit{StatefulElement} and checks if the~widget type and the~\textit{Key} match. They match because no \textit{Keys} are assigned to them. Hence, the~\textit{Element} updates its widget reference, but the~associated state remains the~same~(\Cref{fig:keys_wrong}). 
+The~key is to add \textit{Key}. There are several types of Keys such as \textit{ValueKey}, where some unique value can be assigned (for example article's id). For \verb|Square| example, the~\textit{UniqueKey} which generates unique identification is enough for usage.  After the~\textit{Keys} are assigned, \mint{dart}|final squares = [Square(key: UniqueKey()),Square(key: UniqueKey())]| the example works again as expected. The~full example code is available as~before within appendix.
 
 The keys should be put to the most top widget, which is used as a~root widget of collection. Otherwise, the rebuilding algorithm fails once again, and wrong behaviour will occur. In practice, \textit{Key} should be used when stateful widgets are used within collections (such as \textit{ListView}, \textit{Row} or \textit{Column}) and they are manipulated -- moved, removed and similar. Moreover, sometimes the \textit{GlobalKey} can be used to manage some widget's state ``outside''. This approach is often used with managing text inputs. 
 % --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- #
