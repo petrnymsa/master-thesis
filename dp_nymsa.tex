@@ -29,6 +29,13 @@
 \usepackage{minted} % code highlight
 \usemintedstyle{friendly}
 
+% FIX https://tex.stackexchange.com/questions/343494/minted-red-box-around-greek-characters
+\makeatletter
+\AtBeginEnvironment{minted}{\dontdofcolorbox}
+\def\dontdofcolorbox{\renewcommand\fcolorbox[4][]{##4}}
+\makeatother
+% ----------------------------------
+
 % % list of acronyms
 \usepackage[acronym,nonumberlist,toc,numberedsection=autolabel]{glossaries}
 \iflanguage{czech}{\renewcommand*{\acronymname}{Seznam pou{\v z}it{\' y}ch zkratek}}{}
@@ -46,7 +53,7 @@
 
 \setlength{\fboxsep}{0.005pt}
 \newcommand{\tmpframe}[1]{\fbox{#1}}
-%\renewcommand{\tmpframe}[1]{#1} ENABLE WHEN PRINTING
+\renewcommand{\tmpframe}[1]{#1} % ENABLE WHEN PRINTING
 
 
 \newcommand{\newpara}
@@ -71,15 +78,11 @@
 \author{Petr Nymsa} %jméno autora bez akademických titulů
 \supervisor{Ing. David Šenkýř}
 
-\acknowledgements{I would like to thank my supervisor \textit{Ing. David Šenkýř} for his guidance and valuable advices. Sincere gratitude belongs to my partner and family for their support during work on this thesis.}
+\acknowledgements{I would like to thank my supervisor \textit{Ing. David Šenkýř} for his guidance and~valuable advices. Sincere gratitude belongs to my partner and~family for their support during work on this thesis.}
 
-\abstractCS{Práce se zabývá využitím multiplatformního frameworku Flutter pro tvorbu jak mobilních, webových tak i desktop aplikací. Hlavním tématem je jeho fungování a~použitelnost při tvorbě aplikací. Flutter je prakticky vyzkoušen na návrhu~a~implementaci aplikace Coffee Time pro operační systém Android. Coffee Time uživatelům pomáhá vyhledávat kavárny v~blízkém okolí s~možností filtrování dle různých kritérií.
+\abstractCS{Práce se zabývá využitím multiplatformního frameworku Flutter pro tvorbu mobilních, webových tak i~desktop aplikací. Hlavním tématem práce framework Flutter a~jeho použitelnost při tvorbě aplikací. Flutter je prakticky vyzkoušen na návrhu~a~implementaci aplikace Coffee Time pro operační systém Android. Coffee Time uživatelům pomáhá vyhledávat kavárny v~blízkém okolí s~možností filtrování dle různých kritérií.}
 
-Práce je zaměřena především na využití frameworku, následný návrh a~implementaci ukázkové aplikace.}
-
-\abstractEN{A~thesis is focused on multiplatform framework Flutter for creating mobile, web and desktop applications. The~main topic is how the~framework works and its usability during application development. In practice, Flutter is used to design and implement a~Coffee Time application for Android devices. Coffee Time helps users to search nearby cafes with filtering by different criteria. 
-
-The~thesis is focused mainly on Flutter framework, analysis and implementation of the~Coffee Time application.}
+\abstractEN{A~thesis is focused on multi-platform framework Flutter for creating mobile, web and desktop applications. The~main topic is Flutter framework and its usability during application development. In practice, Flutter is used to design and implement a~Coffee Time application for Android devices. Coffee Time helps users to search nearby cafes with filtering by different criteria.}
 
 \placeForDeclarationOfAuthenticity{Prague}
 \declarationOfAuthenticityOption{4} %volba Prohlášení //TODO
@@ -90,7 +93,7 @@ The~thesis is focused mainly on Flutter framework, analysis and implementation o
 %volitelná URL práce, objeví se v tiráži
 % \website{https://github.com/petrnymsa/coffee-time/} 
 
-
+% \sloppy % hack for \verb overflow
 \begin{document}
 
 % Acronyms and glossary
@@ -133,18 +136,17 @@ The~thesis is focused mainly on Flutter framework, analysis and implementation o
 %\chapter{Seznam použitých zkratek}
 \printglossaries
 
-\chapter{Content of enclosed CD \todo{USB?}}
-
-Vhodným způsobem vizualizujte obsah přiloženého média. Lze použít balíček \verb|dirtree| a vytvořit např. následující výstup (adresáře src a text s~příslušným obsahem jsou \emph{povinné}):
+\chapter{Content of Enclosed CD}
 
 \begin{figure}
 	\dirtree{%
-		.1 readme.txt\DTcomment{brief content description}.
+		.1 README.txt\DTcomment{brief content description}.
 		.1 src.
-		.2 impl\DTcomment{thesis source code}.
+		.2 app\DTcomment{Coffee Time source code}.
+		.2 examples\DTcomment{Examples source code}.
 		.2 thesis\DTcomment{thesis text \LaTeX{} source code}.
 		.1 text.
-		.2 thesis.pdf\DTcomment{Thesis text in PDF form}.
+		.2 thesis.pdf\DTcomment{Thesis text in PDF format}.
 		.1 prototype.
 		.2 lofi.pdf\DTcomment{Low Fidelity clickable prototype}.
 	}

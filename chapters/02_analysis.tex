@@ -8,7 +8,6 @@ Coffee Time is an application focused on searching nearby cafes. Users should be
 Added value to this standard information is a feature so-called ``the tags''. These tags are user-added additional info which describes more precisely what given cafe offer or for instance if that cafe allows pets inside. 
 
 The set of tags is defined, and users can add these tags to the~cafe.  Each tag can be reviewed by other users. These reviews are done through ``like'' and ``dislike'' functionality. The~purpose of tag's reviews is to prevent outdated or misleading information.  
-
 The example of such review can be ``User visited cafe which has tag 'dog friendly', but unfortunately this information was incorrect. Consequently, the~user decided to open the~application and review the~cafe's tag 'dog friendly' with dislike.''
 
 Together with likes and dislikes, each tag has a computed score.  Each like gives to score plus one and as an opposite, dislike minus one. 
@@ -20,7 +19,7 @@ The application is location-based and offers a map view to support the~convenien
 In conclusion, Coffee Time is application focused on one domain -- searching nearby cafes in order to know where to~go to~study, talk with friends or~for example have a great coffee. The application should be simple to use with a clean user interface. 
 % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- %
 \section{Use Cases}
-From the specification above, the use cases and use case scenarios were formed. The~use cases diagram is listed in \Cref{fig:use_case} and shows every use cases from the~user perspective. Technically there is the role of application administrator who can check control back-end or available application's tags, but it is skipped due to the lack of importance from application perspective. 
+From the specification above, the use cases and use case scenarios were formed. The~use cases diagram is listed in \Cref{fig:use_case} and shows every use case from the~user perspective. Technically there is the role of application administrator who can check control back-end or available application's tags, but it is skipped due to the lack of importance from application perspective. 
 
 \begin{figure}[htp]
     \centering
@@ -53,7 +52,7 @@ An user can display nearby cafes in the~form of the list view. The~result is fil
 
 \begin{enumerate}
     \item An user launch Coffee Time and lands on cafe list.
-    \item Cafe list shows nearby cafes around him. Each cafe is displayed in the form of a card.
+    \item Cafe list shows nearby cafes around him. Each cafe is displayed in the~form of a~card.
     \item An user can pull the list down to refresh results. 
     \item An user taps on cafe's card and is redirected to the detail view.
 \end{enumerate}
@@ -62,7 +61,7 @@ An user can display nearby cafes in the~form of the list view. The~result is fil
 
 % -------------
 
-\subsection{UC2: Display Nearby Cafes as Map}
+\subsection{UC2: Display Nearby Cafes As a Map}
 An user can display nearby cafes in the form of the map view. Each cafe is shown as a map marker.
 \newpara
 \noindent  \textbf{Pre-Conditions} The user must be on the map screen.
@@ -98,7 +97,7 @@ This use case allows starting navigation to selected cafe through native navigat
 \noindent \textbf{Alternative Flow 1} The user dismisses navigation request and cancels navigation.
 
 % -------------
-\subsection{UC4: Toggle Cafe as a Favourite}
+\subsection{UC4: Toggle Cafe As a Favourite}
 Each cafe can be marked as a favourite to faster future access. 
 
 \newpara
@@ -342,7 +341,7 @@ Target audience is anyone who wants to try new restaurants or someone who is loo
 \subsection{Google Maps}
 Popular worldwide map service by \textit{Google}. One of the world's biggest database of places, including restaurants. 
 \textit{Google maps} for each business, establishment displays additional info such as user reviews, photos, prices. 
-Within Android system is already installed. Nearby places can be searched directly from the map.
+Within Android system is already installed. Nearby places can be searched directly from the~map.
 
 % \begin{figure}[ht]
 %     \centering
@@ -379,7 +378,7 @@ Restu                             & Everyone                               & Bad
 Zomato                            & Everyone                               & Good                            \\ \hline
 Google                            & Everyone                               & Great but complex              \\ \hline
 \end{tabular}
-\caption{Analysed Applications \gls{ui} Summarization.}
+\caption{Analysed Applications User Interface Summarization.}
 \label{table:app-analysis}
 \end{table}
 
@@ -393,7 +392,7 @@ In the early stages, \gls{lofi} prototype is typically created. With \gls{lofi},
 
 To be more precise, according to \cite{adobe-prototype}, \gls{lofi} prototype is a~way to translate high-level concepts into tangible and testable artefacts. The most significant  functionality of \gls{lofi} prototypes is to check and test the functionality of the~product before visual appearance. Advantage of \gls{lofi} is that it is inexpensive, fast way to propose prototype. On the other hand, \gls{lofi} lacks complexity and cannot supply advanced interactivity. \gls{lofi} should be used to quickly create a prototype and get user feedback in the early stages of the creation process. 
 
-After the~\gls{lofi} prototype, the \gls{hifi} is created. This prototype appears and function as similar as possible to the actually built application. \gls{hifi} should be created on the targeted platform and behave as it is the~final product. The goal is to have more complex \gls{ui} interactivity and have better feedback from user testing. Thanks to the fact that prototype looks like a real application, user behaves more naturally and can get more precise a meaningful feedback than with \gls{lofi} prototype. 
+After the~\gls{lofi} prototype, the \gls{hifi} is created. This prototype appears and function as similar as possible to the actually built application. \gls{hifi} should be created on the targeted platform and behave as it is the~final product. The goal is to have more complex \gls{ui} interactivity and have better feedback from user testing. Thanks to the fact that prototype looks like a real application, user behaves more naturally and can give more precise, a~meaningful feedback than with \gls{lofi} prototype. 
 
 In conclusion, \gls{lofi} prototypes are tested only internally with a small number of users and can be iterated more often and faster. The \gls{hifi} should be created and tested after \gls{lofi} prototype was accepted, because the~\gls{hifi} is more expensive to create. On the other hand, \gls{hifi} gives better feedback from user testing, thus provides more valuable information.
 % --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- #
@@ -459,20 +458,20 @@ The \gls{hifi} prototype was created as Flutter application. Because of that, in
 
 \begin{figure}[htp]
     \centering
-    \includegraphics[width=0.6\textwidth]{img/analysis/hifi.jpg}
+    \includegraphics[width=0.75\textwidth]{img/analysis/hifi.jpg}
     \caption{\gls{hifi} Prototype. Cafe List (left) and Detail Screen (right).}
     \label{fig:hifi}
 \end{figure}
 % --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- #
 \subsection{Nielsen Heuristic}
-\textit{Nielsen Heuristic}~\cite{nielsen} is a usability engineering method for finding the usability problems in a user interface design so that they can be attended to as a part of an iterative design process. The heuristic evaluation involves a small set of rules and these rules should be judged by a small group of ``evaluators''.
+\textit{Nielsen Heuristic}~\cite{nielsen} is a usability engineering method for finding the usability problems in a~user interface design so that they can be attended to as a~part of an~iterative design process. The heuristic evaluation involves a small set of rules and these rules should be judged by a~small group of ``evaluators''.
 
 Following lines describe one of each of ten rules. Each description is taken from article~\cite{nielsen}.
 
 \begin{enumerate}
-    \item \textbf{Visibility of system status} -- The system should always keep users informed about what is going on through appropriate feedback within a reasonable time. 
+    \item \textbf{Visibility of system status} -- The system should always keep users informed about what is going on through appropriate feedback within a~reasonable time. 
     
-    \item \textbf{Match between system and the real world} -- The system should speak the users' language, with words, phrases and concepts familiar to the user, rather than system-oriented terms. Follow real-world conventions, making information appear in a natural and logical order.
+    \item \textbf{Match between system and the real world} -- The system should speak the users' language, with words, phrases and concepts familiar to the user, rather than system-oriented terms. Follow real-world conventions, making information appear in a~natural and logical order.
     
     \item \textbf{User control and freedom} -- Users often choose system functions by mistake and will need a clearly marked "emergency exit" to leave the unwanted state without having to go through an extended dialogue. Support undo and redo.
     
@@ -492,7 +491,7 @@ Following lines describe one of each of ten rules. Each description is taken fro
 \end{enumerate}
 % --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- &
 \subsubsection{Coffee Time Evaluation}
-During \textit{MI-NUR} lecture, the above-described heuristic was evaluated against \gls{hifi} prototype. Each screen was taken individually and judged with all rules. Note that only found rules violation are described for each screen.
+During \textit{MI-NUR} lecture, the above-described heuristic was evaluated against \gls{hifi} prototype. Each screen was taken individually and judged with all rules. Note that only found rule violations are described for each screen.
 
 \begin{itemize}
     \item Cafe list
@@ -538,7 +537,7 @@ The description of test case scenarios, along with established issues, follows. 
 An user visits his favourite cafe and he would like to add this Cafe to his favourite list. 
 \begin{itemize}
     \item \textbf{Goal} -- Add Cafe to favourites.
-    \item \textbf{Expected behaviour}
+    \item \textbf{Expected Behaviour}
     \begin{enumerate}
         \item An user is located on the cafe list screen. The targeted cafe is displayed.
         \item An user clicks on the heart icon located in top right corner of the cafe's tile. 
@@ -551,7 +550,7 @@ An user visits his favourite cafe and he would like to add this Cafe to his favo
 An user has selected cafe and wants to navigation to the cafe's location.
 \begin{itemize}
     \item \textbf{Goal} -- Start navigation.
-    \item \textbf{Expected behaviour}
+    \item \textbf{Expected Behaviour}
     \begin{enumerate}
         \item An user is located on the cafe list screen. The targeted cafe is displayed.
         \item An user clicks on the navigation icon located in top left corner of the cafe's tile. 
@@ -562,10 +561,10 @@ An user has selected cafe and wants to navigation to the cafe's location.
         \item Three different icons used to start navigation. Icon is different on the cafe list from icon within detail screen.
         \item In the detail screen, it is not clear that icon can start navigation.
     \end{enumerate}
-    \item \textbf{Proposed solution}
+    \item \textbf{Proposed Solution}
     \begin{enumerate}
         \item Use same icon everywhere.
-        \item The same problem stated in the Nielsen heuristic evaluation. The icon should be highlighted. Can be added ``elevation''~\cite{material-design-elevation} -- shadow under the component to provide depth. 
+        \item The same problem stated in the Nielsen heuristic evaluation. The~icon should be highlighted. Can be added ``elevation''~\cite{material-design-elevation} -- shadow under the component to provide depth. 
     \end{enumerate}
 \end{itemize}
 % --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- &
@@ -573,7 +572,7 @@ An user has selected cafe and wants to navigation to the cafe's location.
 An user is interested in cafes where they offer beside the coffee has also beer.
 \begin{itemize}
     \item \textbf{Goal} -- Filter Cafes that has ``beer'' tag.
-    \item \textbf{Expected behaviour}
+    \item \textbf{Expected Behaviour}
     \begin{enumerate}
         \item On the cafe list screen, an user selects filter icon to open filter screen.
         \item Within filter screen, an user selects to filter by tags and choose ``beer''.
@@ -586,7 +585,7 @@ An user is interested in cafes where they offer beside the coffee has also beer.
         \item The filter icon is unclear.
         \item ``If the user is located on the detail screen, clicking on the tag icon should set the~ filter.'' 
     \end{enumerate}
-    \item \textbf{Proposed solution}
+    \item \textbf{Proposed Solution}
     \begin{enumerate}
         \item The filter icon is standardised icon. 
         \item Clicking on tag should set the filter. 
@@ -597,7 +596,7 @@ An user is interested in cafes where they offer beside the coffee has also beer.
 An user visits regularly cafe which is friendly to dog owners. The user found out that this information is missing in the application. 
 \begin{itemize}
     \item \textbf{Goal} -- The user suggests tag ``dog friendly'' or similar for the cafe. 
-    \item \textbf{Expected behaviour}
+    \item \textbf{Expected Behaviour}
     \begin{enumerate}
         \item An user selects cafe and opens detail screen.
         \item An user clicks on ``suggest change''.
@@ -610,7 +609,7 @@ An user visits regularly cafe which is friendly to dog owners. The user found ou
 An user visits regularly cafe which has mistaken information about ``available parking''. He would like to inform about this wrong tag. 
 \begin{itemize}
     \item \textbf{Goal} -- The user should review ``parking'' with dislike. 
-    \item \textbf{Expected behaviour}
+    \item \textbf{Expected Behaviour}
     \begin{enumerate}
         \item An user selects cafe and opens detail screen.
         \item An user clicks on ``suggest change''.
@@ -623,7 +622,7 @@ An user visits regularly cafe which has mistaken information about ``available p
 An user wants find the most popular cafe around him. 
 \begin{itemize}
     \item \textbf{Goal} -- The user change ordering from ``by distance'' to ``by popularity''.
-    \item \textbf{Expected behaviour}
+    \item \textbf{Expected Behaviour}
     \begin{enumerate}
         \item An user opens filter screen.
         \item An user changes to ordering by popularity.
@@ -659,7 +658,7 @@ To access these services, the Google~API~Key must be obtained~\cite{google-place
 % --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- #
 \subsection{Google Places API}
 The Google Places API returns plenty of information about each place, but the application uses an only subset of available information. The application makes usage of four available services -- Find a place, Nearby search, Place detail and Place photos. Some parameters are the same for each service, and the output of each service is similar. 
-Each place has several fields such as name, address, location, rating and much more. However, not every field is used in the application, and it is not necessary to obtain these fields in the response. On top of that, each field is included in the pricing category. That means that some of the fields are more expensive to obtain than others~\cite{google-places-api-billing}. It was important to analyse which fields are essential to get before the API model could be created. Following lines summarise each API usage, its parameters, fields and expected output.
+Each place has several fields such as name, address, location, rating and much more. However, not every field is used in the application, and it is not necessary to obtain these fields in the~response. On top of that, each field is included in the~pricing category. That means that some of the~fields are more expensive to obtain than others~\cite{google-places-api-billing}. It was important to analyse which fields are essential to get before the~API model could be created. Following lines summarise each API usage, its parameters, fields and expected output.
 % --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- &
 \subsubsection{Find Place}
 The purpose of this service is to find places based on the text-based query or custom location. \Cref{table:gapi-find-place-params} describes each used parameter. \Cref{table:gapi-find-place-fields} describes each expected field in the response. 
@@ -773,16 +772,16 @@ The \gls{gpa} can respond with \textit{JSON} or \textit{XML} format. The \textit
    "status": "OK"
 }
 \end{minted}
-\caption{Nearby Search Example Output (shortened).}
+\caption{Nearby Search Example Output (Shortened).}
 \label{listing:gapi-example-response}
 \end{listing}
 
 The \textit{Find Place}, \textit{Nearby Search} and \textit{Place Details} has similar response format where \verb|<status>| indicates response code because \gls{gpa} for each request always responds with HTTP status code 200~OK. The status field can have several values such as \verb|OK| for successful request, \verb|ZERO_RESULTS| for empty results or \verb|INVALID_REQUEST| for general invalid request. Each service has different result field name -- \verb|candidates| for \textit{Find Place}, \verb|results| for \textit{Nearby Search} and~\verb|result| for \textit{Place Details}. An~example output is shown~in~\Cref{listing:gapi-example-response}.
 % --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- &
 \subsubsection{Place Photos}
-Each place can have photos. The response from \textit{Find Place} or \textit{Nearby Search} contains \verb|photo_reference| along with width and height of the photo. For~obtaining actual photo itself, the~\textit{Place Photos} endpoint must be called. The~endpoint accepts as always the \verb|key| (API key) and \verb|photo_reference|. The~result can be altered with parameters for maximal width or height. Returns byte-encoded image if the request was successful otherwise HTTP status code ``\textit{400 Bad Request}'' or ``\textit{403 Forbidden}'' if the quota limit was reached. 
+Each place can have photos. The response from \textit{Find Place} or \textit{Nearby Search} contains \verb|photo_reference| along with width and height of the photo. For~obtaining actual photo itself, the~\textit{Place Photos} endpoint must be called. The~endpoint accepts as always the~\verb|key| (API key) and \verb|photo_reference|. The~result can be altered with parameters for maximal width or height. Returns byte-encoded image if the~request was successful otherwise HTTP status code \textit{400~Bad Request} or \textit{403~Forbidden} if the quota limit was reached. 
 
-Although Google Places API returns plenty of information about each place, one added benefit of the Coffee Time application is user suggested tags. This requirement cannot be fulfilled only with Places API, so there is a requirement for another, custom, API. 
+Although Google Places API returns plenty of information about each place, one added benefit of the Coffee Time application is tags suggested bu the~users. This requirement cannot be fulfilled only with Places API, so there is a~requirement for another, custom, API. 
 % --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- #
 \subsection{Coffee Time API}
 The~\gls{cta} will be used for two main functionalities. First of all, it will provide access to Google Places API and secondly, it will be used for getting assigned tags for cafes. While it is possible to use \gls{gpa} directly from the mobile application (client), it would lead to the~need for another request to obtain the~cafe's tags and another possible required custom information. Hence, if custom API is used as a~proxy to~\gls{gpa}, with one request to this API, the response can be modified with additional data and returned at~once. \Cref{fig:api-communication} shows such a~communication. 
@@ -811,7 +810,7 @@ The~\gls{cta} will be used for two main functionalities. First of all, it will p
     \label{fig:tag-cafe-relation}
 \end{figure}
 
-The set of available tags is predefined, with the requirement to be able to change it any time without changes within the client or in~the API. Each tag has a~title and an icon and can be translated into another language. This definition and requirement for no changes within the client imply that used icon has to be part of tag's definition in the~\gls{cta}. To sum up, each tag is an entity with a unique title, icon and translation. 
+The set of available tags is predefined, with the requirement to be able to change it any time without changes within the client or in~the API. Each tag has a~title and an icon and can be translated into another language. This definition and requirement for no changes within the client imply that used icon has to be part of tag's definition in the~\gls{cta}. To sum up, each tag is an~entity with a~unique title, icon and translation. 
 
 As was said earlier in this chapter, each cafe can have assigned tags. Each assigned tag is reviewed by users with the concept of ``likes'' and ``dislikes''.  This requirement implies that for each cafe is needed to be known assigned tags and their reviews. This relation is shown in~\Cref{fig:tag-cafe-relation}.
 % --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- &
@@ -846,7 +845,7 @@ The~\textit{Firebase} by~\textit{Google} is collection of services which helps t
 \textit{Cloud Firestore} is a flexible, scalable database for mobile, web, and server development. It keeps data in sync across client apps through realtime listeners and offers offline support for mobile and web. The \textit{Cloud Firestore} uses NoSQL data model. The data are stored in documents that contain fields mapping to values. These documents are stored in collections, which are containers for documents that are used to organize data. Documents support many different data types, from simple strings and numbers, to complex, nested objects. Documents can include subcollections and build hierarchical data structures that scale as database grows~\cite{cloud-firestore}.
 % --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- &
 \subsubsection{Cloud Functions}
-\textit{Cloud Functions} for \textit{Firebase} is a serverless framework that lets automatically run backend code in response to events triggered by Firebase and HTTPS requests. After function is deployed, Google's servers begin to manage the function immediately. The~function can be used directly with an HTTP request. Each function runs in isolation, in its own environment with its own configuration and are scaled accordingly to usage load~\cite{cloud-functions}. 
+\textit{Cloud Functions} for \textit{Firebase} is a serverless framework that lets automatically run backend code in response to events triggered by \textit{Firebase} and HTTPS requests. After function is deployed, Google's servers begin to manage the function immediately. The~function can be used directly with an HTTP request. Each function runs in isolation, in its own environment with its own configuration and are scaled accordingly to usage load~\cite{cloud-functions}. 
 % --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- &
 \subsubsection{Firebase Authentication}
 \textit{Firebase Auth} offers service to secure application with \textit{OAuth~2.0} standard~\cite{oauth}. It automatically integrates with identity providers such as \textit{Google}, \textit{Microsoft}, \textit{Facebook} and more. Besides that it offers standard authentication through user's email or phone~\cite{cloud-auth} and anonymous authentication where for each user randomly generated identifier is used. The~service guarantees that for each user, as long they use the same device, the identifier stays the same. 
@@ -856,4 +855,4 @@ The~\textit{Cloud Functions} can be used to build Coffee Time API. The~\textit{C
 
 % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- %
 \section{The Conclusion}
-In this chapter, the considered application Coffee Time was introduced. The analysis of existing alternatives was made to obtain inspiration for how each application behaves. The prototype was created to propose user interface and tested it with users. In the end, the analysis of Coffee Time API was made along with analysis of chosen technology to build this API.
+In this chapter, the considered application Coffee Time was introduced. The~analysis of existing alternatives was made to obtain inspiration for how each application behaves. The~prototype was created to propose user interface and tested it with users. In the~end, the~analysis of Coffee Time API was made along with analysis of chosen technology to build this API.

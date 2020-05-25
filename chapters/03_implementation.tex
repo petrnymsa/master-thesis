@@ -1,6 +1,6 @@
 \chapter{Implementation}
 \label{ch:implementation}
-When the Coffee Time specification was created and the prototype was tested, the implementation itself could begin. In this chapter, the implementation details are covered. In the beginning, the proposed architecture of the application is introduced and explained. Next section describes how the Coffee Time API is designed and implemented. Which framework for creating REST API was chosen and how it can be connected to Firebase services. Detailed section of the mobile application implementation follows. In this section, used techniques and packages are described to achieve desired functionality. 
+When the Coffee Time specification was created and the prototype was tested, the implementation itself could begin. In this chapter, the implementation details are covered. In the beginning, the proposed architecture of the application is introduced and explained. Next section describes how the Coffee Time API is designed and implemented. Which framework for creating REST~API was chosen and how it can be connected to \textit{Firebase} services. Detailed section of the mobile application implementation follows. In this section, used techniques and packages are described to achieve desired functionality. 
 % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- %
 \section{Clean Architecture}
 In order to have easy to write, maintainable and testable code, some overall architecture should be considered. The~architecture should follow these rules: 
@@ -18,7 +18,7 @@ In order to have easy to write, maintainable and testable code, some overall arc
     \label{fig:clean-arch-bmartin}
 \end{figure}
 
-There are several attempts and approaches on how to design such architecture~\cite{clean-architecture-article}. The inspiration for chosen architecture comes from Clean Architecture, initially proposed by \textit{Bob Martin}~\cite{clean-architecture-book}. In the basic form the clean architecture (\cref{fig:clean-arch-bmartin}) consists of four layers organised as circles. Architecture defines dependency rule where each layer should be dependent only on the inner circles. Accordingly to B. Martin~\cite{clean-architecture-article} layers can be described as:  
+There are several attempts and approaches on how to design such architecture~\cite{clean-architecture-article}. The inspiration for chosen architecture comes from Clean Architecture, initially proposed by \textit{Bob C. Martin}~\cite{clean-architecture-book}. In the~basic form the clean architecture (\cref{fig:clean-arch-bmartin}) consists of four layers organised as circles. Architecture defines dependency rule where each layer should be dependent only on the~inner circles. Accordingly to \textit{Bob C. Martin}~\cite{clean-architecture-article} layers can be described as:  
 
 \begin{quote}
 \textbf{Entities} encapsulate Enterprise-wide business rules. These entities, which can be simple objects or hierarchical structure of objects are the least likely to change when something external changes.
@@ -33,10 +33,10 @@ There are several attempts and approaches on how to design such architecture~\ci
 This architecture was chosen for its simplicity of dependencies, easy testability and extendability. 
 % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- %
 \section{Coffee Time API}
-The Coffee Time API is served through Firebase Cloud Functions services . Each function can run the backend code in response to events triggered by Firebase features and HTTPS requests. Functions can be written with JavaScript or Typescript language. For implementation, the Typescript was chosen due to the safer typing system, and due to the fact, that author has more experience with Typescript than with plain JavaScript. 
+The Coffee Time API is served through \textit{Firebase Cloud Functions} services. Each function can run the~backend code in response to events triggered by \textit{Firebase} features and~HTTPS requests. Functions can be written with \\\textit{JavaScript} or \textit{Typescript} language. For implementation, the~\textit{Typescript} was chosen due to the safer typing system, and due to the fact, that author has more experience with \textit{Typescript} than with plain \textit{JavaScript}. 
 
-Functions are written under Node.js~\cite{node-js}, and every function that is exported is considered as ``Cloud function'' and can be accessed through HTTPS request. This can be used to build fully functional REST API. For the implementation, Express.js framework~\cite{express-js} was selected as popular and easy to use solution. Developers define routes, which HTTP method can be used and how the request should be processed. 
-Express.js has a simple yet powerful mechanism of middlewares, where each request can be pre-processed before sending to the next processing. For example, it can be used to check if the user is authorised to make the request. With this setup, nothing prevented to create Coffee Time API. Furthermore, as~Express.js allows to define REST API, only one cloud function can be exported -- ``the api'' function. All requests are processed through this function. However, before implementation itself, it had to be defined what API will offer and how it can be consumed. 
+Functions are written under \textit{Node.js}~\cite{node-js}, and every function that is exported is considered as ``Cloud function'' and can be accessed through HTTPS request. This can be used to build fully functional REST API. For the implementation, \textit{Express.js} framework~\cite{express-js} was selected as popular and easy to use solution. Developers define routes, which HTTP method can be used and how the request should be processed. 
+\textit{Express.js} has a simple yet powerful mechanism of middlewares, where each request can be pre-processed before sending to the next processing. For example, it can be used to check if the user is authorised to make the request. With this setup, nothing prevented to create Coffee Time API. Furthermore, as~\textit{Express.js} allows to define REST~API, only one cloud function can be exported -- ``the api'' function. All requests are processed through this function. However, before implementation itself, it had to be defined what API will offer and how it can be consumed. 
 % --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- #
 \subsection{The API Endpoints}
 The API has endpoints divided into three categories -- places, tags and photos. As a~client is considered to be multilingual, the API is too. The Places API accepts, as was described earlier, language parameter to specify how the response should be localised. The API is designed with language parameter as a mandatory part of the~URL for places related requests. The tags category has endpoints for obtaining and manipulating tags. Lastly, photo category gives access to downloading the place's photo. Every response coming from \gls{gpa} which returns places are modified such that each ``place'' entry contains additional \verb|tags| field which is an~array of the~\verb|tag| model. 
@@ -114,19 +114,19 @@ The~\cref{table:cta-find-params} describes \textit{find} parameters. The \verb|l
 \label{listing:tag-update-post}
 \end{listing}
 
-\Cref{table:cta-tags} describes all endpoints related to \textit{tags}. The POST request to \verb|/tags/<place_id>| should have a~body with array of \textit{TagUpdate} model. The example is listed in~\cref{listing:tag-update-post} where \verb|id| contains tag id and \verb|change| contains value of \verb|like| or \verb|dislike| which corresponds with increasing (decreasing) tag's score. 
+\Cref{table:cta-tags} describes all endpoints related to \textit{tags}. The POST request to \verb|/tags/<place_id>| should have a~body with array of \textit{TagUpdate} model. The~example is listed in~\cref{listing:tag-update-post} where \verb|id| contains tag id and \verb|change| contains value of \verb|like| or \verb|dislike| which corresponds with increasing (decreasing) tag's score. 
 % --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- #
 \subsection{Express.js Pipeline}
 Express.js framework has a powerful and configurable way how to process incoming request. Every request can be processed through functions, called middlewares, before sent to a router. The router is a set of functions which maps part of URL with HTTP method to trigger response to the incoming request. Together it creates a flexible way of developing any form of a web-server or in case of Coffee Time API a REST API. 
 
-Middleware functions can execute any code, make changes to the request (or to the response), end the request-response cycle or call next middleware~\cite{express-js-middleware}. The~function accepts three parameters -- \verb|req|, \verb|res| and \verb|next|. \verb|Req| is a request object containing all information related to the incoming request. The \verb|res| is a response object which can be used to alter the response, and \verb|next| is the callback function to trigger next middleware. In case of the Coffee Time API, three middlewares are used to process every incoming request.
+Middleware functions can execute any code, make changes to the request (or to the response), end the request-response cycle or call next middleware~\cite{express-js-middleware}. The~function accepts three parameters -- \verb|req|, \verb|res| and \verb|next|. \verb|Req| is a request object containing all information related to the incoming request. The \verb|res| is a response object which can be used to alter the response, and~\verb|next| is the~callback function to trigger next middleware. In case of the Coffee Time API, three middlewares are used to process every incoming request.
 
 First middleware check and parse request body (if any provided) in JSON format. JSON format was chosen as a~primary format for communication with Google Places API, the \gls{cta} forces JSON format to every request which contains the body. Next middleware logs each incoming request to the cloud functions. Each log message contains issued HTTP method, requested URL and sent body if present. Last middleware authorises incoming request against Firebase Authentication Service.
 
 \subsubsection{Authorisation Middleware}
-Each request to the API has to be authorised against Firebase Authentication services. The authorisation process uses a~\gls{jwt} open standard~\cite{jwt-intro}. Each request has to include Authorisation header with ``Bearer token'' obtained earlier from Firebase Authentication. 
+Each request to the API has to be authorised against Firebase Authentication services. The~authorisation process uses a~\gls{jwt} open standard~\cite{jwt-intro}. Each request has to include Authorisation header with ``Bearer token'' obtained earlier from \textit{Firebase Authentication}. 
 
-If authorisation header is missing, the request is ended, and response with status code \textit{HTTP~403 Forbidden} is sent back. In case the token is provided, it is checked against Firebase Authentication service. If the token is valid, the user information is obtained, and the request is sent to next middleware. If token validation failed, response with status code \textit{HTTP~401 Unauthorized} is sent. The~implementation of this middleware is shown at~\Cref{listing:cta-auth-middleware}.
+If authorisation header is missing, the request is ended, and response with status code \textit{HTTP~403 Forbidden} is sent back. In case the~token is provided, it is checked against Firebase Authentication service. If the token is valid, the user information is obtained, and the request is sent to next middleware. If token validation failed, response with status code \textit{HTTP~401 Unauthorized} is sent. The~implementation of this middleware is shown at~\Cref{listing:cta-auth-middleware}.
 
 \begin{listing}[ht]
 \begin{minted}{js}
@@ -187,7 +187,7 @@ export const api = firebase.region('europe-west1')
 \end{listing}
 
 \subsection{Integration with Firestore}
-In order to have access to Firestore storage and to authorise tokens, a \textit{Firebase Admin SDK} is used to communicate with Firebase services. To be able to use SDK, a~\verb|google-services.json| file has to be provided. This file contains all required information to have access to the Firebase. Note that, this file contains sensitive information and should not be committed to the version control. \Cref{fig:cta-relations} shows how the request is processed and the relation between Express.js modules with \textit{Firebase Admin SDK}.
+In order to have access to Firestore storage and to authorise tokens, a~\textit{Firebase Admin SDK} is used to communicate with Firebase services. To be able to use SDK, a~\verb|google-services.json| file has to be provided. This file contains all required information to have access to the Firebase. Note that, this file contains sensitive information and should not be committed to the version control. \Cref{fig:cta-relations} shows how the request is processed and the relation between Express.js modules with \textit{Firebase Admin SDK}.
 
 \begin{figure}[ht]
     \centering
@@ -203,7 +203,7 @@ Firebase Cloud Functions can be deployed to different physical areas such as \te
 
 % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- %
 \section{Coffee Time}
-For Coffee Time purposes, the architecture was slightly simplified and is made from three layers -- domain, data and presentation. The domain layer encapsulates all domain entities and defines contracts for repositories. This layer corresponds with ``Entity'' layer from Clean Architecture. Next, the Data layer encapsulates all external communication such as API requests or location services. This layer also defines data models which are passed down to the repositories where data are processed and transformed to domain entities. Data layer corresponds with \textit{Interface Adapters}. The presentation layer is responsible for describing the user interface and interacts with \gls{bloc} objects where the business logic is encapsulated.
+For Coffee Time purposes, the architecture was slightly simplified and is made from three layers -- domain, data and presentation. The domain layer encapsulates all domain entities and defines contracts for repositories. This layer corresponds with ``Entity'' layer from Clean Architecture. Next, the~Data layer encapsulates all external communication such as API requests or location services. This layer also defines data models which are passed down to the repositories where data are processed and transformed to domain entities. Data layer corresponds with \textit{Interface Adapters}. The presentation layer is responsible for describing the user interface and interacts with \gls{bloc} objects where the business logic is encapsulated.
 
 This section describes each layer -- its implementation details and how it is used with other layers.  
 % --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- #
@@ -213,7 +213,7 @@ Domain Layer defines every entity used by the application, definition of reposit
 One of important requirements of the Presentation layer and overall Flutter's philosophy is immutability. Hence, the domain entities are designed as immutable objects. Another requirement is object equality. By default, Dart compare objects by identity -- two objects are same instance, they are considered as identical (equal). In order to have fully functional application, it is necessary to override default equality behaviour to comparison by object properties. 
 
 \subsubsection{Equatable Package}
-If the default equality behaviour has to be changed, the \verb|==| operator and \verb|hashCode| getter have to be overridden~\cite{dart-equality}.
+If the default equality behaviour has to be changed, the \verb|==| operator and~\verb|hashCode| getter have to be overridden~\cite{dart-equality}.
 Even with small classes, this work becomes quickly tedious and can leads to unnecessary bugs for example when some property is added and developer forgot to update these overrides. Therefore in case of complex classes the amount of bugs only increases. 
 
 \textit{Equatable} package~\cite{package-equatable} (developed by \textit{F. Angelov}) was created to simplify creating immutable classes with proper equality implementation. Class which needs to implement equality has to extend \verb|Equatable| base class provided by the package. Then it is needed to override \verb|props| getter where all class properties are listed. With that setup, equatable package internally provides proper equality comparison. This package is used to for all entities and classes which needed proper equality implementation. An example of its usage is shown in~\Cref{listing:ct-opening-hour-entity}, which is \verb|OpeningHours| entity implementation. 
@@ -286,7 +286,7 @@ Future<Either<List<Tag>, Failure>> getAll() async {
 \label{listing:ct-either-repo}
 \end{listing}
 
-\Cref{listing:ct-either-repo} shows how \verb|Either<L,R>| is used within \verb|TagRepository|. In case of successful operation, \verb|Left| type is returned, in this case the list of tags. If any exception occurs, the \verb|Right| type -- Failure is returned instead. The usage of such returned value is shown in~\Cref{listing:ct-either-usage}, where either \verb|List<Tag>| is returned or \verb|Failure| object instead.   
+\Cref{listing:ct-either-repo} shows how \verb|Either<L,R>| is used within \verb|TagRepository|. In~case of successful operation, \verb|Left| type is returned, in this case the list of tags. If any exception occurs, the \verb|Right| type -- Failure is returned instead. The usage of such returned value is shown in~\Cref{listing:ct-either-usage}, where either \verb|List<Tag>| is returned or \verb|Failure| object instead.   
 
 \begin{listing}[ht]
 \begin{minted}{dart}
@@ -306,7 +306,7 @@ final allTags = result.when(
 
 % --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- #
 \subsection{Data Layer}
-Purpose of layer service is to implement repositories, add services which communicates with Coffee Time API and define a models which are mapped to the responses from API. As with the repositories, the services are implemented against interfaces. This approach helps to write testable code. Repositories which use these services depend on interfaces and not on the concrete implementations. \Cref{fig:ct-repo-services} shows association between repositories and those services. 
+Purpose of layer service is to implement repositories, add services which communicates with the~Coffee Time API and define a~models which are mapped to the~responses from API. As with the~repositories, the~services are implemented against interfaces. This approach helps to write testable code. Repositories which use these services depend on interfaces and not on the~concrete implementations. \Cref{fig:ct-repo-services} shows association between repositories and those services. 
 
 \begin{figure}[ht]
     \centering
@@ -315,13 +315,13 @@ Purpose of layer service is to implement repositories, add services which commun
     \label{fig:ct-repo-services}
 \end{figure}
 
-Each service communicates with a concrete part of the Coffee Time API. The~\verb|CafeService| has methods related to obtaining nearby cafes or getting cafe detail, \verb|FavoriteService| has methods to obtain favorited cafes, \verb|PhotoService| gives access to downloading cafe's photos and \verb|TagServices| server for manipulation with tags. 
+Each service communicates with a~concrete part of the~Coffee Time API. The~\textit{CafeService} has methods related to obtaining nearby cafes or getting cafe detail, \textit{FavoriteService} has methods to obtain favorited cafes, \textit{PhotoService} gives access to downloading cafe's photos and~\textit{TagService} serves for manipulation with tags.
 
 \subsubsection{Favorite Local Service}
 Current application version uses for saving user's favorite cafes only local storage. Thanks to implementation against interface, in the future, the synchronization of favorited cafes over API can be added without breaking other parts of the~application. 
 
 \subsubsection{Cached Tag Service}
-To prevent unnecessary amount of calls to API when obtaining all tags, a caching mechanism was implemented for \textit{Tag Service}. When all tags are returned from the API, they are cached for future calls. As a whole implementation is focused on clean code implementation, maintainbality and testability, a generic \verb|CachedValue<T>| class was implemented as wrapper around cachable values. 
+To prevent unnecessary amount of calls to API when obtaining all tags, a~caching mechanism was implemented for \textit{Tag Service}. When all tags are returned from the API, they are cached for future calls. As a~whole implementation is focused on clean code implementation, maintainbality and testability, a~generic \verb|CachedValue<T>| class was implemented as wrapper around cachable values. 
 
 \begin{listing}[ht]
 \begin{minted}{dart}
@@ -357,7 +357,7 @@ The \verb|CachedValue| accepts \verb|TimeProvider| which provides current time, 
 Every response from API which contains data is mapped to \textit{model}. Model is a immutable class, similar to \textit{entity} classes except that model includes parsing from (and to) JSON format. These models are returned by services to repositories, where models are transformed into entities and returned further. Subset of models correspond with entities in one to one relationship, some other models have logic for mapping its values to the corresponding entity. 
 % --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- #
 \subsection{Representation Layer}
-The responsibility of representation layer is define user interface, connect it with BLoCs objects which communicate with repositories. How to properly organize and architect user interface within Flutter, mainly how to separate responsibilities between \gls{bloc} classes is still very subjective opinion and there is no ``best practice'' yet. However, commonly used approach is divide \gls{bloc} responsibility per ``big enough feature''. That means, identify feature of the application and separate \gls{bloc} responsibilities appropriately. Another approach is ``\gls{bloc} per screen''. This approach is well suited for smaller application. As the Coffee Time is still smaller application, second approach was chosen. Each screen has its own, separated \gls{bloc} class. Each \gls{bloc} defines states for given screen and set of events which can accept.  
+The responsibility of representation layer is to define user interface, connect it with a~BLoC objects which communicate with repositories. How to properly organize and architect user interface within Flutter, mainly how to separate responsibilities between \gls{bloc} classes is still very subjective opinion and there is no ``best practice'' yet. However, commonly used approach is divide \gls{bloc} responsibility per ``big enough feature''. That means, identify feature of the application and separate \gls{bloc} responsibilities appropriately. Another approach is ``\gls{bloc} per screen''. This approach is well suited for smaller application. As~the~Coffee Time is still relatively small application, second approach was chosen for its simplicity. Each screen has its own, separated \gls{bloc} class and each \gls{bloc} define states for given screen and set of events which can accept.  
 
 \begin{figure}[ht]
 	\dirtree{%
@@ -388,13 +388,13 @@ To connect \gls{bloc} with other widgets, \textit{flutter\_bloc} offer several w
 
 \begin{itemize}
     \item \textbf{BlocProvider} -- Provides \gls{bloc} instance down to the tree. Internally it is using \textit{Provider} package.
-    \item \textbf{BlocBuilder\textless Bloc, State\textgreater} -- Listen for changes from given Bloc and its state, which has to be provided somewhere in the parent widgets. Widget has \textit{builder} callback, where new widget based on obtained state is returned. 
-    \item \textbf{BlocListener\textless Bloc, State\textgreater} -- In order to do side effects, such as display notification, \textit{BlocListener} can be used. As \textit{BlocBuilder} is is listening for changes from Bloc and its new state. 
-    \item \textbf{BlocConsumer\textless Bloc,State\textgreater} -- Combines functionality of \textit{BlocBuilder} and \textit{BlocListener} together.
+    \item \textbf{BlocBuilder$<$Bloc, State$>$} -- Listen for changes from given \textit{Bloc} and~its state, which has to be provided somewhere in the~parent widgets. \textit{BlocBuilder} has \textit{builder} callback, where new widget based on obtained state is returned. 
+    \item \textbf{BlocListener$<$Bloc, State$>$} -- In order to do side effects, such as display notification, \textit{BlocListener} can be used. As~\textit{BlocBuilder} it is listening for changes from Bloc and its new state. 
+    \item \textbf{BlocConsumer$<$Bloc,State$>$} -- Combines functionality of \textit{BlocBuilder} and \textit{BlocListener} together.
 \end{itemize}
 
 \subsubsection{State and Events Implementation}
-Each \gls{bloc} has typically more than one state and event. To do that, the simplest approach is to define abstract class for state (event) and every specific state (event) extends this abstract class. This works well, however in the \verb|mapEventToState()| method with this approach has to be distinguished between specific types. Only one possible option is to use \verb|is| operator. Such example is shown in~\Cref{listing:ct-state-map-abstract}. 
+Each \gls{bloc} has typically more than one state and event. To do that, the~simplest approach is to define abstract class for state (event) and every specific state (event) extends this abstract class. This works well, however in the~\verb|mapEventToState()| method with this approach has to be distinguished between specific types. Only one possible option is to use \verb|is| operator. Such example is shown in~\Cref{listing:ct-state-map-abstract}. 
 
 \begin{listing}[ht]
 \begin{minted}{dart}
@@ -425,13 +425,13 @@ Same issue is with mapping states within widgets. There is better solution with 
 \subsubsection{Union Types to the Rescue}
 Union is an object containing value of different types, but allows manipulating that value with type-safety and compile time check. In fact, earlier introduced \verb|Either<L,R>| is a such union type. Package \textit{Freezed}~\cite{package-freezed}, by the same author of the \textit{Provider}, helps to do such implementation. 
 
-One popular functionality within \textit{Dart} ecosystem is code-generation and \textit{Freezed} package is no difference. In order to implement Union type, developer has to define abstract class with all possible sub-values and package will generate rest of the code. The generated class is immutable and has:
+One popular functionality within \textit{Dart} ecosystem is code-generation and \textit{Freezed} package is no difference. In order to implement union type, developer has to define abstract class with all possible sub-values and package will generate rest of the code. The generated class is immutable and has:
 
 \begin{itemize}
     \item overridden equality operators,
     \item \verb|copyWith()| method to copy object with altered properties, 
     \item \verb|map()| method to map from one possible sub-class,
-    \item \verb|when()| method to map from one possible value. Difference with \verb|map()|  is that when returns values of the sub-class, but \verb|map()| returns sub-class instance,
+    \item \verb|when()| method to map from one possible value. Difference with \verb|map()|  is that \verb|when()| returns values of the sub-class, but \verb|map()| returns sub-class instance,
     \item and has \verb|maybeMap()| and \verb|maybeWhen()| which do not force include all possible values. 
 \end{itemize}
 
@@ -472,7 +472,7 @@ Stream<CafeListState> mapEventToState(CafeListEvent event) async* {
 \label{listing:ct-event-union-usage}
 \end{listing}
 
-Union type forces compile-time check in case of \verb|map()| usage. This eliminate issue with \verb|is| operator. \Cref{listing:ct-event-union} shows \textit{CafeListEvent} definition as union type. In~\Cref{listing:ct-event-union-usage} is shown same event mapping to state but with union approach. Whenever new event is added, the compile-time error will occur as the \verb|map()| forces it.
+Union type forces compile-time check in case of \verb|map()| usage. This eliminate issue with \verb|is| operator. \Cref{listing:ct-event-union} shows \textit{CafeListEvent} definition as a~union type. In~\Cref{listing:ct-event-union-usage} is shown same events mapping to state but with union approach. Whenever new event is added, the compile-time error will occur as the \verb|map()| forces it.
 
 Similarly state mapping within CafeList Screen~(\Cref{listing:ct-state-cafe-list-union-usage}) is simplified and compile-time safe. 
 
@@ -514,17 +514,17 @@ Each screen has its own assigned \gls{bloc}, however some communication between 
 \end{figure}
 
 \section{SOLID and Dependency Injection}
-One important part of maintainable and testable code are \textit{SOLID} principles, originally designed by \textit{Bob C. Martin}~\cite{bob-martin-design-patterns}. Each letter stands for one principle: 
+One important part of maintainable and testable code are SOLID principles, originally designed by \textit{Bob C. Martin}~\cite{bob-martin-design-patterns}. Each letter stands for one principle: 
 
 \begin{enumerate}
     \item Single Responsibility Principle -- a class should only have on responsibility. That class should have one reason to change.
     \item Open Closed Principle -- a class should be open for extension, but closed for modification. 
-    \item Liskov Substitution Principle -- if class A is a subtype of class B, then it should be possible to replace B with A without disrupting the behaviour of the program. 
+    \item Liskov Substitution Principle -- if class \textit{A} is a subtype of class \textit{B}, then it should be possible to replace \textit{B} with \textit{A} without disrupting the~behaviour of the program. 
     \item Interface Segregation -- many specific interfaces are better than one general-purpose interface. In other words, split larger interfaces to smaller ones. 
     \item Dependency Inversion -- high-level modules should not depend on low-level modules. Both should depend on abstractions.
 \end{enumerate}
 
-Each class (module) within Coffee Time Application, such as repository, service or \gls{bloc} which depends on some other classes, depends on abstractions. These dependencies lists as required in class constructor. Dependency Injection mechanism is used to provide concrete implementations of each required abstraction to classes which depends on it. 
+Each class (module) within Coffee Time Application, such as repository, service or \gls{bloc} which depends on some other classes, depends on abstractions. These dependencies are listed as required in a~class constructor. Dependency Injection mechanism is used to provide concrete implementations of each required abstraction to classes which depends on it. 
 
 Dart (and Flutter) does not provide such Dependency Injection mechanism out of the box. However, \textit{get\_it} is a package, which helps with that. In fact, \textit{get\_it} works more as Service Locator. Every concrete implementation has to be registered and paired with its abstraction counterpart within \textit{GetIt} container. When those implementation are registered, container can be accessed through singleton instance and obtain concrete implementation.
 

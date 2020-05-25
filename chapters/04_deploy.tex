@@ -11,17 +11,16 @@ Coffee Time was developed as fully open-sourced (MIT licensed) application avail
     \item \textit{Dev} branch is for active development. 
     \item Each feature or bug has assigned GitHub \textit{issue}.  
     \item Each feature is developed within its own \textit{feature} branch, branched from \textit{dev} branch. The~\textit{feature} branch has to be named as \verb|feature/X| where X is the~issue number.
-    \item Each bug has its own \textit{fix} branch and is named as \verb|fix/X| where X is issue number.
+    \item Each bug has its own \textit{fix} branch and is named as \verb|fix/X| where X is an~issue number.
     \item Every feature and bug fix has to be merged to \textit{dev} branch through GitHub \textit{Pull Request}.
     \item Each \textit{Pull Request} can be completed only if automated build with unit tests is successful.
-    \item Each commit contains reference to issue number. 
+    \item Each commit contains reference to an~issue number. 
 \end{itemize}
 
 Moreover, created issues has assigned \textit{labels}, such as architecture, design or bug, for higher clarity and each issue is assigned to the milestone. This helped to organize remaining work and stick to the plan. 
 
-\subsection{Continuous Integration}
-
-\begin{listing}[!h]
+% For some reason, it still prints within \begine{itemize} -- this works...
+\begin{listing}[ht]
 \begin{minted}{yaml}
 name: 'Mobile - Build and test'
 on:
@@ -38,7 +37,7 @@ jobs:
         java-version: '12.x'
     - uses: subosito/flutter-action@v1
       with:
-         channel: 'stable' # or: 'dev' or 'beta'
+         channel: 'stable'
     # Get flutter packages
     - name: 'pub get'
       working-directory: mobile
@@ -61,12 +60,14 @@ jobs:
 \label{listing:gh-ci}
 \end{listing}
 
+\subsection{Continuous Integration}
+
 GitHub has a feature called GitHub Actions -- automation of the development workflow. Whenever pull request is created or new commits are pushed to created pull requests or \textit{dev} branch, an automated action is run. This action checkouts current code, build it with Flutter tools and run unit tests. If any of those action fails, build is marked as failed and in case of a pull request, pull request can not be closed. 
 
 Configuration of GitHub Actions are done through configuration files within YAML format. Coffee Time build action configuration is shown in~\Cref{listing:gh-ci}. Action is triggered on push to \textit{feature}, \textit{fix} or \textit{dev} branch and only if change set contains any file within \textit{mobile} folder. Java and Flutter tools are installed in order to build Flutter application. Before building application, Dart packages has to be downloaded. Finally after the application is built, unit tests are started. If any of tests failed, whole action is marked as failed.
 
 \section{Internal Testing}
-In the moment, when application had minimal working feature, internal testing channel on \textit{Google Play Services} was created in order to have early feedback from internal testers. Internal Channel provides access to applications in early stages to selected users. In case of Coffee Time application, internal testers were author's closest persons and family members. A number of testers were up to ten people and during development, they gave valuable feedback. An example of such feedback was not working navigation action on some Android versions. 
+In the moment, when application had minimal working feature, internal testing channel on \textit{Google Play Services} was created in order to have early feedback from internal testers. Internal Channel provides access to applications in early stages to selected users. In case of Coffee Time application, internal testers were author's closest persons and family members. A~number of testers were up to ten people and during development, they gave valuable feedback. An~example of such feedback was not working navigation action on some Android versions. 
 
 During development, several versions were published for internal testing:
 
@@ -83,7 +84,7 @@ After internal testing, application was opened up for beta testers within \texti
 All versions were merged to \textit{master} branch and properly tagged, so each version can be found on GitHub project. 
 
 \section{Crashlytics}
-When the application was ready to release another Firebase service was added to the~application -- Crashlytics~\cite{firebase-crashlytics}. Crashlytics is a realtime crash reporter that helps track, prioritize and fix stability issues. It was quite easy to enable this service thanks to the official plugin for Crashlytics. Within Firebase console it was just one click to enable this service. And in the application a two lines of code had to be added to enable it~(\Cref{listing:ct-crashlytics-enable}).
+When the application was ready to release another \textit{Firebase} service was added to the~application -- \textit{Crashlytics}~\cite{firebase-crashlytics}. \textit{Crashlytics} is a realtime crash reporter that helps track, prioritize and fix stability issues. The official plugin for \textit{Crashlytics} was used to enable this service. In the application only a~two lines of code had to be added to enable reporting~(\Cref{listing:ct-crashlytics-enable}).
 
 \begin{listing}[h!]
 \begin{minted}{dart}
@@ -101,29 +102,53 @@ When the release candidate version was prepared, same user testing as was done w
 
 Test was evaluated in the same manner as before, with same test cases to know, if found issues within prototype were fixed or not. To remind, found issues were:
 
-\begin{enumerate}
-    \item ``Filter screen is confusing. Confirmation is useless.'' -- Confirmation within Filter screen was removed. When user press back button, selected filters is applied.
-    \item ``Do not open filter screen, just open some modal window to selects tags''. -- Filter screen remained a more feasible solution by author opinion.
-    \item ``The filter icon is unclear'' -- Icon remained the same as it is standard icon used across applications. However, two new testers confirmed once again this confusion. 
-    \item ``If the user is located on the detail screen, clicking on the tag icon should set the~ filter.'' -- For now not implemented. 
-    \item Three different icons used to start navigation. Icon is different on the cafe list from icon within detail screen. -- Icons were consolidated into one icon. 
-    \item Cafe's name on tile can be harder to read with the contrasting background image. -- Solved with darker photo overlay. 
-    \item Landscape mode is not working. -- Landscape was disabled. 
-    \item The map marker could contain more information than cafe's name. -- Currently not doable due to a limitation of the maps plugin.
-\end{enumerate}
+\begin{questions}
+  \item Filter screen is confusing. Confirmation is useless.
+         \begin{answer}
+          Confirmation within filter screen was removed. When an~user press a~back button, selected filters are applied.
+         \end{answer}
+    \item Do not open filter screen, just open some modal window to selects tags.
+         \begin{answer}
+          Filter screen remained the~same as a~more feasible solution by author opinion.
+         \end{answer}
+    \item The filter icon is unclear.
+         \begin{answer}
+          Icon remained the same as it is standard icon used across different applications. However, two new testers confirmed once again this confusion. 
+         \end{answer}
+    \item If an~user is located on the~detail screen, clicking on a~tag icon should set filter.
+         \begin{answer}
+         For now not implemented. 
+         \end{answer}
+   \item Three different icons are used to start navigation. Icon is different on the cafe list from icon within detail screen.
+         \begin{answer}
+          Icons were consolidated into one icon.
+         \end{answer}
+   \item Cafe's name on tile can be hard to read with the~contrasting background image.
+         \begin{answer}
+          Solved with darker photo overlay.
+         \end{answer}
+   \item Landscape mode is not working.
+         \begin{answer}
+          Landscape mode was disabled. 
+         \end{answer}
+   \item The map marker could contain more information than the cafe's name only.
+         \begin{answer}
+          Currently it is not doable due to a~limitation of the maps plugin.
+         \end{answer}
+\end{questions}
 
-New testers encountered old issue only with ``unclear filter icon''. The more serious issue was found within the tag review screen. On some screen resolutions, a confirm button to submit review can be ``hidden'' and the user has to scroll down a little bit to see a button. One user was confused as it looked like no button is not visible and pressed back button to confirm review. Such action did not submit review and test case failed. A solution to prevent this issue could be to use \verb|FloatingActionButton| which is still visible on the screen. Same approach is used for ``favorite'' button within detail screen.
+New testers encountered old issue only with ``unclear filter icon''. The~more serious issue was found within the tag review screen. On some screen resolutions, a confirm button to submit review can be ``hidden'' and the user has to scroll down a little bit to see a button. One user was confused as it looked like no button is not visible and pressed back button to confirm review. Such action did not submit review and test case failed. A~solution to prevent this issue could be to use \verb|FloatingActionButton| which is still visible on the~screen. Same approach is used for ``favorite'' button within detail screen.
 
-As the test results did not find any serious issues which could prevent release the application, final steps were taken to deploy the application to the production.
+As the test results did not find any serious issues which could prevent release the application, final steps were taken to deploy the application to the~production.
 
 \section{Release}
-Coffee Time was released as version \textit{1.0.0} to the \textit{Google Play Store} for Android devices. In order to publish a release, a proper name and description in all available languages had to be filled before the application could be accepted. Moreover, the store displays application photo, logo a and cover image. These fields were necessary to fill as well. After release, two minor versions \textit{1.0.1} and \textit{1.0.2} were released as hotfixes to prevent application crash on some devices.
+Coffee Time was released as version \textit{1.0.0} to the \textit{Google Play Store} for Android devices. In order to publish a release, a proper name and description in all available languages had to be filled before the application could be accepted. Moreover, the store displays application photo, logo and a~cover image. These fields were necessary to fill as well. After the~release, two minor versions \textit{1.0.1} and \textit{1.0.2} were released as hotfixes to prevent application crashes on some devices.
 
-\Cref{fig:ct-released-version} shows released version. In contrast with prototype version (\Cref{fig:hifi}), there are no significant changes other than 
+\Cref{fig:ct-released-version} shows released version. In contrast with prototype version (\Cref{fig:hifi}), there are no significant graphical changes other than 
 
 \begin{itemize}
     \item changed font typeface,
-    \item moved favorite button from header to FloatingButton,
+    \item moved favourite button from header to FloatingActionButton,
     \item slightly different color pallete.
 \end{itemize}
 
@@ -146,7 +171,7 @@ One feature from prototype did not make it to first released version and that is
 However, during implementation was acknowledged that fully functional text search should include autocomplete services from Google Places API. Unfortunately, the current design of API and application did not count with such requirements. Feedback from users includes also a requirement for such features. Thus this feature is considered as the most wanted feature in future development. 
 
 \subsection{Conclusion}
-Coffee Time was successful implemented and released to production for \textit{Android} devices. A \textit{QR} code for downloading is displayed in~\Cref{fig:ct-qr-code}. As Flutter is multi-platform, \textit{iOS} could be deployed too. However there were a few ``obstacles'' that prevented to do that:
+Coffee Time was successful implemented and released to production for \textit{Android} devices. A~\textit{QR} code for downloading is displayed in~\Cref{fig:ct-qr-code}. As Flutter is multi-platform, \textit{iOS} could be deployed too. However there were a~few ``obstacles'' that prevented to do that:
 
 \begin{itemize}
     \item Application design was inspired from Material Design and this design do not correspond with Apple Deisgn,
