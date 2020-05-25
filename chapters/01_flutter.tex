@@ -47,7 +47,7 @@ Flutter uses programming language Dart~(specification v2.0~\cite{dart-specs}). I
 
 Flutter performs the use of both ways. If the~targeted platform is web, the~Dart~Web is used. For other platforms Dart~Native is chosen. The~Dart~Native's \gls{jit} compilation is highly used to support fast development process with ``hot-reload'' functionality. Then the~\gls{aot} compilation is used for the best-optimised production-ready result on the native platform.  
 
-Flutter framework is organised into several layers (\Cref{fig:flutter-layer-cake}), where each layer makes usage of the previous one. The upper layers are more frequently used by developers on a daily basis, and lower layers are used only if the developers need to create particular customizations.
+Flutter framework is organised into several layers (\Cref{fig:flutter-layer-cake}), where each layer makes usage of the previous one. The upper layers are more frequently used by developers on a daily basis, and lower layers are used only if the~developers need to create particular customizations.
 
 \begin{figure}[htp]
     \centering
@@ -56,10 +56,10 @@ Flutter framework is organised into several layers (\Cref{fig:flutter-layer-cake
     \label{fig:flutter-layer-cake}
 \end{figure}
 
-Unlike the other frameworks, Flutter uses high-performance 2D rendering engine and draws everything onto the~screen directly. That means pixel-perfect control over what and how it is displayed. The~most top layers, \textit{Material} and \textit{Cupertino}, are set of widgets which defines Material Design (Android systems) and Apple Design components respectively. To highlight that, Flutter does not use native components, but everything draws by itself. These two layers support developers to bring the standardised look and feel to the~targeted platform.
+Unlike the~other frameworks, Flutter uses high-performance 2D rendering engine and draws everything onto the~screen directly. That means pixel-perfect control over what and how it is displayed. The~most top layers, \textit{Material} and \textit{Cupertino}, are set of widgets which defines Material Design (Android systems) and Apple Design components respectively. To highlight that, Flutter does not use native components, but everything draws by itself. These two layers support developers to bring the~standardised look and feel to the~targeted platform.
 % --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- #
 \subsection{Reactive Programming}
-Flutter makes significant usage from the concept of reactive programming. There is nearly always a~requirement to update data in response to user interaction or any other event such as getting data from the~server. More than that, sometimes it is necessary to update different parts of the user interface in response to these events. 
+Flutter makes significant usage from the~concept of reactive programming. There is nearly always a~requirement to update data in response to user interaction or any other event such as getting data from the~server. More than that, sometimes it is necessary to update different parts of the~user interface in response to these events. 
 
 Flutter creates user interface by composing \textit{immutable} widgets. The~immutability is the key point here. Whenever user interface needs to ``redraw'' screen, the~part of the~widget tree is replaced by \textit{new} widget instances (in fact, it is not simple as that, and this topic is more deeply discussed later in this chapter). In many other \gls{ui} frameworks, such as \textit{Xamarin}, is usually taken the approach of coupling \gls{ui} components with view-models through concepts such as data binding~\cite{xamarin-data-binding}. That means that whenever \gls{ui} needs to~change, the~components mutate application's state. Flutter takes an~entirely different approach. It can be said ``here is the~current state of the~application, draw something on the~screen accordingly'' -- there is no way to state \verb|widget.property = new value| as widgets are immutable.
 
@@ -155,7 +155,7 @@ The state object is associated with widget's \textit{BuildContext}. This associa
 As was mentioned, \textit{Stateful Widge}t can tell the framework to rebuild, and the widget can be redrawn based on the~changed state. The~\textit{Stateful Widget} has method \verb|setState(callback)| which is used to do such rebuild. Inside \verb|callback| a~developer should change the~widget's state to the~new value and framework will rebuild the widget based on that~new state. 
 % --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- & --- &
 \subsubsection{Case Study: Counter Application}
-Suppose application where are two buttons. One button increments a value (\verb|counter|) and other decrements. The counter value is displayed within two \textit{Text} widgets located on different places within the application. Whenever any of the buttons are clicked, and the value is changed, all \textit{Text} widgets should reflect this change.
+Suppose application where are two buttons. One button increments a~value (\verb|counter|) and other decrements. The~counter value is displayed within two \textit{Text} widgets located on different places within the application. Whenever any of the~buttons are clicked, and the~value is changed, all \textit{Text} widgets should reflect this change.
 
 \begin{figure}[htp]
     \centering
@@ -244,7 +244,7 @@ class CounterTextContainer extends StatelessWidget {
     \label{fig:counter-app-base-build}
 \end{figure}
 
-\Cref{listing:counter-base-state-homepage} shows definition of \textit{HomePageState} where state is represented as \verb|int _counter = 0| variable. There are also two private methods for incrementing and decrementing counter value. In each of the methods, the \verb|setState()| is called with the appropriate state change.  These two methods are bound to \verb|onPressed()| callback within \textit{FloatingActionButton}. The~state (\verb|_counter| variable) is passed down to~\verb|CounterTextContainer|~\Cref{listing:counter-base-text-container} where the value is used to display within \textit{Text} widget. 
+\Cref{listing:counter-base-state-homepage} shows definition of \textit{HomePageState} where state is represented as \verb|int _counter = 0| variable. There are also two private methods for incrementing and decrementing \verb|_counter| value. In each of the~methods, the \verb|setState()| is called with the appropriate state change.  These two methods are bound to \verb|onPressed()| callback within \textit{FloatingActionButton}. The~state (\verb|_counter| variable) is passed down to~\verb|CounterTextContainer|~\Cref{listing:counter-base-text-container} where the value is used to display within a~\textit{Text} widget. 
 
 The expectation is, that if the user pressed any of the buttons, the value is incremented or decremented respectively and part of the~\gls{ui} which depends on \verb|_counter| value will be rebuilt. This part should be two \textit{Text} widgets. In fact, the state is defined within the~\textit{HomePage} widget, and so, the~whole \textit{HomePage} and its children are rebuilt~(\Cref{fig:counter-app-base-build}). In~this small example, it is not really a~problem and performance should not be affected. However, if the~tree is deeply nested with heavy performance widgets (for example animations), it could lead to reduced performance and application can lags. 
 
@@ -361,7 +361,7 @@ return Scaffold(
 \label{listing:counter-inherited-homepage}
 \end{listing}
 
-\begin{figure}[h]
+\begin{figure}[!htb]
     \centering
     \includegraphics[width=0.75\linewidth]{img/flutter/counter-inherited-widget.pdf}
     \caption{InheritedWidget Approach and Its Widget Tree.}

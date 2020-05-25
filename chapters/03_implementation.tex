@@ -18,7 +18,7 @@ In order to have easy to write, maintainable and testable code, some overall arc
     \label{fig:clean-arch-bmartin}
 \end{figure}
 
-There are several attempts and approaches on how to design such architecture~\cite{clean-architecture-article}. The inspiration for chosen architecture comes from Clean Architecture, initially proposed by \textit{Bob C. Martin}~\cite{clean-architecture-book}. In the~basic form the clean architecture (\cref{fig:clean-arch-bmartin}) consists of four layers organised as circles. Architecture defines dependency rule where each layer should be dependent only on the~inner circles. Accordingly to \textit{Bob C. Martin}~\cite{clean-architecture-article} layers can be described as:  
+There are several attempts and approaches on how to design such architecture~\cite{clean-architecture-article}. The inspiration for chosen architecture comes from \textit{Clean Architecture}, initially proposed by \textit{Bob C. Martin}~\cite{clean-architecture-book}. In the~basic form the~\textit{Clean Architecture} (\cref{fig:clean-arch-bmartin}) consists of four layers organised as circles. Architecture defines dependency rule where each layer should be dependent only on the~inner circles. Accordingly to \textit{Bob C. Martin}~\cite{clean-architecture-article} layers can be described as:  
 
 \begin{quote}
 \textbf{Entities} encapsulate Enterprise-wide business rules. These entities, which can be simple objects or hierarchical structure of objects are the least likely to change when something external changes.
@@ -39,7 +39,7 @@ Functions are written under \textit{Node.js}~\cite{node-js}, and every function 
 \textit{Express.js} has a simple yet powerful mechanism of middlewares, where each request can be pre-processed before sending to the next processing. For example, it can be used to check if the user is authorised to make the request. With this setup, nothing prevented to create Coffee Time API. Furthermore, as~\textit{Express.js} allows to define REST~API, only one cloud function can be exported -- ``the api'' function. All requests are processed through this function. However, before implementation itself, it had to be defined what API will offer and how it can be consumed. 
 % --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- #
 \subsection{The API Endpoints}
-The API has endpoints divided into three categories -- places, tags and photos. As a~client is considered to be multilingual, the API is too. The Places API accepts, as was described earlier, language parameter to specify how the response should be localised. The API is designed with language parameter as a mandatory part of the~URL for places related requests. The tags category has endpoints for obtaining and manipulating tags. Lastly, photo category gives access to downloading the place's photo. Every response coming from \gls{gpa} which returns places are modified such that each ``place'' entry contains additional \verb|tags| field which is an~array of the~\verb|tag| model. 
+The~API has endpoints divided into three categories -- places, tags and photos. As a~client is considered to be multilingual, the~API is too. The~Places API accepts, as was described earlier, language parameter to specify how the~response should be localised. The~API is designed with language parameter as a~mandatory part of the~URL for places related requests. The~tags category has endpoints for obtaining and manipulating tags. Lastly, photo category gives access to downloading the place's photo. Every response coming from \gls{gpa} which returns places are modified such that each ``place'' entry contains additional \verb|tags| field which is an~array of the~\verb|tag| model. 
 
 The~\cref{table:cta-places} describes each API endpoint and its usage. Mandatory parameters within the~URL are highlighted as \verb|<param>|. Each URL is shown without prefix \verb|http[s]://domain/api| (the hosting URL and \verb|/api| suffix).
 % -----------------------------
@@ -197,9 +197,9 @@ In order to have access to \textit{Firestore} storage and to authorise tokens, a
 \end{figure}
 
 \subsection{Functions Deployment}
-A~developer can run functions locally and they can be served through localhost while he or she developing them. Once the~code is ready, it has to be deployed to the~\textit{Firebase Cloud Functions} service. In order to do that, \textit{Firebase CLI} tooling and its deploy command have to be used. If a~version exists already in the~\textit{Firebase}, it is replaced by a~new one.
+A~developer can run functions locally and they can be served through localhost while he or she developing them. Once the~code is ready, it has to be deployed to the~\textit{Firebase Cloud Functions} service. In order to do that, \textit{Firebase CLI} tooling and its deploy command have to be used. If any version exists already in the~\textit{Firebase}, it is replaced by a~new one.
 
-\textit{Firebase Cloud Functions} can be deployed to different physical areas such as \textit{West Europe} or \textit{US East}. While the Coffee Time application is mainly tested in the Czech Republic, \textit{West Europe} was selected as the best option because of its closest availability. One downside is that each location is part of the~API~URL. This can add complexity to the~client side if more locations are used in case of globally available application. 
+\textit{Firebase Cloud Functions} can be deployed to different physical areas such as \textit{West Europe} or \textit{US East}. While the Coffee Time application is mainly tested in the Czech Republic, \textit{West Europe} was selected as the~best option because of its closest availability. One downside is that each location is part of the~API~URL. This can add complexity to the~client side if more locations are used in case of globally available application. 
 
 % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- %
 \section{Coffee Time}
@@ -286,7 +286,7 @@ Future<Either<List<Tag>, Failure>> getAll() async {
 \label{listing:ct-either-repo}
 \end{listing}
 
-\Cref{listing:ct-either-repo} shows how \verb|Either<L,R>| is used within \verb|TagRepository|. In~case of successful operation, \verb|Left| type is returned, in this case the list of tags. If any exception occurs, the \verb|Right| type -- Failure is returned instead. The usage of such returned value is shown in~\Cref{listing:ct-either-usage}, where either \verb|List<Tag>| is returned or \verb|Failure| object instead.   
+\Cref{listing:ct-either-repo} shows how \verb|Either<L,R>| is used within \verb|TagRepository|. In~case of successful operation, \verb|Left| type is returned, in this case the list of tags. If any exception occurs, the \verb|Right| type -- Failure is returned instead. The~usage of such returned value is shown in~\Cref{listing:ct-either-usage}, where either a~\verb|List<Tag>| is returned or a~\verb|Failure| object instead.   
 
 \begin{listing}[ht]
 \begin{minted}{dart}
