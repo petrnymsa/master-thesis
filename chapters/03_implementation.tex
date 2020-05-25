@@ -1,14 +1,14 @@
 \chapter{Implementation}
 \label{ch:implementation}
-When the Coffee Time specification was created and the~prototype was tested, the~implementation itself could begin. In this chapter, the implementation details are covered. In the beginning, the proposed architecture of the~application is introduced and explained. Next section describes how the Coffee Time API is designed and implemented. Which framework for creating REST~API was chosen and how it can be connected to \textit{Firebase} services. Detailed section of the mobile application implementation follows. In this section, used techniques and packages are described to achieve desired functionality. 
+When the~Coffee Time specification was created and the~prototype was tested, the~implementation itself could begin. In this chapter, the implementation details are covered. In the beginning, the proposed architecture of the~application is introduced and explained. Next section describes how the~Coffee Time API is designed and implemented. Which framework for creating REST~API was chosen and how it can be connected to \textit{Firebase} services. Detailed section of the mobile application implementation follows. In this section, used techniques and packages are described to achieve desired functionality. 
 % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- %
 \section{Clean Architecture}
 In order to have easy to write, maintainable and testable code, some overall architecture should be considered. The~architecture should follow these rules: 
 \begin{enumerate}
 \item Independence of \gls{ui} from application business logic. 
-\item The business logic has to be testable without any dependent requirements such as server connections.
-\item Interchangeable \gls{ui}. The \gls{ui} part can be changed without affecting the rest of the system.
-\item Independence of business logic from the infrastructure -- the data source can be changed without affecting business logic.
+\item The~business logic has to be testable without any dependent requirements such as server connections.
+\item Interchangeable \gls{ui}. The~\gls{ui} part can be changed without affecting the~rest of the~system.
+\item Independence of business logic from the~infrastructure -- the~data source can be changed without affecting business logic.
 \end{enumerate}
 
 \begin{figure}[ht]
@@ -308,14 +308,17 @@ final allTags = result.when(
 \subsection{Data Layer}
 Purpose of layer service is to implement repositories, add services which communicates with the~Coffee Time API and define a~models which are mapped to the~responses from API. As with the~repositories, the~services are implemented against interfaces. This approach helps to write testable code. Repositories which use these services depend on interfaces and not on the~concrete implementations. \Cref{fig:ct-repo-services} shows association between repositories and those services. 
 
-\begin{figure}[ht]
+Each service communicates with a~concrete part of the~Coffee Time API. The~\textit{CafeService} has methods related to obtaining nearby cafes or getting cafe detail, \textit{FavoriteService} has methods to obtain favorited cafes, \textit{PhotoService} gives access to downloading cafe's photos and~\textit{TagService} serves for manipulation with tags.
+
+
+\begin{sidewaysfigure}[!htb]
     \centering
-    \includegraphics[width=\textwidth,angle=270,origin=c]{img/implementation/repo-services.pdf}
+    \includegraphics[width=0.9\textwidth]{img/implementation/repo-services.pdf}
     \caption{Repositories and Services Association.}
     \label{fig:ct-repo-services}
-\end{figure}
+\end{sidewaysfigure}
 
-Each service communicates with a~concrete part of the~Coffee Time API. The~\textit{CafeService} has methods related to obtaining nearby cafes or getting cafe detail, \textit{FavoriteService} has methods to obtain favorited cafes, \textit{PhotoService} gives access to downloading cafe's photos and~\textit{TagService} serves for manipulation with tags.
+\clearpage
 
 \subsubsection{Favorite Local Service}
 Current application version uses for saving user's favorite cafes only local storage. Thanks to implementation against interface, in the future, the synchronization of favorited cafes over API can be added without breaking other parts of the~application. 
@@ -524,11 +527,11 @@ One important part of maintainable and testable code are SOLID principles, origi
     \item Dependency Inversion -- high-level modules should not depend on low-level modules. Both should depend on abstractions.
 \end{enumerate}
 
-Each class (module) within Coffee Time Application, such as repository, service or \gls{bloc} which depends on some other classes, depends on abstractions. These dependencies are listed as required in a~class constructor. Dependency Injection mechanism is used to provide concrete implementations of each required abstraction to classes which depends on it. 
+Dependency Injection mechanism is used to provide concrete implementations of each required abstraction to classes which depends on it. 
 
-Dart (and Flutter) does not provide such Dependency Injection mechanism out of the box. However, \textit{get\_it} is a package, which helps with that. In fact, \textit{get\_it} works more as Service Locator. Every concrete implementation has to be registered and paired with its abstraction counterpart within \textit{GetIt} container. When those implementation are registered, container can be accessed through singleton instance and obtain concrete implementation.
+Dart (and Flutter) does not provide such Dependency Injection mechanism out of the~box. However, \textit{get\_it} is a~package, which helps with that. In fact, \textit{get\_it} works more as Service Locator. Every concrete implementation has to be registered and paired with its abstraction counterpart within \textit{GetIt} container. When those implementation are registered, container can be accessed through singleton instance and obtain concrete implementation.
 
-However, such Service Locator is usually considered as anti-pattern if used careless. If such container is accessed everywhere, it can hides dependencies and it is highly coupled to every module. On the other hand, if each module lists its dependencies within constructor, such modules can be constructed at one place. In this place, usually called ``composition root'', this issue can be avoided. Thus, in the Coffee Time implementation, every dependency is registered within \textit{GetIt} container (see \verb|di_container.dart| file). Then concrete implementations are created through \textit{GetIt} locator mainly in \verb|App.dart| or when doing navigation between screens. 
+However, such Service Locator is usually considered as anti-pattern if used careless. If such container is accessed everywhere, it can hides dependencies and it is highly coupled to every module. On the~other hand, if each module lists its dependencies within constructor, such modules can be constructed at one place. In this place, usually called ``composition root'', this issue can be avoided. Thus, in the~Coffee Time implementation, every dependency is registered within \textit{GetIt} container (see \verb|di_container.dart| file). Then concrete implementations are created through \textit{GetIt} locator mainly in \verb|App.dart| or when doing navigation between screens. 
 
 \section{Unit Testing}
 Properly written project should have tested code. Coffee Time application has written unit tests for each layer. Domain entities has unit tests for their logic, service has unit tests for proper handling of API communication, repositories has tests for business logic and, \gls{bloc}s are tested that emits proper state based on received events. 
