@@ -1,6 +1,6 @@
 \chapter{Implementation}
 \label{ch:implementation}
-When the~Coffee Time specification was created and the~prototype was tested, the~implementation itself could begin. In this chapter, the implementation details are covered. In the beginning, the proposed architecture of the~application is introduced and explained. Next section describes how the~Coffee Time API is designed and implemented. Which framework for creating REST~API was chosen and how it can be connected to \textit{Firebase} services. Detailed section of the mobile application implementation follows. In this section, used techniques and packages are described to achieve desired functionality. 
+When the~Coffee Time specification was created and the~prototype was tested, the~implementation itself could begin. In this chapter, the implementation details are covered. In the beginning, the proposed architecture of the~application is introduced and explained. Next section describes how the~Coffee Time API is designed and implemented. This section also covers which framework for creating REST~API was chosen and how it can be connected to \textit{Firebase} services. Detailed section of the mobile application implementation follows. In this section, used techniques and packages are described to achieve desired functionality. 
 % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- %
 \section{Clean Architecture}
 In order to have easy to write, maintainable and testable code, some overall architecture should be considered. The~architecture should follow these rules: 
@@ -14,34 +14,34 @@ In order to have easy to write, maintainable and testable code, some overall arc
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.75\linewidth]{img/implementation/CleanArchitecture.jpg}
-    \caption{Clean Architecture defined by B.~Martin~\cite{clean-architecture-article}.}
+    \caption{Clean Architecture Defined By \textit{B.C.~Martin}~\cite{clean-architecture-article}.}
     \label{fig:clean-arch-bmartin}
 \end{figure}
 
-There are several attempts and approaches on how to design such architecture~\cite{clean-architecture-article}. The inspiration for chosen architecture comes from \textit{Clean Architecture}, initially proposed by \textit{Bob C. Martin}~\cite{clean-architecture-book}. In the~basic form the~\textit{Clean Architecture} (\cref{fig:clean-arch-bmartin}) consists of four layers organised as circles. Architecture defines dependency rule where each layer should be dependent only on the~inner circles. Accordingly to \textit{Bob C. Martin}~\cite{clean-architecture-article} layers can be described as:  
+There are several attempts and approaches on how to design such architecture~\cite{clean-architecture-article}. The inspiration for chosen architecture comes from \textit{Clean Architecture}, initially proposed by \textit{Bob C. Martin}~\cite{clean-architecture-book}. In the~basic form the~\textit{Clean Architecture} (\cref{fig:clean-arch-bmartin}) consists of four layers organised as circles. Architecture defines dependency rule where each layer should be dependent only on the~inner circles. Accordingly to \textit{Bob C. Martin}~\cite{clean-architecture-article}, layers can be described as:  
 
 \begin{quote}
 \textbf{Entities} encapsulate Enterprise-wide business rules. These entities, which can be simple objects or hierarchical structure of objects are the least likely to change when something external changes.
 
 \textbf{Use Cases} are application-specific business rules. They encapsulate all of the use cases of the system. These use cases orchestrate the flow of data to and from the entities and direct those entities to use their enterprise-wide business rules to achieve the goals of the use case. Changes within the use case do not affect entities and similarly, changes of outer layers (such as interchanging database provider) do not affect the use cases. 
 
-\textbf{Interface Adapters} converts data from the format most convenient for the use cases and entities to the format most convenient for some external agency such as database or API.  The application presentation (UI) should be here. Data models in this layer most likely consist only of data that are passed down to the use cases and then back from use cases to the view.  This layer is also responsible for converting any data from external forms into an internal form used by the use cases.
+\textbf{Interface Adapters} converts data from the format most convenient for the use cases and entities to the format most convenient for some external agency such as database or API. The~application presentation (UI) should be here. Data models in this layer most likely consist only of data that are passed down to the use cases and then back from use cases to the view.  This layer is also responsible for converting any data from external forms into an internal form used by the use cases.
 
 \textbf{Frameworks and Driver} contain any external frameworks and tools. This layer typically exposes interfaces to glue the external framework wit the rest of the application. 
 \end{quote}
 
-This architecture was chosen for its simplicity of dependencies, easy testability and extendability. 
+This architecture was chosen for its simplicity of dependencies, easy \\ testability and extendability. 
 % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- %
 \section{Coffee Time API}
 The Coffee Time API is served through \textit{Firebase Cloud Functions} services. Each function can run the~backend code in response to events triggered by \textit{Firebase} features and~HTTPS requests. Functions can be written with \\\textit{JavaScript} or \textit{Typescript} language. For implementation, the~\textit{Typescript} was chosen due to the safer typing system, and due to the fact, that author has more experience with \textit{Typescript} than with plain \textit{JavaScript}. 
 
 Functions are written under \textit{Node.js}~\cite{node-js}, and every function that is exported is considered as ``Cloud function'' and can be accessed through HTTPS request. This can be used to build fully functional REST API. For the implementation, \textit{Express.js} framework~\cite{express-js} was selected as popular and easy to use solution. Developers define routes, which HTTP method can be used and how the request should be processed. 
-\textit{Express.js} has a simple yet powerful mechanism of middlewares, where each request can be pre-processed before sending to the next processing. For example, it can be used to check if the user is authorised to make the request. With this setup, nothing prevented to create Coffee Time API. Furthermore, as~\textit{Express.js} allows to define REST~API, only one cloud function can be exported -- ``the api'' function. All requests are processed through this function. However, before implementation itself, it had to be defined what API will offer and how it can be consumed. 
+\textit{Express.js} has a simple yet powerful mechanism of middlewares, where each request can be pre-processed before sending to the next processing. For example, it can be used to check if the user is authorised to make the request. With this setup, nothing prevented to create Coffee Time API. Furthermore, as~\textit{Express.js} allows to define REST~API, only one cloud function can be exported -- ``the API'' function. All requests are processed through this function. However, before implementation itself, it had to be defined what API will offer and how it can be consumed. 
 % --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- #
 \subsection{The API Endpoints}
 The~API has endpoints divided into three categories -- places, tags and photos. As a~client is considered to be multilingual, the~API is too. The~Places API accepts, as was described earlier, language parameter to specify how the~response should be localised. The~API is designed with language parameter as a~mandatory part of the~URL for places related requests. The~tags category has endpoints for obtaining and manipulating tags. Lastly, photo category gives access to downloading the place's photo. Every response coming from \gls{gpa} which returns places are modified such that each ``place'' entry contains additional \verb|tags| field which is an~array of the~\verb|tag| model. 
 
-The~\cref{table:cta-places} describes each API endpoint and its usage. Mandatory parameters within the~URL are highlighted as \verb|<param>|. Each URL is shown without prefix \verb|http[s]://domain/api| (the hosting URL and \verb|/api| suffix).
+\Cref{table:cta-places} describes each API endpoint and its usage. Mandatory parameters within the~URL are highlighted as \verb|<param>|. Each URL is shown without prefix \verb|http[s]://domain/api| (the hosting URL and \verb|/api| suffix).
 % -----------------------------
 \begin{table}[ht]
 \centering
@@ -71,7 +71,7 @@ The~\cref{table:cta-places} describes each API endpoint and its usage. Mandatory
 \label{table:cta-nearby-params}
 \end{table}
 
-The~\cref{table:cta-nearby-params} describes \textit{nearby} parameter. Note that, if radius is omitted, the results are sorted by Google's ranking -- ``Ranking will favor prominent places within the specified area. Prominence can be affected by a place's ranking in Google's index, global popularity, and other factors''~\cite{google-places-api-nearby-req} otherwise the results are sorted by distance. 
+\Cref{table:cta-nearby-params} describes \textit{nearby} parameter. Note that, if radius is omitted, the results are sorted by Google's ranking -- ``Ranking will favor prominent places within the specified area. Prominence can be affected by a place's ranking in Google's index, global popularity, and other factors''~\cite{google-places-api-nearby-req} otherwise the results are sorted by distance. 
 % -----------------------------
 \begin{table}[ht]
 \centering
@@ -86,7 +86,7 @@ The~\cref{table:cta-nearby-params} describes \textit{nearby} parameter. Note tha
 \label{table:cta-find-params}
 \end{table}
 
-The~\cref{table:cta-find-params} describes \textit{find} parameters. The \verb|location=lan,lng| and \verb|radius| must be provided both if used. 
+\Cref{table:cta-find-params} describes \textit{find} parameters. The \verb|location=lan,lng| and \verb|radius| must be provided both if used. 
 % -----------------------------
 \begin{table}[ht]
 \centering
@@ -117,11 +117,11 @@ The~\cref{table:cta-find-params} describes \textit{find} parameters. The \verb|l
 \Cref{table:cta-tags} describes all endpoints related to \textit{tags}. The POST request to \verb|/tags/<place_id>| should have a~body with array of \textit{TagUpdate} model. The~example is listed in~\cref{listing:tag-update-post} where \verb|id| contains tag id and \verb|change| contains value of \verb|like| or \verb|dislike| which corresponds with increasing (decreasing) tag's score. 
 % --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- #
 \subsection{Express.js Pipeline}
-Express.js framework has a powerful and configurable way how to process incoming request. Every request can be processed through functions, called middlewares, before sent to a router. The router is a set of functions which maps part of URL with HTTP method to trigger response to the incoming request. Together it creates a flexible way of developing any form of a web-server or in case of Coffee Time API a REST API. 
+\textit{Express.js} framework has a powerful and configurable way how to process incoming request. Every request can be processed through functions, called middlewares, before sent to a router. The router is a set of functions which maps part of URL with HTTP method to trigger response to the incoming request. Together it creates a flexible way of developing any form of a web-server or in case of Coffee Time API a REST API. 
 
 Middleware functions can execute any code, make changes to the request (or to the response), end the request-response cycle or call next middleware~\cite{express-js-middleware}. The~function accepts three parameters -- \verb|req|, \verb|res| and \verb|next|. \verb|Req| is a request object containing all information related to the incoming request. The \verb|res| is a response object which can be used to alter the response, and~\verb|next| is the~callback function to trigger next middleware. In case of the Coffee Time API, three middlewares are used to process every incoming request.
 
-First middleware check and parse request body (if any provided) in JSON format. JSON format was chosen as a~primary format for communication with Google Places API, the \gls{cta} forces JSON format to every request which contains the body. Next middleware logs each incoming request to the cloud functions. Each log message contains issued HTTP method, requested URL and sent body if present. Last middleware authorises incoming request against Firebase Authentication Service.
+First middleware checks and parses request body (if any provided) in JSON format. JSON format was chosen as a~primary format for communication with Google Places API, the \gls{cta} forces JSON format to every request which contains the body. Next middleware logs each incoming request to the cloud functions. Each log message contains issued HTTP method, requested URL and sent body if present. Last middleware authorises incoming request against Firebase Authentication Service.
 
 \subsubsection{Authorisation Middleware}
 Each request to the API has to be authorised against Firebase Authentication services. The~authorisation process uses a~\gls{jwt} open standard~\cite{jwt-intro}. Each request has to include Authorisation header with ``Bearer token'' obtained earlier from \textit{Firebase Authentication}. 
@@ -213,28 +213,30 @@ Domain Layer defines every entity used by the application, definition of reposit
 One of important requirements of the Presentation layer and overall Flutter's philosophy is immutability. Hence, the domain entities are designed as immutable objects. Another requirement is object equality. By default, Dart compare objects by identity -- two objects are same instance, they are considered as identical (equal). In order to have fully functional application, it is necessary to override default equality behaviour to comparison by object properties. 
 
 \subsubsection{Equatable Package}
-If the default equality behaviour has to be changed, the \verb|==| operator and~\verb|hashCode| getter have to be overridden~\cite{dart-equality}.
+If the default equality behaviour has to be changed, the \verb|==| operator\\ and~\verb|hashCode| getter have to be overridden~\cite{dart-equality}.
 Even with small classes, this work becomes quickly tedious and can leads to unnecessary bugs for example when some property is added and developer forgot to update these overrides. Therefore in case of complex classes the~amount of bugs only increases. 
 
 \textit{Equatable} package~\cite{package-equatable} (developed by \textit{F. Angelov}) was created to simplify creating immutable classes with proper equality implementation. Class which needs to implement equality has to extend \verb|Equatable| base class provided by the package. Then it is needed to override \verb|props| getter where all class properties are listed. With that setup, equatable package internally provides proper equality comparison. This package is used to for all entities and classes which needed proper equality implementation. An example of its usage is shown in~\Cref{listing:ct-opening-hour-entity}, which is \verb|OpeningHours| entity implementation. 
 
-\begin{listing}[ht]
+\begin{listing}[!htb]
 \begin{minted}{dart}
 class OpeningHours extends Equatable {
   final bool openNow;
   final List<Period> periods;
   final List<String> weekdayText;
 
-  OpeningHours({this.openNow, this.periods, this.weekdayText});
+  OpeningHours({this.openNow, 
+                this.periods, this.weekdayText});
 
   OpeningHours copyWith(
-      {bool openNow, List<Period> periods, List<String> weekdayText}) {
-    return OpeningHours(
-        openNow: openNow ?? this.openNow,
-        periods: periods ?? this.periods,
-        weekdayText: weekdayText ?? this.weekdayText);
+      {bool openNow, 
+       List<Period> periods,
+       List<String> weekdayText}) {
+         return OpeningHours(
+          openNow: openNow ?? this.openNow,
+          periods: periods ?? this.periods,
+          weekdayText: weekdayText ?? this.weekdayText);
   }
-
   @override
   List<Object> get props => [openNow, periods, weekdayText];
 }
@@ -391,7 +393,7 @@ To connect \gls{bloc} with other widgets, \textit{flutter\_bloc} offer several w
 
 \begin{itemize}
     \item \textbf{BlocProvider} -- Provides \gls{bloc} instance down to the tree. Internally it is using \textit{Provider} package.
-    \item \textbf{BlocBuilder$<$Bloc, State$>$} -- Listen for changes from given \textit{Bloc} and~its state, which has to be provided somewhere in the~parent widgets. \textit{BlocBuilder} has \textit{builder} callback, where new widget based on obtained state is returned. 
+    \item \textbf{BlocBuilder$<$Bloc, State$>$} -- Listen for changes from given \textit{Bloc} and~its state, which has to be provided somewhere in the~parent widgets. It has \verb|builder| callback, where a~new widget based on obtained state is returned. 
     \item \textbf{BlocListener$<$Bloc, State$>$} -- In order to do side effects, such as display notification, \textit{BlocListener} can be used. As~\textit{BlocBuilder} it is listening for changes from Bloc and its new state. 
     \item \textbf{BlocConsumer$<$Bloc,State$>$} -- Combines functionality of \textit{BlocBuilder} and \textit{BlocListener} together.
 \end{itemize}
@@ -520,11 +522,11 @@ Each screen has its own assigned \gls{bloc}, however some communication between 
 One important part of maintainable and testable code are SOLID principles, originally designed by \textit{Bob C. Martin}~\cite{bob-martin-design-patterns}. Each letter stands for one principle: 
 
 \begin{enumerate}
-    \item Single Responsibility Principle -- a class should only have on responsibility. That class should have one reason to change.
-    \item Open Closed Principle -- a class should be open for extension, but closed for modification. 
-    \item Liskov Substitution Principle -- if class \textit{A} is a subtype of class \textit{B}, then it should be possible to replace \textit{B} with \textit{A} without disrupting the~behaviour of the program. 
-    \item Interface Segregation -- many specific interfaces are better than one general-purpose interface. In other words, split larger interfaces to smaller ones. 
-    \item Dependency Inversion -- high-level modules should not depend on low-level modules. Both should depend on abstractions.
+    \item \textit{Single Responsibility Principle} -- a~class should only have on responsibility. That class should have one reason to change.
+    \item O\textit{pen Closed Principle} -- a~class should be open for extension, but closed for modification. 
+    \item \textit{Liskov Substitution Principle} -- if class \textit{A} is a subtype of class \textit{B}, then it should be possible to replace \textit{B} with \textit{A} without disrupting the~behaviour of the program. 
+    \item \textit{Interface Segregation} -- many specific interfaces are better than one general-purpose interface. In other words, split larger interfaces to smaller ones. 
+    \item \textit{Dependency Inversion} -- high-level modules should not depend on low-level modules. Both should depend on abstractions.
 \end{enumerate}
 
 Dependency Injection mechanism is used to provide concrete implementations of each required abstraction to classes which depends on it. 

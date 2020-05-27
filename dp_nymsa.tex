@@ -32,6 +32,9 @@
 \usepackage{minted} % code highlight
 \usemintedstyle{friendly}
 
+% HIDE red boxes around links
+% \hypersetup{hidelinks} % #### ENABLE BEFORE PRINT #### 
+
 % FIX https://tex.stackexchange.com/questions/343494/minted-red-box-around-greek-characters
 \makeatletter
 \AtBeginEnvironment{minted}{\dontdofcolorbox}
@@ -65,7 +68,6 @@
 }
 
 % Q.A env
-
 \newenvironment{questions}{\begin{enumerate}[label=\bfseries\arabic*.]\bfseries}
                       {\end{enumerate}}
 \newenvironment{answer}{\par\normalfont}{}
@@ -83,14 +85,14 @@
 
 \acknowledgements{I would like to thank my supervisor \textit{Ing. David Šenkýř} for his guidance and~valuable advices. Sincere gratitude belongs to my partner and~family for their support during work on this thesis.}
 
-\abstractCS{Práce se zabývá využitím multiplatformního frameworku Flutter pro tvorbu mobilních, webových tak i~desktop aplikací. Hlavním tématem práce framework Flutter a~jeho použitelnost při tvorbě aplikací. Flutter je prakticky vyzkoušen na návrhu~a~implementaci aplikace Coffee Time pro operační systém Android. Coffee Time uživatelům pomáhá vyhledávat kavárny v~blízkém okolí s~možností filtrování dle různých kritérií.}
+\abstractCS{Práce se zabývá multiplatformním frameworkem Flutter, a~to nejen pro tvorbu mobilních aplikací. V~práci je popsán samotný framework, jeho použitelnost a~využití při vývojí aplikací. Následně je famework použit při~návrhu a~implementaci aplikace Coffee Time pro operační systém Android. Aplikace vyhledává kavárny v~blízkém okolí s~možností filtrování dle různých kritérií. Uživatelé aplikace si mohou zobrazit detailní informace, spustit navigaci nebo přečíst hodnocení. Aplikace byla navrhnnuta pomocí prototypu uživatelského rozhraní a~jeho postupném otestování. Nakonec byla aplikace zpřístupněna a~nasazena ke stažení pro mobilní telefony se systémem Android.}
 
-\abstractEN{A~thesis is focused on multi-platform framework Flutter for creating mobile, web and desktop applications. The~main topic is Flutter framework and its usability during application development. In practice, Flutter is used to design and implement a~Coffee Time application for Android devices. Coffee Time helps users to search nearby cafes with filtering by different criteria.}
+\abstractEN{This thesis is focused on multi-platform framework Flutter for creating not only mobile applications. In the~thesis, Flutter framework and its usability during application development are described. Flutter is used to design and implement the~Coffee Time application for Android devices. This application is able to search nearby cafes with options to filter them by different criteria. Application users can display cafe details, launch navigation or read reviews. The~application was designed using a~prototype user interface and its gradual testing before the~actual implementation. In the~end, the~application was released for download to Android devices.}
 
 \placeForDeclarationOfAuthenticity{Prague}
 \declarationOfAuthenticityOption{4} %volba Prohlášení //TODO
 
-\keywordsCS{Flutter framework, reaktivní programování, Android aplikace, vyhledávač kaváren, serverless, Firebase.}
+\keywordsCS{Flutter framework, reaktivní programování, Android aplikace, vyhledávač kaváren, serverless, Firebase.\clearpage}
 
 \keywordsEN{Flutter framework, reactive programming, Android application, cafe search, serverless, Firebase.}
 %volitelná URL práce, objeví se v tiráži
@@ -100,17 +102,12 @@
 \begin{document}
 
 % Acronyms and glossary
-% \newglossaryentry{formula}
-% {
-%         name=formula,
-%         description={A mathematical expression}
-% }
-\newacronym{aot}{AOT}{Ahead-of-time}
+\newacronym{aot}{AOT}{Ahead-of-Time}
 \newacronym{bloc}{BLoC}{Business Logic Component}
 \newacronym{ctu}{CTU}{Czech Technical University}
 \newacronym{cta}{CTA}{Coffee Time API}
 \newacronym{gpa}{GPA}{Google Places API}
-\newacronym{jit}{JIT}{Just-in-time}
+\newacronym{jit}{JIT}{Just-in-Time}
 \newacronym{jwt}{JWT}{JSON Web Token}
 \newacronym{lofi}{Lo-Fi}{Low Fidelity}
 \newacronym{hifi}{Hi-Fi}{High Fidelity}

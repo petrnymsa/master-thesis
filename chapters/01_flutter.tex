@@ -66,7 +66,7 @@ Flutter creates user interface by composing \textit{immutable} widgets. The~immu
 \subsubsection{The Notion of Streams}
 A Stream can be described as ``A pipe with two ends, only one allowing to insert something into it. When something is inserted into the pipe, it flows inside the pipe and goes out by the other end''~\cite{reactive-didier}. The~Stream can convey any~data type, from simple values to~events, complex object or even another stream. The~data can come to the~Stream, for example, from an external data source such as server connection or from events such as user interactions. In~Dart, the Streams support manipulating them, filtering, re-grouping, modify data before they are send and~much more. This functionality can be used to build reactive \gls{ui}. Flutter has several widgets supporting streams to rebuild part of the~\gls{ui} whenever new data arrived into the~Stream.
 
-The answer to the question ``What is reactive programming$?$'' could be ``Reactive programming is programming with asynchronous data streams``~\cite{reactive-didier}\cite{reactive-red-hat}. Within Flutter framework, anything from an~interaction event (a~tap, a~gesture), changes of a~variable, messages, everything that may change is conveyed and triggered by streams.
+The answer to the question ``What is reactive programming$?$'' could be ``Reactive programming is programming with asynchronous data streams`` \cite{reactive-didier}\cite{reactive-red-hat}. Within Flutter framework, anything from an~interaction event (a~tap, a~gesture), changes of a~variable, messages, everything that may change is conveyed and triggered by streams.
 
 It means that with reactive programming, according to~\cite{reactive-didier}, the~application:
 
@@ -263,14 +263,14 @@ In our case study, there are two places where the state (counter value) is neede
 Following lines in this section introduce some used patterns and solutions for state management.  Every solution will use the same case study but with appropriate implementation. Each solution's full code is available as an~appendix. The design and functionality remain the same as introduced before.
 % --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- #
 \subsection{Inherited Widget}
-One solution offered by \textit{Flutter} framework is the concept of \textit{InheritedWidget}~\cite{flutter-inherited-widget}~\cite{notion-widget-didier}. This concept is used across the framework -- for example, obtaining current \textit{Theme} or screen device information through \textit{MediaQuery} object. Both can be accessed through convention ``of'' method -- \verb|Theme.of(context)| returns \textit{Theme} object. Internally these objects makes usage of InheritedWidget. InheritedWidget has two features:
+One solution offered by \textit{Flutter} framework is the concept of \textit{InheritedWidget}~\cite{flutter-inherited-widget}~\cite{notion-widget-didier}. This concept is used across the framework -- for example, obtaining current \textit{Theme} or screen device information through \textit{MediaQuery} object. Both can be accessed through convention ``of'' method -- \verb|Theme.of(context)| returns \textit{Theme} object. Internally these objects makes usage of an~\textit{InheritedWidget}. The~\textit{InheritedWidget} has two features:
 
 \begin{itemize}
     \item It can be accessed from any widget directly.
     \item Whenever the widget changes, the accessing widget is automatically rebuilt.
 \end{itemize}
 
-The second implies that, for example, whenever widget access the~\textit{MediaQuery} and it is changed (the device is rotated, resolution changed,\ldots ), the~widget is rebuilt to handle these changes. 
+The~second implies that, for example, whenever widget access the~\textit{MediaQuery} and it is changed (the device is rotated, resolution changed,\ldots ), the~widget is rebuilt to handle these changes. 
 
 \begin{listing}[ht]
 \begin{minted}{dart}
@@ -645,9 +645,7 @@ class _SquaresPageState extends State<SquaresPage> {
 \label{listing:keys_page_stateless}
 \end{listing}
 
-The~problem can occur when some widget uses a~collection of widgets of the~same type that holds some state. Consider a~concrete example where \verb|SquarePage| holds a~list of \verb|Square| widgets~(\Cref{listing:keys_page_stateless}). Each \verb|Square| (as a~\textit{StatelessWidget}) has defined random colour through a~constructor. After a~button is clicked, the~squares are swapped. With \verb|Square| as \textit{StatelessWidgets}, everything works as expected. 
-
-\begin{listing}[ht]
+\begin{listing}[!htb]
 \begin{minted}{dart}
 class Square extends StatefulWidget {
   Square({Key key}) : super(key: key);
@@ -672,8 +670,9 @@ class _SquareState extends State<Square> {
 \label{listing:keys_square_stateful}
 \end{listing}
 
-However, if the~\verb|Square| becomes \textit{StatefulWidget}~(\Cref{listing:keys_square_stateful}) and the~button is clicked, it seems like nothing happened -- squares stay on the same place. When the~widget is marked to rebuilt, it walks through \textit{Elements} and if the~widget type and the~\textit{Key} match, the~\textit{Element} updates its reference to new Widget. In the~case of \textit{StatefulWidget}, the~associated state is linked to the~\textit{Element} object~(\Cref{fig:keys_start}). When squares are shifted, the~\textit{Element} is marked as dirty. It walks through square's \textit{StatefulElement} and checks if the~widget type and the~\textit{Key} match. They match because no \textit{Keys} are assigned to them. Hence, the~\textit{Element} updates its widget reference, but the~associated state remains the~same~(\Cref{fig:keys_wrong}). 
-The~key is to add \textit{Key}. There are several types of Keys such as \textit{ValueKey}, where some unique value can be assigned (for example article's id). For \verb|Square| example, the~\textit{UniqueKey} which generates unique identification is enough for usage.  After the~\textit{Keys} are assigned, \mint{dart}|final squares = [Square(key: UniqueKey()),Square(key: UniqueKey())]| the example works again as expected. The~full example code is available as~before within appendix.
+The~problem can occur when some widget uses a~collection of widgets of the~same type that holds some state. Consider a~concrete example where \verb|SquarePage| holds a~list of \verb|Square| widgets~(\Cref{listing:keys_page_stateless}). Each \verb|Square| (as a~\textit{StatelessWidget}) has defined random colour through a~constructor. After a~button is clicked, the~squares are swapped. With \verb|Square| as \textit{StatelessWidgets}, everything works as expected.
+However, if the~\verb|Square| becomes \textit{StatefulWidget}~(\Cref{listing:keys_square_stateful}) and the~button is clicked, it seems like nothing happened --~squares stay on the same place. When the~widget is marked to rebuilt, it walks through \textit{Elements} and if the~widget type and the~\textit{Key} match, the~\textit{Element} updates its reference to new Widget. In the~case of \textit{StatefulWidget}, the~associated state is linked to the~\textit{Element} object~(\Cref{fig:keys_start}). When squares are shifted, the~\textit{Element} is marked as dirty. It walks through square's \textit{StatefulElement} and checks if the~widget type and the~\textit{Key} match. They match because no \textit{Keys} are assigned to them. Hence, the~\textit{Element} updates its widget reference, but the~associated state remains the~same~(\Cref{fig:keys_wrong}). 
+The~key is to add \textit{Key}. There are several types of Keys such as \textit{ValueKey}, where some unique value can be assigned (for example article's id). For \verb|Square| example, the~\textit{UniqueKey} which generates unique identification is enough for usage. After the~\textit{Keys} are assigned, \mint{dart}|final squares = [Square(key: UniqueKey()),Square(key: UniqueKey())]| the example works again as expected. The~full example code is available as~before within appendix.
 
 The keys should be put to the most top widget, which is used as a~root widget of collection. Otherwise, the rebuilding algorithm fails once again, and wrong behaviour will occur. In practice, \textit{Key} should be used when stateful widgets are used within collections (such as \textit{ListView}, \textit{Row} or \textit{Column}) and they are manipulated -- moved, removed and similar. Moreover, sometimes the \textit{GlobalKey} can be used to manage some widget's state ``outside''. This approach is often used with managing text inputs. 
 % --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- # --- #

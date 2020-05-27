@@ -413,12 +413,12 @@ A note about \textit{User Interface Design (MI-NUR)} subject which was held duri
 As a~task graph was defined, the~\textit{Lo-Fi} prototype could be made. Although the application is considered as multi-platform application, the~prototype was focused on Android, and its Material design \cite{material-design}. The~inspiration was taken from typical Material layouts, such as \textit{AppBar} with title and subsequent actions or tabs the bottom of the screen. 
 
 First of all, the rough prototype was drawn on paper. Its purpose was to come up with some ideas and considered layout. After that, the~\textit{Balsamiq} \cite{balsamiq} prototyping software was used. The~\textit{Balsamiq} tries to mimic pencil and paper. The~prototype is created with a~set of components which looks like they are drawn by hand.
-The~most important feature was the~ability to create deep links between screens or components. With a~few clicks, the prototype was able to handle actions such as the open application menu or navigate to detail. With that tool, the clickable prototype focused on essential app's features was created. As a result, the PDF was exported. The PDF is enclosed as part of the thesis located at \verb|prototype/lofi.pdf|. The portion of the result is shown in~\Cref{fig:lofi}.
+The~most important feature was the~ability to create deep links between screens or components. With a~few clicks, the~prototype was able to handle actions such as the~open application menu or navigate to detail. With that tool, the~clickable prototype focused on essential app's features was created. As a result, the PDF was exported. The~PDF is enclosed as part of the thesis located at \verb|prototype/lofi.pdf|. The portion of the result is shown in~\Cref{fig:lofi}.
 
 \begin{figure}[htp]
     \centering
     \includegraphics[width=0.75\textwidth]{img/analysis/lofi.png}
-    \caption{\gls{lofi} prototype. Cafe list (left) and Detail Screen (right).}
+    \caption{\gls{lofi} Prototype. Cafe List (Left) and Detail Screen (Right).}
     \label{fig:lofi}
 \end{figure}
 
@@ -453,7 +453,7 @@ The result was tested with co-workers and closest author's family members. From 
 \end{questions}
 
 \subsubsection{High Fidelity Prototype}
-The \gls{hifi} prototype was created as Flutter application. Because of that, in the future, the already written code could be reused. The aim was to create a fully functional prototype for Android devices. As was said earlier in this chapter, the aim of \gls{hifi} is to provide an application so it behaves as real one, which is mainly focused on user interface interaction. That means that the~application does not have any real communication with back-end services. For Coffee Time there was prepared local JSON data source with randomly generated cafe names and their data. Besides that, a~few, real one cafes were added to be less general and more known for potential testers. The~\gls{hifi} focused on all earlier described use cases. The cafe list screen and cafe's detail screen is shown~in~\Cref{fig:hifi}. The prototype's source code can be found at~\verb|https://github.com/petrnymsa/coffee-time/releases/tag/prototype|~\cite{hifi-prototype}. 
+The \gls{hifi} prototype was created as Flutter application. Because of that, in the future, the already written code could be reused. The aim was to create a fully functional prototype for Android devices. As was said earlier in this chapter, the aim of \gls{hifi} is to provide an application so it behaves as real one, which is mainly focused on user interface interaction. That means that the~application does not have any real communication with back-end services. For Coffee Time there was prepared local JSON data source with randomly generated cafe names and their data. Besides that, a~few, real one cafes were added to be less general and more known for potential testers. The~\gls{hifi} focused on all earlier described use cases. The cafe list screen and cafe's detail screen is shown~in~\Cref{fig:hifi}. The prototype's source code can be found at \verb|https://github.com/petrnymsa/coffee-time/releases/tag/prototype|~\cite{hifi-prototype}. 
 
 \begin{figure}[htp]
     \centering
@@ -706,10 +706,10 @@ rating             & value from 1.0 to 5.0                                      
 \hline
 \textbf{Parameter} & \textbf{Usage} \\ \hline
 key                & API key \\ \hline
-location           & latitude,longtitude \\ \hline
-radius             & circular radius in meters, max 50 000m  \\ \hline
+location           & latitude, longtitude \\ \hline
+radius             & circular radius in meters, max 50 000~m  \\ \hline
 language           & language code \\ \hline
-opennow         & place should be open. If place does not have this field, it is omitted from results  \\ \hline
+opennow         & place is currently open; if place does not have this field, it is omitted from results  \\ \hline
 type & place type, always set to \textit{cafe} \\ \hline
 pagetoken & token for next page \\ \hline 
 \end{tabularx}
@@ -854,4 +854,4 @@ The~\textit{Cloud Functions} can be used to build Coffee Time API. The~\textit{C
 
 % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- % ----- %
 \section{The Conclusion}
-In this chapter, the considered application Coffee Time was introduced. The~analysis of existing alternatives was made to obtain inspiration for how each application behaves. The~prototype was created to propose user interface and tested it with users. In the~end, the~analysis of Coffee Time API was made along with analysis of chosen technology to build this API.
+In this chapter, the considered application Coffee Time was introduced.\\ The~analysis of existing alternatives was made to obtain inspiration for how each application behaves. The~prototype was created to propose user interface and tested it with users. In the~end, the~analysis of Coffee Time API was made along with analysis of chosen technology to build this API.
